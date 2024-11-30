@@ -1,0 +1,36 @@
+---
+import { type CollectionEntry } from 'astro:content';
+import Layout from '@layouts/Page.astro'
+import { locales } from '@i18n/i18n';
+import { getLocaleFromUrl} from '@i18n/utilities';
+import { getCollection, getEntry } from 'astro:content';
+import { getRelativePostPath } from '@utilities/getPostPath';
+import getPublishedPosts from '@utilities/getPublishedPosts';
+
+export async function getStaticPaths() {
+	const collection = 'posts'
+	const posts = await getPublishedPosts('', collection, '');
+	let postsToRender = [];
+
+  for (let locale of locales) {
+    const localePosts = posts
+			.filter(function(entry){ return getLocaleFromUrl(entry.slug) === locale })
+			.map((post) => ({
+				params: { blogPost: `${getRelativePostPath(locale, collection, post.slug, false)}` },
+				props: post,
+			}));
+		postsToRender.push(...localePosts)
+	}
+	return postsToRender
+}
+type Props = CollectionEntry<'posts'>;
+
+const post = Astro.props;
+const { Content } = await post.render();
+
+
+---
+
+<Layout>
+  <Content />
+</Layout>

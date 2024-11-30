@@ -1,0 +1,146 @@
+---
+import { SITENAME, DESCRIPTION } from '../constants';
+import { z } from 'zod';
+import { css, cx } from '../../styled-system/css';
+import { container } from '../../styled-system/patterns';
+import Intersecrion from '@elements/Intersection.astro';
+import LogoBuild from '@elements/Build.astro';
+import Link from '@elements/Link.astro';
+import LinkOverlay from '@elements/LinkOverlay.astro';
+
+const componentProps = z.object({
+  isHome: z.boolean()
+});
+
+type Props = z.infer<typeof componentProps>;
+
+const { isHome } = Astro.props as Props;
+const thisYear = new Date().getFullYear();
+---
+
+<footer
+  class={css({
+    marginBlockStart: { base: 8, md: 20 },
+    paddingBlockStart: 8,
+    paddingBlockEnd: 4,
+    backgroundColor: 'shade.98',
+    _osDark: { backgroundColor: 'shade.25' }
+  })}
+>
+  <div
+    class={cx(
+      container(),
+      css({
+        display: { md: 'grid' },
+        grid: { md: 'auto / 1fr 1fr' },
+        maxWidth: { lg: '6xl', xl: '7xl' }
+      })
+    )}
+  >
+    <div
+      class={cx(
+        css({
+          marginBlockEnd: 8
+        })
+      )}
+    >
+      <figure
+        class={css({
+          display: 'grid',
+          grid: 'auto / 20px 1fr',
+          alignItems: 'center',
+          columnGap: 2,
+          maxWidth: 'max-content',
+          position: 'relative',
+          marginBlockEnd: 4
+        })}
+      >
+        <div
+          class={css({
+            overflow: 'hidden',
+            borderRadius: 'sm'
+          })}
+        >
+          <Intersecrion />
+        </div>
+        <figcaption
+          class={css({
+            textStyle: 'intersection',
+            fontSize: 'sm',
+            letterSpacing: 6
+          })}
+        >
+          Intersection
+        </figcaption>
+        {
+          !isHome && (
+            <a
+              class={css({
+                width: '100%',
+                height: '100%',
+                position: 'absolute',
+                inset: 0
+              })}
+              href="/"
+              title={`${SITENAME}首頁`}
+            />
+          )
+        }
+      </figure>
+      <span
+        class={css({
+          display: 'block',
+          color: 'shade.64',
+          fontSize: 'sm',
+          _osDark: {
+            color: 'shade.80'
+          }
+        })}>{DESCRIPTION}</span
+      >
+    </div>
+    <div>
+      <figure
+        class={css({
+          width: 60,
+          position: 'relative',
+          color: 'shade.25',
+          marginBlockEnd: 8,
+          _osDark: { color: 'shade.96' }
+        })}
+      >
+        <LogoBuild />
+        <LinkOverlay
+          href="https://build.intersection.tw/?utm_source=intersection&utm_medium=image&utm_campaign=footer"
+        >
+          <Fragment slot="linkTitle" set:text="喜歡的 UI 就要親手做出來" />
+        </LinkOverlay>
+      </figure>
+      <hr
+        class={css({
+          width: '120px',
+          marginBlockEnd: 4,
+          borderTopWidth: 0,
+          borderBottomWidth: '1px',
+          borderStyle: 'solid',
+          borderColor: 'shade.80',
+          _osDark: {
+            borderColor: 'shade.40'
+          }
+        })}
+      />
+      <span
+        class={css({
+          color: 'shade.64',
+          fontFamily: 'default',
+          fontSize: 'sm',
+          _osDark: {
+            color: 'shade.80'
+          }
+        })}
+        >2016 - {thisYear} · <Link href="https://read.cv/ymcheung"
+          >@ymcheung</Link
+        > 翻譯的文章</span
+      >
+    </div>
+  </div>
+</footer>

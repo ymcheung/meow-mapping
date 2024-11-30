@@ -1,0 +1,103 @@
+---
+// import { DESCRIPTION, SITENAME, SITENAME_SHORT } from '@/constants';
+import { ViewTransitions } from 'astro:transitions';
+// import siteUrl from '@/helpers/siteUrl';
+
+const { pathname } = Astro.url;
+const { slug } = Astro.params;
+const { title, description, cover, dateModified, datePublished } = Astro.props;
+
+const {
+  image: {
+    src: coverImageSrc,
+    width: coverImageWidth,
+    height: coverImageHeight,
+    alt: coverImageAlt
+  }
+} = cover;
+
+const isArticle = !!slug;
+const ogType = isArticle ? 'article' : 'webiste';
+
+// const schema = () => {
+//   const website = {
+//     '@type': 'Website',
+//     name: SITENAME,
+//     url: import.meta.env.SITE_URL
+//   };
+
+//   const blogPosting = {
+//     '@type': 'BlogPosting',
+//     url: siteUrl(pathname),
+//     name: title,
+//     dateModified: dateModified,
+//     datePublished: datePublished,
+//     author: [
+//       {
+//         '@type': 'Person',
+//         name: 'Yuming Cheung',
+//         url: 'https://read.cv/ymcheung'
+//       }
+//     ],
+//     publisher: {
+//       '@type': 'Organization',
+//       name: SITENAME_SHORT,
+//       url: import.meta.env.SITE,
+//       logo: {
+//         '@type': 'ImageObject',
+//         name: `${SITENAME_SHORT}: ${DESCRIPTION}`,
+//         width: 400,
+//         height: 400,
+//         url: 'https://intersection.tw/intersection.png'
+//       }
+//     }
+//   };
+
+//   return JSON.stringify({
+//     '@context': 'https://schema.org/',
+//     '@graph': [website, ...(isArticle ? [blogPosting] : [])]
+//   });
+// };
+---
+
+<head>
+  <meta charset="utf-8" />
+  <title>{title ?? SITENAME}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={siteUrl(pathname)} />
+  <meta name="viewport" content="width=device-width" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href={siteUrl('/apple-touch-icon.png')} />
+  <link rel="manifest" href={siteUrl('/manifest.webmanifest')} />
+  <meta property="og:type" content={ogType} />
+  <meta property="og:site_name" content={SITENAME} />
+  <meta property="og:url" content={siteUrl(pathname)} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={siteUrl(coverImageSrc)} />
+  <meta property="og:image:width" content={coverImageWidth} />
+  <meta property="og:image:height" content={coverImageHeight} />
+  <meta property="og:image:alt" content={coverImageAlt} />
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content={siteUrl(pathname)} />
+  <meta property="twitter:title" content={title} />
+  <meta property="twitter:description" content={description} />
+  <meta property="twitter:image" content={siteUrl(coverImageSrc)} />
+  <meta property="twitter:image:alt" content={coverImageAlt} />
+  <meta property="fb:app_id" content="1241704385975640" />
+  <script type="application/ld+json" set:html={schema()} is:inline />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="generator" content={Astro.generator} />
+  {
+    process.env.PUBLIC_VERCEL_ENV === 'production' && (
+      <script
+        async
+        data-logspot-pk={import.meta.env.LOGSPOT_PUBLIC_KEY}
+        src="https://cdn.logspot.io/lg.js"
+        is:inline
+      />
+    )
+  }
+  <ViewTransitions />
+</head>
