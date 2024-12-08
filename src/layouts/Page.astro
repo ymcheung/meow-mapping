@@ -3,7 +3,7 @@ import "@/styles/global.css";
 
 const { title } = Astro.props;
 
-const fullTitle = `Travel to ${title} for Cats`;
+const fullTitle = `Cat Travel Guide to ${title}`;
 ---
 
 <html lang="en">
@@ -18,7 +18,7 @@ const fullTitle = `Travel to ${title} for Cats`;
   	<main>
   	 <article>
       <h1>{fullTitle}</h1>
-  	   <slot />
+  	  <slot />
   	 </article>
     </main>
 	</body>
