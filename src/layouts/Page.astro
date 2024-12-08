@@ -1,4 +1,9 @@
 ---
+import "@/styles/global.css";
+
+const { title } = Astro.props;
+
+const fullTitle = `Travel to ${title} for Cats`;
 ---
 
 <html lang="en">
@@ -7,9 +12,23 @@
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>{fullTitle}</title>
 	</head>
 	<body>
-	 <slot />
+  	<main>
+  	 <article>
+      <h1>{fullTitle}</h1>
+  	   <slot />
+  	 </article>
+    </main>
 	</body>
 </html>
+<style>
+  article {
+    color: var(--gray-0);
+
+    @media (--OSdark) {
+      color: var(--gray-12);
+    }
+  }
+</style>

@@ -8,7 +8,7 @@ export default function getPagePath(
   addLeadingSlash: boolean = true
 ) {
   const leadingSlash = addLeadingSlash ? '/' : '';
-  const localePath = locale === defaultLocale ? '' : `${locale}`;
+  const localePath = locale === defaultLocale ? '' : locale;
   let directoryPath = '';
   directories.map((dir) => (directoryPath += `${slugify(dir)}/`));
   slug = `${slugify(slug)}`;

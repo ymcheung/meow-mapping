@@ -12,9 +12,6 @@ export function getRelativePostPath(
   const trueSlug = slug.slice(slug.indexOf('/') + 1), // remove /[locale]/ from start of slug
     collectionDirectory = [collectionDirectoryNames[collection][locale]];
   if (locales.includes(locale)) {
-    console.log(
-      getPagePath(locale, collectionDirectory, trueSlug, addLeadingSlash)
-    );
     return getPagePath(locale, collectionDirectory, trueSlug, addLeadingSlash);
   } else throw new Error(`Unknown locale: ${locale}`);
 }
