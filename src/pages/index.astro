@@ -10,7 +10,68 @@ console.log({posts})
 ---
 
 <Layout>
+  <h1 class="logo">
+    <span class="logoName">Meow Mapping</span>
+    <span class="logoDescription">Cat Travel Guides</span>
+  </h1>
   <main>
-    <h1>Meow Mapping: Cat Travel Guides</h1>
   </main>
 </Layout>
+
+<style>
+  @import "open-props/media";
+  @import "open-props/colors-hsl";
+
+  .logo {
+    padding-inline: var(--size-2);
+    padding-block-start: var(--size-2);
+    padding-block-end: var(--size-4);
+    position: fixed;
+    right: var(--size-2);
+    bottom: var(--size-2);
+    left: var(--size-2);
+    background-color: hsl(var(--gray-2-hsl) / 92%);
+    backdrop-filter: blur(4px);
+    border-radius: 0 0 var(--radius-3) var(--radius-3);
+    box-shadow: var(--shadow-2);
+  }
+
+  @media (--OSdark) {
+    .logo {
+      background-color: hsl(var(--gray-10-hsl) / 92%);
+    }
+  }
+
+  .logoName {
+    display: block;
+    color: var(--gray-10);
+    font-size: var(--font-size-fluid-2);
+    transform: skewY(-4deg);
+  }
+
+  @media (--OSdark) {
+    .logoName {
+      color: hsl(46, 100%, 48%);
+    }
+  }
+
+  .logoDescription {
+    display: block;
+    margin-inline-start: calc(var(--size-8));
+    color: var(--gray-10);
+    font-size: var(--font-size-fluid-1);
+    font-weight: normal;
+    font-style: italic;
+    transform: skewY(-4deg);
+  }
+
+  @media (--OSdark) {
+    .logoDescription {
+      color: var(--gray-4);
+    }
+  }
+
+  main {
+    padding-inline: var(--size-3);
+  }
+</style>
