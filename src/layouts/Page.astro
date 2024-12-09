@@ -17,20 +17,108 @@ const fullTitle = `Cat Travel Guide to ${title}`;
 	<body>
   	<main>
   	 <article>
-      <h1>{fullTitle}</h1>
+      <h1>
+        <span class="prefix">Cat Travel Guide to</span>
+        <span class="title">{title}</span>
+      </h1>
   	  <slot />
   	 </article>
     </main>
+    <div class="logo">
+      <span class="logoName">Meow Mapping</span>
+      <span class="logoDescription">Cat Travel Guides</span>
+    </div>
 	</body>
 </html>
 <style>
-  article {
-    color: var(--gray-0);
+  @import "open-props/media";
+  @import "open-props/colors-hsl";
+
+  h1 span {
+    display: block;
+  }
+
+  h1 .prefix {
+    font-size: var(--font-size-fluid-1);
+    font-weight: normal;
+    font-style: italic;
+    transform: skewY(-4deg);
+  }
+
+  h1 .title {
+    padding-inline-start: var(--size-5);
+    color: hsl(46, 100%, 48%);
+    font-size: var(--font-size-fluid-3);
+    font-weight: bold;
+    transform: skewY(-4deg);
+  }
+
+  .logo {
+    padding-inline: var(--size-2);
+    padding-block-start: var(--size-2);
+    padding-block-end: var(--size-4);
+    position: fixed;
+    right: var(--size-2);
+    bottom: var(--size-2);
+    left: var(--size-2);
+    background-color: hsl(var(--gray-2-hsl) / 80%);
+    backdrop-filter: blur(12px);
+    border-radius: var(--radius-3);
+    box-shadow: var(--shadow-2);
   }
 
   @media (--OSdark) {
-    article {
-      color: var(--gray-12);
+    .logo {
+      background-color: hsl(var(--gray-10-hsl) / 80%);
     }
   }
+
+  .logoName {
+    display: block;
+    color: var(--gray-10);
+    font-size: var(--font-size-fluid-2);
+    transform: skewY(-4deg);
+  }
+
+  @media (--OSdark) {
+    .logoName {
+      color: hsl(46, 100%, 48%);
+    }
+  }
+
+  .logoDescription {
+    display: block;
+    margin-inline-start: calc(var(--size-8));
+    color: var(--gray-10);
+    font-size: var(--font-size-fluid-1);
+    font-weight: normal;
+    font-style: italic;
+    transform: skewY(-4deg);
+  }
+
+  @media (--OSdark) {
+    .logoDescription {
+      color: var(--gray-4);
+    }
+  }
+
+  main {
+    padding-inline: var(--size-3);
+    padding-block-start: var(--size-4);
+  }
+
+  :global(article > * + *) {
+    margin-block-start: var(--size-3);
+  }
+
+  article > p {
+    color: var(--gray-12);
+  }
+
+  @media (--OSdark) {
+    article > p {
+      color: var(--gray-0);
+    }
+  }
+
 </style>
