@@ -105,20 +105,49 @@ const fullTitle = `Cat Travel Guide to ${title}`;
   main {
     padding-inline: var(--size-3);
     padding-block-start: var(--size-4);
+    padding-block-end: var(--size-12);
   }
 
-  :global(article > * + *) {
-    margin-block-start: var(--size-3);
-  }
-
-  article > p {
-    color: var(--gray-12);
-  }
-
-  @media (--OSdark) {
-    article > p {
-      color: var(--gray-0);
+  @media (--md-n-above) {
+    main {
+      max-width: var(--size-content-3);
+      margin-inline: auto;
+      padding-inline: 0;
     }
   }
 
+  :global(h1 + p) {
+    margin-block-start: var(--size-5);
+  }
+
+  :global(article > * + *) {
+    margin-block-start: var(--size-2);
+  }
+
+  :global(article > h2) {
+    margin-block-start: var(--size-4);
+    color: hsl(var(--sand-7-hsl));
+    font-size: var(--font-size-5);
+  }
+
+  @media (--OSdark) {
+    :global(article > h2) {
+      color: hsl(46, 100%, 48%);
+    }
+  }
+
+  :global(article > h3) {
+    margin-block-start: var(--size-3);
+    font-size: var(--font-size-3);
+  }
+
+  :global(article > p) {
+    color: hsl(var(--gray-9-hsl));
+  }
+
+  @media (--OSdark) {
+    :global(article > p) {
+      color: hsl(var(--gray-3-hsl));
+    }
+  }
 </style>

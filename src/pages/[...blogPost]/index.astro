@@ -14,7 +14,7 @@ export async function getStaticPaths() {
 
   for (let locale of locales) {
     const localePosts = posts
-			.filter(function(entry){ return getLocaleFromUrl(entry.slug) === locale })
+			.filter((entry) => { return getLocaleFromUrl(entry.slug) === locale })
 			.map((post) => ({
 				params: { blogPost: `${getRelativePostPath(locale, collection, post.slug, false)}` },
 				props: post,

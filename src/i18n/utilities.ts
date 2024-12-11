@@ -1,7 +1,7 @@
 import { defaultLocale, locales } from '@i18n/i18n';
 
 export function getLocaleFromUrl(url: string): string {
-  if (!url) return;
+  if (!url) return '';
   // if (url === undefined) return undefined;
 
   const parts = url.split('/').filter(function (el) {
