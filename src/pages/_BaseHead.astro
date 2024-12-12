@@ -1,7 +1,7 @@
 ---
-// import { DESCRIPTION, SITENAME, SITENAME_SHORT } from '@/constants';
+import { site, intersection, intersectionDescription } from '@/consts';
 import { ViewTransitions } from 'astro:transitions';
-// import siteUrl from '@/helpers/siteUrl';
+import siteUrl from '@/helpers/siteUrl';
 
 const { pathname } = Astro.url;
 const { slug } = Astro.params;
@@ -19,50 +19,50 @@ const {
 const isArticle = !!slug;
 const ogType = isArticle ? 'article' : 'webiste';
 
-// const schema = () => {
-//   const website = {
-//     '@type': 'Website',
-//     name: SITENAME,
-//     url: import.meta.env.SITE_URL
-//   };
+const schema = () => {
+  const website = {
+    '@type': 'Website',
+    name: 'Meow Mapping',
+    url: import.meta.env.SITE_URL
+  };
 
-//   const blogPosting = {
-//     '@type': 'BlogPosting',
-//     url: siteUrl(pathname),
-//     name: title,
-//     dateModified: dateModified,
-//     datePublished: datePublished,
-//     author: [
-//       {
-//         '@type': 'Person',
-//         name: 'Yuming Cheung',
-//         url: 'https://read.cv/ymcheung'
-//       }
-//     ],
-//     publisher: {
-//       '@type': 'Organization',
-//       name: SITENAME_SHORT,
-//       url: import.meta.env.SITE,
-//       logo: {
-//         '@type': 'ImageObject',
-//         name: `${SITENAME_SHORT}: ${DESCRIPTION}`,
-//         width: 400,
-//         height: 400,
-//         url: 'https://intersection.tw/intersection.png'
-//       }
-//     }
-//   };
+  const blogPosting = {
+    '@type': 'BlogPosting',
+    url: siteUrl(pathname),
+    name: title,
+    dateModified: dateModified,
+    datePublished: datePublished,
+    author: [
+      {
+        '@type': 'Person',
+        name: 'Yuming Cheung',
+        url: 'https://read.cv/ymcheung'
+      }
+    ],
+    publisher: {
+      '@type': 'Organization',
+      name: intersection,
+      url: import.meta.env.SITE,
+      logo: {
+        '@type': 'ImageObject',
+        name: `${intersection}: ${intersectionDescription}`,
+        width: 400,
+        height: 400,
+        url: 'https://intersection.tw/intersection.png'
+      }
+    }
+  };
 
-//   return JSON.stringify({
-//     '@context': 'https://schema.org/',
-//     '@graph': [website, ...(isArticle ? [blogPosting] : [])]
-//   });
-// };
+  return JSON.stringify({
+    '@context': 'https://schema.org/',
+    '@graph': [website, ...(isArticle ? [blogPosting] : [])]
+  });
+};
 ---
 
 <head>
   <meta charset="utf-8" />
-  <title>{title ?? SITENAME}</title>
+  <title>{title ?? site}</title>
   <meta name="description" content={description} />
   <link rel="canonical" href={siteUrl(pathname)} />
   <meta name="viewport" content="width=device-width" />
@@ -71,7 +71,7 @@ const ogType = isArticle ? 'article' : 'webiste';
   <link rel="apple-touch-icon" href={siteUrl('/apple-touch-icon.png')} />
   <link rel="manifest" href={siteUrl('/manifest.webmanifest')} />
   <meta property="og:type" content={ogType} />
-  <meta property="og:site_name" content={SITENAME} />
+  <meta property="og:site_name" content={site} />
   <meta property="og:url" content={siteUrl(pathname)} />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />

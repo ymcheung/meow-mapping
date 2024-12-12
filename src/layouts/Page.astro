@@ -1,5 +1,6 @@
 ---
 import "@/styles/global.css";
+import Dock from "@layouts/_Dock.astro";
 
 const { title } = Astro.props;
 
@@ -24,10 +25,7 @@ const fullTitle = `Cat Travel Guide to ${title}`;
   	  <slot />
   	 </article>
     </main>
-    <div class="logo">
-      <span class="logoName">Meow Mapping</span>
-      <span class="logoDescription">Cat Travel Guides</span>
-    </div>
+    <Dock />
 	</body>
 </html>
 <style>

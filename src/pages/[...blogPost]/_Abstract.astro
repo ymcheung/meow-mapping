@@ -1,0 +1,81 @@
+---
+import { z } from "astro:content";
+const { frontmatter } = Astro.props;
+
+// console.log({frontmatter})
+
+const { difficulty, transportation } = frontmatter;
+
+---
+
+<div class="abstract">
+  <strong class="difficulty">{difficulty.level}</strong>
+  <hr />
+  <strong class="transportationTime">~{transportation.time}</strong>
+  <strong class="transportationUnit">HOUR</strong>
+  <p class="transportationFrom">from {transportation.from}</p>
+</div>
+
+<style>
+  @import "open-props/media";
+  @import "open-props/colors-hsl";
+
+  .abstract {
+    margin-inline: calc(var(--size-2) * -1);
+    padding-inline: var(--size-2);
+    padding-block-start: var(--size-3);
+    padding-block-end: var(--size-3);
+    background-color: hsl(var(--gray-3-hsl) / 80%);
+    backdrop-filter: blur(12px);
+    border-radius: var(--radius-3);
+    box-shadow: var(--shadow-2);
+  }
+
+  @media (--OSdark) {
+    .abstract {
+      background-color: hsl(var(--gray-9-hsl) / 80%);
+    }
+  }
+
+
+  @media (--md-n-above) {
+    .abstract {
+      margin-inline: calc(var(--size-3) * -1);
+      padding-inline: var(--size-3);
+    }
+  }
+
+  .difficulty {
+    font-size: var(--font-size-4);
+    letter-spacing: var(--font-letterspacing-3);
+    text-transform: uppercase;
+  }
+
+
+  .transportationTime {
+    font-size: var(--font-size-5);
+  }
+
+  .transportationUnit {
+    font-size: var(--font-size-1);
+  }
+
+  .transportationFrom {
+    color: hsl(var(--gray-7-hsl));
+    font-size: var(--font-size-1);
+  }
+
+  @media (--OSdark) {
+    .transportationFrom {
+      color: hsl(var(--gray-5-hsl));
+    }
+  }
+
+  hr {
+    /* margin-block-start: var(--size-1);
+    margin-block-end: 0; */
+    margin-block: var(--size-2);
+    border-top: 1px dashed hsl(var(--gray-8-hsl));
+    border-bottom: none;
+  }
+</style>
