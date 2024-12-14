@@ -1,7 +1,7 @@
 import getPagePath from '@utilities/getPagePath';
 import { collectionDirectoryNames } from '@i18n/i18n';
 import { locales } from '@i18n/i18n';
-import { site } from '@/consts';
+import { SITE_URL } from '@/consts';
 
 export function getRelativePostPath(
   locale: string,
@@ -21,5 +21,5 @@ export function getAbsolutePostPath(
   collection: string,
   slug: string
 ): string {
-  return `${site}${getRelativePostPath(locale, collection, slug, true)}`;
+  return `${SITE_URL}${getRelativePostPath(locale, collection, slug, true)}`;
 }

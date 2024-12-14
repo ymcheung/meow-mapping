@@ -6,6 +6,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://meow.carrier.express',
   trailingSlash: 'never',
   i18n: {
     defaultLocale: defaultLocale,
