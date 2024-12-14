@@ -1,5 +1,5 @@
 ---
-import { site, intersection, intersectionDescription } from '@/consts';
+import { INTERSECTION, INTERSECTION_DESCRIPTION } from '@/consts';
 import { ViewTransitions } from 'astro:transitions';
 import siteUrl from '@/helpers/siteUrl';
 
@@ -41,11 +41,11 @@ const schema = () => {
     ],
     publisher: {
       '@type': 'Organization',
-      name: intersection,
+      name: INTERSECTION,
       url: import.meta.env.SITE,
       logo: {
         '@type': 'ImageObject',
-        name: `${intersection}: ${intersectionDescription}`,
+        name: `${INTERSECTION}: ${INTERSECTION_DESCRIPTION}`,
         width: 400,
         height: 400,
         url: 'https://intersection.tw/intersection.png'
@@ -62,7 +62,7 @@ const schema = () => {
 
 <head>
   <meta charset="utf-8" />
-  <title>{title ?? site}</title>
+  <title>{title ?? INTERSECTION}</title>
   <meta name="description" content={description} />
   <link rel="canonical" href={siteUrl(pathname)} />
   <meta name="viewport" content="width=device-width" />
@@ -71,7 +71,7 @@ const schema = () => {
   <link rel="apple-touch-icon" href={siteUrl('/apple-touch-icon.png')} />
   <link rel="manifest" href={siteUrl('/manifest.webmanifest')} />
   <meta property="og:type" content={ogType} />
-  <meta property="og:site_name" content={site} />
+  <meta property="og:site_name" content={INTERSECTION} />
   <meta property="og:url" content={siteUrl(pathname)} />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />

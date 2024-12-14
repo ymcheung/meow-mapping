@@ -17,6 +17,7 @@
     "astro": "^4.16.13",
     "autoprefixer": "^10.4.20",
     "cssnano": "7.0.6",
+    "date-fns": "^4.1.0",
     "open-props": "^1.7.7",
     "postcss-custom-media": "11.0.5",
     "postcss-import": "^16.1.0",

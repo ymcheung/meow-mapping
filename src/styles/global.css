@@ -36,11 +36,11 @@
 
 body {
   font-family: 'Asap';
-  background-color: var(--gray-2);
+  background-color: hsl(var(--gray-3-hsl));
 }
 
 @media (--OSdark) {
   body {
-    background-color: var(--gray-10);
+    background-color: hsl(var(--gray-9-hsl));
   }
 }

@@ -1,19 +1,24 @@
 ---
 import { z } from "astro:content";
+import { minutesToHours } from 'date-fns';
+import formatDuration from '@/helpers/formatDuration'
+
 const { frontmatter } = Astro.props;
 
-// console.log({frontmatter})
 
 const { difficulty, transportation } = frontmatter;
+console.log(formatDuration(transportation.duration))
+
+// const duration =
 
 ---
 
 <div class="abstract">
-  <strong class="difficulty">{difficulty.level}</strong>
+  <strong class="difficulty">ISLAND</strong>
   <hr />
-  <strong class="transportationTime">~{transportation.time}</strong>
-  <strong class="transportationUnit">HOUR</strong>
-  <p class="transportationFrom">from {transportation.from}</p>
+  <strong class="transportationTime">~{minutesToHours(transportation.duration)}</strong>
+  <strong class="transportationUnit">HOURS</strong>
+  <p class="transportationFrom">from {transportation.from.en}<br />{transportation.from.kanji}</p>
 </div>
 
 <style>
@@ -25,7 +30,7 @@ const { difficulty, transportation } = frontmatter;
     padding-inline: var(--size-2);
     padding-block-start: var(--size-3);
     padding-block-end: var(--size-3);
-    background-color: hsl(var(--gray-3-hsl) / 80%);
+    background-color: hsl(var(--gray-4-hsl) / 80%);
     backdrop-filter: blur(12px);
     border-radius: var(--radius-3);
     box-shadow: var(--shadow-2);
@@ -33,7 +38,7 @@ const { difficulty, transportation } = frontmatter;
 
   @media (--OSdark) {
     .abstract {
-      background-color: hsl(var(--gray-9-hsl) / 80%);
+      background-color: hsl(var(--gray-8-hsl) / 80%);
     }
   }
 
@@ -57,7 +62,14 @@ const { difficulty, transportation } = frontmatter;
   }
 
   .transportationUnit {
+    color: hsl(var(--gray-7-hsl));
     font-size: var(--font-size-1);
+  }
+
+  @media (--OSdark) {
+    .transportationUnit {
+      color: hsl(var(--gray-5-hsl));
+    }
   }
 
   .transportationFrom {
@@ -74,8 +86,9 @@ const { difficulty, transportation } = frontmatter;
   hr {
     /* margin-block-start: var(--size-1);
     margin-block-end: 0; */
-    margin-block: var(--size-2);
-    border-top: 1px dashed hsl(var(--gray-8-hsl));
-    border-bottom: none;
+    margin-block: var(--size-3);
+    background-color: transparent;
+    border: 1px dashed hsl(var(--gray-8-hsl));
+    /* border-bottom: none; */
   }
 </style>

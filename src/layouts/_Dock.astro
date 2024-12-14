@@ -19,7 +19,7 @@
     right: var(--size-2);
     bottom: var(--size-2);
     left: var(--size-2);
-    background-color: hsl(var(--gray-2-hsl) / 80%);
+    background-color: hsl(var(--gray-3-hsl) / 80%);
     backdrop-filter: blur(12px);
     border-radius: var(--radius-3);
     box-shadow: var(--shadow-2);
@@ -27,15 +27,14 @@
 
   @media (--OSdark) {
     .logo {
-      background-color: hsl(var(--gray-10-hsl) / 80%);
+      background-color: hsl(var(--gray-9-hsl) / 80%);
     }
   }
 
   @media (--md-n-above) {
     .logo {
-      max-width: var(--size-content-3);
+      max-width: calc(var(--size-content-3) + var(--size-7));
       margin-inline: auto;
-      /* padding-inline: 0; */
     }
   }
 
@@ -55,7 +54,7 @@
   .logoDescription {
     display: block;
     margin-inline-start: calc(var(--size-8));
-    color: var(--gray-10);
+    color: hsl(var(--gray-10-hsl));
     font-size: var(--font-size-fluid-1);
     font-weight: normal;
     font-style: italic;
@@ -64,7 +63,7 @@
 
   @media (--OSdark) {
     .logoDescription {
-      color: var(--gray-4);
+      color: hsl(var(--gray-4-hsl));
     }
   }
 </style>
