@@ -21,29 +21,40 @@ const posts = await getCollection('posts');
   @import "open-props/colors-hsl";
 
   .logo {
-    padding-inline: var(--size-2);
-    padding-block-start: var(--size-2);
-    padding-block-end: var(--size-4);
+    width: max-content;
+    margin-block-start: calc(var(--size-2) * -1);
+    padding-inline: var(--size-4);
+    padding-block-start: var(--size-3);
+    padding-block-end: var(--size-5);
     position: fixed;
     right: var(--size-2);
     bottom: var(--size-2);
-    left: var(--size-2);
-    background-color: hsl(var(--gray-2-hsl) / 92%);
-    backdrop-filter: blur(4px);
-    border-radius: 0 0 var(--radius-3) var(--radius-3);
+    font-size: var(--font-size-1);
+    line-height: var(--font-lineheight-1);
+    background-color: hsl(var(--gray-3-hsl) / 80%);
+    backdrop-filter: blur(12px);
+    border-radius: var(--radius-3);
     box-shadow: var(--shadow-2);
   }
 
   @media (--OSdark) {
     .logo {
-      background-color: hsl(var(--gray-10-hsl) / 92%);
+      background-color: hsl(var(--gray-9-hsl) / 80%);
+    }
+  }
+
+  @media (--md-n-above) {
+    .logo {
+      /* max-width: calc(var(--size-content-3) + var(--size-7)); */
+      margin-inline: auto;
+      left: var(--size-2);
     }
   }
 
   .logoName {
     display: block;
     color: var(--gray-10);
-    font-size: var(--font-size-fluid-2);
+    font-size: var(--font-size-2);
     transform: skewY(-4deg);
   }
 
@@ -55,9 +66,9 @@ const posts = await getCollection('posts');
 
   .logoDescription {
     display: block;
-    margin-inline-start: calc(var(--size-8));
-    color: var(--gray-10);
-    font-size: var(--font-size-fluid-1);
+    margin-inline-start: var(--size-8);
+    color: hsl(var(--gray-10-hsl));
+    font-size: var(--font-size-1);
     font-weight: normal;
     font-style: italic;
     transform: skewY(-4deg);
@@ -65,7 +76,7 @@ const posts = await getCollection('posts');
 
   @media (--OSdark) {
     .logoDescription {
-      color: var(--gray-4);
+      color: hsl(var(--gray-4-hsl));
     }
   }
 
