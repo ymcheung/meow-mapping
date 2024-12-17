@@ -8,13 +8,15 @@ const { frontmatter } = Astro.props;
 
 const { difficulty, transportation } = frontmatter;
 
+const { duration, unit } = formatDuration(transportation.duration)
+
 // const duration =
 
 ---
 
 <div class="abstract">
-  <strong class="transportationTime">~{minutesToHours(transportation.duration)}</strong>
-  <strong class="transportationUnit">HOURS</strong>
+  <strong class="transportationTime">~{duration}</strong>
+  <strong class="transportationUnit">{unit}</strong>
   <p class="transportationFrom">from {transportation.from.place}<br />{transportation.from.kanji}</p>
 </div>
 

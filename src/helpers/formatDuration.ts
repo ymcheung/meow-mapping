@@ -2,7 +2,7 @@ export default function formatDuration(minutes: number) {
   if (minutes < 60) {
     return {
       duration: minutes,
-      affix: `minute${minutes !== 1 ? 's' : ''}`
+      unit: `minute${minutes !== 1 ? 's' : ''}`
     };
   }
 
@@ -11,6 +11,6 @@ export default function formatDuration(minutes: number) {
 
   return {
     duration: hours % 1 === 0 ? Math.round(hours) : hours,
-    affix: `hour${hours !== 1 ? 's' : ''}`
+    unit: `hour${hours !== 1 ? 's' : ''}`
   };
 }
