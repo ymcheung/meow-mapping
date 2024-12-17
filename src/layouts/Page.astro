@@ -2,7 +2,7 @@
 import "@/styles/global.css";
 import Dock from "@layouts/_Dock.astro";
 
-const { title } = Astro.props;
+const { title, category, dateVisited, dateModified, datePublished } = Astro.props;
 
 const fullTitle = `Cat Travel Guide to ${title}`;
 ---
@@ -23,6 +23,7 @@ const fullTitle = `Cat Travel Guide to ${title}`;
         <span class="title">{title}</span>
       </h1>
   	  <slot />
+      <time datetime={dateModified}>{dateModified}</time>
   	 </article>
     </main>
     <Dock />
@@ -114,11 +115,15 @@ const fullTitle = `Cat Travel Guide to ${title}`;
     }
   }
 
-  :global(h1 + p) {
+  /* :global(h1 + p) {
     margin-block-start: var(--size-5);
+  } */
+
+  :global(article > p:first-of-type) {
+    margin-block-start: var(--size-7);
   }
 
-  :global(article > * + *) {
+  :global(article > p + p) {
     margin-block-start: var(--size-2);
   }
 

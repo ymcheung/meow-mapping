@@ -8,7 +8,7 @@ const { frontmatter } = Astro.props;
 
 const { difficulty, transportation } = frontmatter;
 
-const { duration, unit } = formatDuration(transportation.duration)
+const { duration, unit } = formatDuration(transportation.duration);
 
 // const duration =
 
@@ -16,7 +16,7 @@ const { duration, unit } = formatDuration(transportation.duration)
 
 <div class="abstract">
   <strong class="transportationTime">~{duration}</strong>
-  <strong class="transportationUnit">{unit}</strong>
+  <span class="transportationUnit">{unit}</span>
   <p class="transportationFrom">from {transportation.from.place}<br />{transportation.from.kanji}</p>
 </div>
 
@@ -25,6 +25,7 @@ const { duration, unit } = formatDuration(transportation.duration)
   @import "open-props/colors-hsl";
 
   .abstract {
+    margin-block-start: var(--size-3);
     margin-inline: calc(var(--size-2) * -1);
     padding-inline: var(--size-2);
     padding-block-start: var(--size-2);
