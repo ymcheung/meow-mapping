@@ -13,6 +13,7 @@ const posts = await getCollection('posts');
     <span class="logoDescription">Cat Travel Guides</span>
   </h1>
   <main>
+    Coming Soon
   </main>
 </Layout>
 
@@ -83,5 +84,16 @@ const posts = await getCollection('posts');
 
   main {
     padding-inline: var(--size-3);
+    padding-block-start: var(--size-4);
+    padding-block-end: var(--size-11);
   }
+
+  @media (--md-n-above) {
+    main {
+      max-width: var(--size-content-3);
+      margin-inline: auto;
+      padding-inline: 0;
+    }
+  }
+
 </style>
