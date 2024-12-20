@@ -12,5 +12,10 @@ export default defineConfig({
     defaultLocale: defaultLocale,
     locales: locales
   },
-  integrations: [mdx(), sitemap()]
+  integrations: [
+    mdx(),
+    sitemap({
+      filter: (page) => page !== 'https://meow.carrier.express'
+    })
+  ]
 });
