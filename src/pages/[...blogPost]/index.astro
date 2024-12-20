@@ -1,47 +1,25 @@
 ---
-import { type CollectionEntry } from 'astro:content';
+import { getCollection, getEntry, render } from 'astro:content';
 import Layout from '@layouts/Page.astro'
-import { locales } from '@i18n/i18n';
-import { getLocaleFromUrl} from '@i18n/utilities';
-import { getCollection, getEntry } from 'astro:content';
-import { getRelativePostPath } from '@utilities/getPostPath';
-import getPublishedPosts from '@utilities/getPublishedPosts';
+// import { locales } from '@i18n/i18n';
+// import { getLocaleFromUrl} from '@i18n/utilities';
 
 export async function getStaticPaths() {
-	const collection = 'posts'
-	const posts = await getPublishedPosts('', collection, '');
-	let postsToRender = [];
-
-  for (let locale of locales) {
-    const localePosts = posts
-			.filter((entry) => { return getLocaleFromUrl(entry.slug) === locale })
-			.map((post) => ({
-				params: { blogPost: `${getRelativePostPath(locale, collection, post.slug, false)}` },
-				props: post,
-			}));
-		postsToRender.push(...localePosts)
-	}
-	return postsToRender
+  const posts = await getCollection('posts');
+  return posts.map((post) => ({
+    params: { blogPost: post.id },
+    props: { ...post.data }
+  }));
 }
-type Props = CollectionEntry<'posts'>;
 
-const post = Astro.props as Props;
-const {
-  data: {
-    title,
-    description,
-    difficulty,
-    transportation,
-    category,
-    dateVisited,
-    dateModified,
-    datePublished
-  }
-} = post;
+const { blogPost } = Astro.params
+const {  title, category, dateModified,
+datePublished } = Astro.props;
 
-// console.log({difficulty})
+const post = await getEntry('posts', blogPost);
+if (!post) return;
 
-const { Content } = await post.render();
+const { Content } = await render(post);
 
 ---
 

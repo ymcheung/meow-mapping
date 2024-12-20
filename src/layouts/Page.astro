@@ -1,8 +1,13 @@
 ---
 import "@/styles/global.css";
 import Dock from "@layouts/_Dock.astro";
+import { format } from "date-fns";
 
 const { title, category, dateVisited, dateModified, datePublished } = Astro.props;
+
+const formatDateModified = format(dateModified, 'MM-dd-yyyy')
+
+console.log({formatDateModified})
 
 const fullTitle = `Cat Travel Guide to ${title}`;
 ---
@@ -23,7 +28,10 @@ const fullTitle = `Cat Travel Guide to ${title}`;
         <span class="title">{title}</span>
       </h1>
   	  <slot />
-      <time datetime={dateModified}>{dateModified}</time>
+      <div class="updated">
+        <strong class="updatedTitle">Updated On</strong>
+        <time class="updatedTime" datetime={dateModified}>{formatDateModified}</time>
+      </div>
   	 </article>
     </main>
     <Dock />
@@ -153,4 +161,16 @@ const fullTitle = `Cat Travel Guide to ${title}`;
       color: hsl(var(--gray-3-hsl));
     }
   }
+
+  .updated {
+    margin-block-start: var(--size-4);
+  }
+
+  .updatedTitle {
+    display: block;
+    color: hsl(var(--gray-6-hsl));
+    letter-spacing: var(--size-1);
+    text-transform: uppercase;
+  }
+
 </style>

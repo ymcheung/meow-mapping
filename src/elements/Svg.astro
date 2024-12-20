@@ -1,0 +1,29 @@
+---
+import { z } from 'zod';
+
+const elementProps = z.object({
+  size: z.number(),
+  viewBox: z.string(),
+  classes: z.string().array().optional()
+});
+
+type Props = z.infer<typeof elementProps>;
+
+const { size, viewBox, classes } = Astro.props as Props;
+
+const otherClasses = [...(!!classes ? classes : [])];
+---
+
+<svg
+  class:list={['icon', `is${size}`, ...otherClasses]}
+  viewBox={viewBox}
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <slot />
+</svg>
+
+<style>
+  .icon {
+    aspect-ratio: 1;
+  }
+</style>
