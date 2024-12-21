@@ -52,10 +52,16 @@ const fullTitle = `Cat Travel Guide to ${title}`;
 
   h1 .title {
     padding-inline-start: var(--size-5);
-    color: hsl(46, 100%, 48%);
+    color: hsl(var(--sand-7-hsl));
     font-size: var(--font-size-fluid-3);
     font-weight: bold;
     transform: skewY(-4deg);
+  }
+
+  @media (--OSdark) {
+    h1 .title {
+      color: hsl(46, 100%, 48%);
+    }
   }
 
   .logo {
@@ -125,19 +131,6 @@ const fullTitle = `Cat Travel Guide to ${title}`;
     margin-block-start: var(--size-5);
   } */
 
-  :global(article > p:first-of-type) {
-    margin-block-start: var(--size-7);
-  }
-
-
-  :global(p:not(article > p + p)) {
-      margin-block-start: var(--size-3);
-    }
-
-  :global(article > p + p) {
-    margin-block-start: var(--size-3);
-  }
-
   :global(article > h2) {
     margin-block-start: var(--size-4);
     color: hsl(var(--sand-7-hsl));
@@ -152,17 +145,36 @@ const fullTitle = `Cat Travel Guide to ${title}`;
 
   :global(article > h3) {
     margin-block-start: var(--size-3);
+    color: hsl(var(--gray-8-hsl));
     font-size: var(--font-size-3);
   }
 
+  @media (--OSdark) {
+    :global(article > h3) {
+      color: hsl(var(--gray-4-hsl));
+    }
+  }
+
   :global(article > p) {
-    color: hsl(var(--gray-9-hsl));
+    color: hsl(var(--gray-7-hsl));
   }
 
   @media (--OSdark) {
     :global(article > p) {
-      color: hsl(var(--gray-3-hsl));
+      color: hsl(var(--gray-5-hsl));
     }
+  }
+
+  :global(article > p:first-of-type) {
+    margin-block-start: var(--size-7);
+  }
+
+  :global(p:not(article > p + p)) {
+    margin-block-start: var(--size-2);
+  }
+
+  :global(article > p + p) {
+    margin-block-start: var(--size-3);
   }
 
   .updated {

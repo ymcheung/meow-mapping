@@ -1,6 +1,6 @@
 ---
 // import { z } from "zod";
-import { minutesToHours } from 'date-fns';
+// import { minutesToHours } from 'date-fns';
 import formatDuration from '@/helpers/formatDuration'
 
 const { frontmatter } = Astro.props;
@@ -9,8 +9,6 @@ const { frontmatter } = Astro.props;
 const { difficulty, transportation } = frontmatter;
 
 const { duration, unit } = formatDuration(transportation.duration);
-
-// const duration =
 
 ---
 
@@ -30,7 +28,7 @@ const { duration, unit } = formatDuration(transportation.duration);
     padding-inline: var(--size-2);
     padding-block-start: var(--size-2);
     padding-block-end: var(--size-3);
-    background-color: hsl(var(--gray-4-hsl) / 80%);
+    background-color: hsl(var(--gray-2-hsl) / 80%);
     backdrop-filter: blur(12px);
     border-radius: var(--radius-3);
     box-shadow: var(--shadow-1);
@@ -56,20 +54,21 @@ const { duration, unit } = formatDuration(transportation.duration);
     text-transform: uppercase;
   }
 
-
   .transportationTime {
+    color: hsl(var(--gray-7-hsl));
     font-size: var(--font-size-5);
   }
 
-  .transportationUnit {
-    color: hsl(var(--gray-7-hsl));
-    font-size: var(--font-size-1);
-  }
 
   @media (--OSdark) {
-    .transportationUnit {
-      color: hsl(var(--gray-5-hsl));
+    .transportationTime {
+      color: hsl(var(--gray-2-hsl));
     }
+  }
+
+  .transportationUnit {
+    color: hsl(var(--gray-6-hsl));
+    font-size: var(--font-size-1);
   }
 
   .transportationFrom {
