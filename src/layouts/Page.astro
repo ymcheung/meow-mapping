@@ -5,7 +5,8 @@ import { format } from "date-fns";
 
 const { title, category, dateVisited, dateModified, datePublished } = Astro.props;
 
-const formatDateModified = format(dateModified, 'MM-dd-yyyy')
+const formatDateModified = format(dateModified, 'MM-dd-yyyy');
+const formatDateVisited = format(dateVisited, 'MM-dd-yyyy HH:mm');
 
 const fullTitle = `Cat Travel Guide to ${title}`;
 ---
@@ -26,10 +27,20 @@ const fullTitle = `Cat Travel Guide to ${title}`;
         <span class="title">{title}</span>
       </h1>
   	  <slot />
-      <div class="updated">
-        <strong class="updatedTitle">Updated On</strong>
-        <time class="updatedTime" datetime={dateModified}>{formatDateModified}</time>
-      </div>
+      <dl class="meta">
+        <div class="metaItem">
+          <dt class="metaTitle">Visited</dt>
+          <dd class="metaDetail">
+            {formatDateVisited}
+          </dd>
+        </div>
+        <div class="metaItem">
+          <dt class="metaTitle">Updated</dt>
+          <dd class="metaDetail">
+            <time datetime={dateModified}>{formatDateModified}</time>
+          </dd>
+        </div>
+      </dl>
   	 </article>
     </main>
     <Dock />
@@ -181,9 +192,19 @@ const fullTitle = `Cat Travel Guide to ${title}`;
     margin-block-start: var(--size-4);
   }
 
-  .updatedTitle {
-    display: block;
+  .meta {
+    display: grid;
+    grid: auto / var(--size-12) var(--size-11);
+    margin-block-start: var(--size-5);
+  }
+
+  /* .metaItem {
+    display: contents;
+  } */
+
+  .metaTitle {
     color: hsl(var(--gray-6-hsl));
+    font-size: var(--font-size-0);
     letter-spacing: var(--size-1);
     text-transform: uppercase;
   }
