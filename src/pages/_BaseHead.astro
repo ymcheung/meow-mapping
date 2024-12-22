@@ -1,6 +1,6 @@
 ---
 import { INTERSECTION, INTERSECTION_DESCRIPTION } from '@/consts';
-import { ViewTransitions } from 'astro:transitions';
+import { ClientRouter } from 'astro:transitions';
 import siteUrl from '@/helpers/siteUrl';
 
 const { pathname } = Astro.url;
@@ -90,7 +90,7 @@ const schema = () => {
   <meta name="format-detection" content="telephone=no" />
   <meta name="generator" content={Astro.generator} />
   {
-    process.env.PUBLIC_VERCEL_ENV === 'production' && (
+    process.env.NODE_ENV === 'production' && (
       <script
         async
         data-logspot-pk={import.meta.env.LOGSPOT_PUBLIC_KEY}
@@ -99,5 +99,5 @@ const schema = () => {
       />
     )
   }
-  <ViewTransitions />
+  <ClientRouter />
 </head>
