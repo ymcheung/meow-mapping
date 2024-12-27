@@ -1,9 +1,10 @@
 ---
 import "@/styles/global.css";
-import Dock from "@layouts/_Dock.astro";
+import BaseHead from "./_BaseHead.astro";
+import Dock from "@/pages/_Dock.astro";
 import { format } from "date-fns";
 
-const { title, category, dateVisited, dateModified, datePublished } = Astro.props;
+const { title, description, category, dateVisited, dateModified, datePublished } = Astro.props;
 
 const formatDateModified = format(dateModified, 'MM-dd-yyyy');
 const formatDateVisited = format(dateVisited, 'MM-dd-yyyy HH:mm');
@@ -12,13 +13,7 @@ const fullTitle = `Cat Travel Guide to ${title}`;
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{fullTitle}</title>
-	</head>
+ 	<BaseHead title={fullTitle} description={description} dateModified={dateModified} datePublished={datePublished} />
 	<body>
   	<main>
   	 <article>
