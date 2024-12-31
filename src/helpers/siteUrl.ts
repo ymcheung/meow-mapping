@@ -3,11 +3,11 @@ export default function siteUrl(pathname: string) {
 
   const isDevelopment = import.meta.env.DEV;
 
-  const previewDeployHost = import.meta.env.PUBLIC_VERCEL_BRANCH_URL;
+  const previewDeployUrl = process.env.RENDER_EXTERNAL_URL;
 
   if (isDevelopment)
-    return !!previewDeployHost
-      ? `https://${previewDeployHost}${pathname}`
+    return !!previewDeployUrl
+      ? `https://${previewDeployUrl}${pathname}`
       : `${import.meta.env.SITE_URL}${pathname}`;
 
   return `${import.meta.env.SITE}${pathname}`;

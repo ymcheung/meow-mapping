@@ -4,26 +4,40 @@ import { categories } from '@/consts';
 import Layout from '@layouts/Index.astro';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('posts');
-  return categories.map(({ slug }) => {
+  return categories.map(({ title, slug }) => {
     return ({
       params: {
         category: slug
       },
       props: {
+        title,
         slug
       }
     })
   });
 }
+
+const { title, slug } = Astro.props;
+
+const posts = await getCollection('posts');
+const postsOfCategory = posts.filter(({ data: { category }}) => category === slug);
+
 ---
 <Layout>
-  <h1 class="logo">
+  <div class="logo">
     <span class="logoName">Meow Mapping</span>
     <span class="logoDescription">Cat Travel Guides</span>
-  </h1>
+  </div>
   <main>
-    Coming Soon
+    <h1>{title}</h1>
+    {postsOfCategory.length > 0 &&
+      <ul>
+        {postsOfCategory.map(({ id, data: { title }}) =>
+          <li>
+            <a href={`/${slug}/${id}`}>{title}</a>
+          </li>
+        )}
+      </ul>}
   </main>
 </Layout>
 
