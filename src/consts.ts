@@ -4,12 +4,12 @@ export const INTERSECTION_DESCRIPTION =
   '優化、插件、高清、視頻、反饋、交互設計：已經看膩這些中國用語。';
 export const categories = [
   {
-    title: 'Island',
-    slug: 'island'
+    title: 'Islands',
+    slug: 'islands'
   },
   {
-    title: 'Temple',
-    slug: 'temple'
+    title: 'Temples',
+    slug: 'temples'
   }
   // {
   //   title: 'Town',

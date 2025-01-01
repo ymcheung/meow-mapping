@@ -1,8 +1,15 @@
 ---
+import { categories } from '@/consts';
 import Layout from '@layouts/Index.astro';
 import { getCollection } from 'astro:content';
 
 const posts = await getCollection('posts');
+
+function filterPosts(categorySlug: string) {
+  return posts.filter(({ data: { category }}) => {
+    return categorySlug === category
+  })
+}
 
 ---
 
@@ -12,7 +19,22 @@ const posts = await getCollection('posts');
     <span class="logoDescription">Cat Travel Guides</span>
   </h1>
   <main>
-    Coming Soon
+    {categories.map(({ title, slug }) => {
+      const postsOfCategory = filterPosts(slug);
+
+      return (
+        <>
+          <h2>{title}</h2>
+          <ul>
+            {postsOfCategory.map(({ id, data: { title }}) =>
+              <li>
+                <a href={`/${slug}/${id}`}>{title}</a>
+              </li>
+            )}
+          </ul>
+        </>
+      )
+    })}
   </main>
 </Layout>
 

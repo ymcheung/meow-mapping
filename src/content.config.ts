@@ -18,7 +18,7 @@ const postsCollection = defineCollection({
       }),
       by: z.string().array()
     }),
-    category: z.enum(['island', 'temple', 'town']),
+    category: z.enum(['islands', 'temples', 'towns']),
     dateVisited: z.coerce.date(),
     dateModified: z.coerce.date(),
     datePublished: z.coerce.date()
