@@ -6,10 +6,19 @@ import Layout from '@layouts/Page.astro'
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts');
-  return posts.map((post) => ({
-    params: { blogPost: post.id },
-    props: { ...post.data }
-  }));
+  return posts.map((post) => {
+    const { id, data } = post;
+
+    return ({
+      params: {
+        category: data.category,
+        blogPost: id
+      },
+      props: {
+        ...data
+      }
+    })
+  });
 }
 
 const { blogPost } = Astro.params
