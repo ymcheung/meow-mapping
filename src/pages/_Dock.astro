@@ -1,44 +1,98 @@
 ---
+import { categories } from "@/consts";
+import Islands from '@assets/islands.svg';
+import Temples from '@assets/temples.svg';
 
 const { as } = Astro.props
 
-const Box = as || 'div'
----
+const Box = as || 'div';
 
-<Box class="logo">
-  <strong class="logoName">Meow Mapping</strong>
-  <span class="logoDescription">Cat Travel Guides</span>
-</Box>
+---
+<div class="dock">
+  <nav class="nav">
+    <ul class="categories">
+      {
+        categories.map(({ title, slug, icon }) => {
+          const Icon = icon;
+          return (
+            <li class="categoryItem">
+              <a class="link" href={`/${slug}`}>
+                <Icon class="icon" size={24} />
+              </a>
+            </li>
+          )}
+        )
+      }
+    </ul>
+  </nav>
+  <Box class="logo">
+    <strong class="logoName">Meow Mapping</strong>
+    <span class="logoDescription">Cat Travel Guides</span>
+  </Box>
+</div>
 
 <style>
   @import "open-props/media";
   @import "open-props/colors-hsl";
 
-  .logo {
+  .dock {
+    display: grid;
+    grid: auto / auto auto;
     width: max-content;
-    margin-block-start: calc(var(--size-2) * -1);
-    padding-inline: var(--size-4);
-    padding-block-start: var(--size-3);
-    padding-block-end: var(--size-4);
     position: fixed;
     right: var(--size-2);
     bottom: var(--size-2);
-    line-height: var(--font-lineheight-1);
-    /* max-inline-size: none; */
+    margin-block-start: calc(var(--size-2) * -1);
     background-color: hsl(var(--gray-0-hsl) / 80%);
     backdrop-filter: blur(12px);
     border-radius: var(--radius-3);
     box-shadow: var(--shadow-2);
   }
 
+  .nav {
+    display: contents;
+  }
+
+  .categories {
+    display: grid;
+    grid: auto / auto auto;
+    align-content: center;
+    column-gap: var(--size-4);
+    padding-inline-start: var(--size-3);
+  }
+
+  .categoryItem {
+    padding-inline-start: var(--size-0);
+    list-style-type: none;
+  }
+
+  .categoryItem .link {
+    color: hsl(var(--gray-10-hsl));
+  }
+
+
   @media (--OSdark) {
-    .logo {
+    .categoryItem .link {
+      color: hsl(var(--gray-2-hsl));
+    }
+  }
+
+  .logo {
+    padding-inline: var(--size-4);
+    padding-block-start: var(--size-3);
+    padding-block-end: var(--size-4);
+    line-height: var(--font-lineheight-1);
+    /* max-inline-size: none; */
+  }
+
+  @media (--OSdark) {
+    .dock {
       background-color: hsl(var(--gray-9-hsl) / 80%);
     }
   }
 
   @media (--md-n-above) {
-    .logo {
+    .dock {
       /* max-width: calc(var(--size-content-3) + var(--size-7)); */
       margin-inline: auto;
       left: var(--size-2);
@@ -60,7 +114,7 @@ const Box = as || 'div'
 
   .logoDescription {
     display: block;
-    margin-inline-start: var(--size-8);
+    margin-inline-start: var(--size-7);
     color: hsl(var(--gray-10-hsl));
     font-size: var(--font-size-1);
     font-weight: normal;
