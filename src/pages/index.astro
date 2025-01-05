@@ -14,10 +14,6 @@ function filterPosts(categorySlug: string) {
 ---
 
 <Layout>
-  <h1 class="logo">
-    <span class="logoName">Meow Mapping</span>
-    <span class="logoDescription">Cat Travel Guides</span>
-  </h1>
   <main>
     {categories.map(({ title, slug }) => {
       const postsOfCategory = filterPosts(slug);
@@ -41,67 +37,6 @@ function filterPosts(categorySlug: string) {
 <style>
   @import "open-props/media";
   @import "open-props/colors-hsl";
-
-  .logo {
-    width: max-content;
-    margin-block-start: calc(var(--size-2) * -1);
-    padding-inline: var(--size-4);
-    padding-block-start: var(--size-3);
-    padding-block-end: var(--size-4);
-    position: fixed;
-    right: var(--size-2);
-    bottom: var(--size-2);
-    font-size: var(--font-size-1);
-    line-height: var(--font-lineheight-1);
-    max-inline-size: none;
-    background-color: hsl(var(--gray-3-hsl) / 80%);
-    backdrop-filter: blur(12px);
-    border-radius: var(--radius-3);
-    box-shadow: var(--shadow-2);
-  }
-
-  @media (--OSdark) {
-    .logo {
-      background-color: hsl(var(--gray-9-hsl) / 80%);
-    }
-  }
-
-  @media (--md-n-above) {
-    .logo {
-      /* max-width: calc(var(--size-content-3) + var(--size-7)); */
-      margin-inline: auto;
-      left: var(--size-2);
-    }
-  }
-
-  .logoName {
-    display: block;
-    color: var(--gray-10);
-    font-size: var(--font-size-2);
-    transform: skewY(-4deg);
-  }
-
-  @media (--OSdark) {
-    .logoName {
-      color: hsl(46, 100%, 48%);
-    }
-  }
-
-  .logoDescription {
-    display: block;
-    margin-inline-start: var(--size-8);
-    color: hsl(var(--gray-10-hsl));
-    font-size: var(--font-size-1);
-    font-weight: normal;
-    font-style: italic;
-    transform: skewY(-4deg);
-  }
-
-  @media (--OSdark) {
-    .logoDescription {
-      color: hsl(var(--gray-4-hsl));
-    }
-  }
 
   main {
     padding-inline: var(--size-3);

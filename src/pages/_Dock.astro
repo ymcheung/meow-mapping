@@ -1,15 +1,20 @@
 ---
+import { z } from "zod";
+import type { HTMLTag } from 'astro/types';
 import { categories } from "@/consts";
-import Islands from '@assets/islands.svg';
-import Temples from '@assets/temples.svg';
 
-const { as } = Astro.props
+const dockProps = z.object({
+  as: z.custom<HTMLTag>().optional()
+});
+
+type Props = z.infer<typeof dockProps>;
+const { as } = Astro.props as Props;
 
 const Box = as || 'div';
 
 ---
-<div class="dock">
-  <nav class="nav">
+<nav class="dock">
+  <div class="dockChild">
     <ul class="categories">
       {
         categories.map(({ title, slug, icon }) => {
@@ -24,12 +29,12 @@ const Box = as || 'div';
         )
       }
     </ul>
-  </nav>
+  </div>
   <Box class="logo">
     <strong class="logoName">Meow Mapping</strong>
     <span class="logoDescription">Cat Travel Guides</span>
   </Box>
-</div>
+</nav>
 
 <style>
   @import "open-props/media";
@@ -49,7 +54,7 @@ const Box = as || 'div';
     box-shadow: var(--shadow-2);
   }
 
-  .nav {
+  .dockChild {
     display: contents;
   }
 
