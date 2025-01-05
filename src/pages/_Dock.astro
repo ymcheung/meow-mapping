@@ -22,9 +22,11 @@ const Box = as || 'div';
       {
         categories.map(({ title, slug, icon }) => {
           const Icon = icon;
+          const isCurrentPath = `/${slug}` === pathname;
+
           return (
             <li class="categoryItem">
-              <a class="link" href={`/${slug}`}>
+              <a class:list={['link', { isCurrent: isCurrentPath }]} href={`/${slug}`}>
                 <Icon class="icon" size={24} />
               </a>
             </li>
@@ -78,12 +80,24 @@ const Box = as || 'div';
   }
 
   .categoryItem .link {
-    color: hsl(var(--gray-10-hsl));
+    color: hsl(var(--gray-7-hsl));
   }
 
 
   @media (--OSdark) {
     .categoryItem .link {
+      color: hsl(var(--gray-5-hsl));
+    }
+  }
+
+
+  .categoryItem .link.isCurrent {
+    color: hsl(var(--gray-10-hsl));
+    pointer-events: none;
+  }
+
+  @media (--OSdark) {
+    .categoryItem .link.isCurrent {
       color: hsl(var(--gray-2-hsl));
     }
   }
