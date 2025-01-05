@@ -1,19 +1,26 @@
 ---
 import "@/styles/global.css";
+import BaseHead from "./_BaseHead.astro";
 import Dock from "@/pages/_Dock.astro";
+
+const { title, description, dateModified } = Astro.props;
+
+const { pathname } = Astro.url;
+const isHome = pathname === '/';
+
+const datePublished = '2024-12-31T23:59:59+08:00'
 
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Travel Guides for Cats</title>
-	</head>
+  <BaseHead
+    title={title}
+    description={description}
+    dateModified={dateModified}
+    datePublished={datePublished}
+  />
 	<body>
-  	<Dock as="h1" />
+  	<Dock {...(isHome ? { as: 'h1' } : {})} />
 	  <slot />
 	</body>
 </html>

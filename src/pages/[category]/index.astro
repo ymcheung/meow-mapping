@@ -1,29 +1,36 @@
 ---
+import { indexProps } from '@/schema';
+import { z } from 'zod';
 import { getCollection, getEntry, render } from 'astro:content';
 import { categories } from '@/consts';
 import Layout from '@layouts/Index.astro';
 
 export async function getStaticPaths() {
-  return categories.map(({ title, slug }) => {
+  return categories.map(({ title, slug, description }) => {
     return ({
       params: {
         category: slug
       },
       props: {
         title,
-        slug
+        slug,
+        description
       }
     })
   });
 }
 
-const { title, slug } = Astro.props;
+type Props = z.infer<typeof indexProps>;
+
+const { title, slug, description } = Astro.props as Props;
 
 const posts = await getCollection('posts');
 const postsOfCategory = posts.filter(({ data: { category }}) => category === slug);
 
+const dateModified = '2024-12-31T23:59:59+08:00'
+
 ---
-<Layout>
+<Layout title={title} description={description} dateModified={dateModified}>
   <main>
     <h1>{title}</h1>
     {postsOfCategory.length > 0 &&

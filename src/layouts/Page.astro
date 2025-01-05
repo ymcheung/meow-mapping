@@ -4,7 +4,13 @@ import BaseHead from "./_BaseHead.astro";
 import Dock from "@/pages/_Dock.astro";
 import { format } from "date-fns";
 
-const { title, description, category, dateVisited, dateModified, datePublished } = Astro.props;
+const { title,
+        description,
+        category,
+        dateVisited,
+        dateModified,
+        datePublished
+      } = Astro.props;
 
 const formatDateModified = format(dateModified, 'MM-dd-yyyy');
 const formatDateVisited = format(dateVisited, 'MM-dd-yyyy HH:mm');
