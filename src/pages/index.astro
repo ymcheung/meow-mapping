@@ -2,6 +2,8 @@
 import { categories } from '@/consts';
 import Layout from '@layouts/Index.astro';
 import { getCollection } from 'astro:content';
+import PostPreviewList from '@/pages/_PostPreviewList.astro';
+import PostPreview from '@/pages/_PostPreview.astro';
 
 const posts = await getCollection('posts');
 
@@ -21,13 +23,19 @@ function filterPosts(categorySlug: string) {
       return (
         <>
           <h2>{title}</h2>
-          <ul>
-            {postsOfCategory.map(({ id, data: { title }}) =>
-              <li>
-                <a href={`/${slug}/${id}`}>{title}</a>
-              </li>
-            )}
-          </ul>
+          {postsOfCategory.length > 0 &&
+            <PostPreviewList>
+              {postsOfCategory.map(({ id, data: { title, transportation: { from }, dateVisited }}) =>
+                <PostPreview
+                  categorySlug={slug}
+                  postId={id}
+                  title={title}
+                  from={from}
+                  dateVisited={dateVisited}
+                />
+              )}
+            </PostPreviewList>
+          }
         </>
       )
     })}
@@ -50,6 +58,16 @@ function filterPosts(categorySlug: string) {
       margin-inline: auto;
       padding-inline: 0;
     }
+  }
+
+  h2 {
+    margin-block-start: var(--size-4);
+    font-size: var(--font-size-fluid-3);
+    transform: skewY(-2deg);
+  }
+
+  h2:first-of-type {
+    margin-block-start: 0;
   }
 
 </style>
