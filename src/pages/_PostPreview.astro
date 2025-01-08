@@ -1,0 +1,67 @@
+---
+import { format } from "date-fns";
+
+const { title, categorySlug, postId, from, dateVisited } = Astro.props;
+
+
+const formatDateVisited = format(dateVisited, 'yyyy-MM-dd');
+
+---
+
+<li>
+  <div class="card">
+    <strong class="title">{title}</strong>
+    <span class="description">Visited on {formatDateVisited} from {from.place}.</span>
+    <a class="link" href={`/${categorySlug}/${postId}`} />
+  </div>
+</li>
+
+<style>
+  @import "open-props/media";
+
+  li {
+    padding-inline-start: 0;
+    list-style-type: none;
+  }
+
+  li + li {
+    margin-block-start: var(--size-3);
+  }
+
+  .card {
+    position: relative;
+  }
+
+  .title {
+    display: block;
+    color: hsl(var(--sand-7-hsl));
+    font-size: var(--font-size-fluid-2);
+    transform: skewY(-2deg);
+  }
+
+  @media (--OSdark) {
+    .title {
+      color: hsl(46, 100%, 48%);
+    }
+  }
+
+  .description {
+    display: inline-block;
+    color: hsl(var(--gray-7-hsl));
+    font-size: var(--font-size-fluid-1);
+    transform: skewY(-2deg);
+  }
+
+  @media (--OSdark) {
+    .description {
+      color: hsl(var(--gray-5-hsl));
+    }
+  }
+
+  .link {
+    display: block;
+    position: absolute;
+    inset: 0;
+  }
+
+</style>

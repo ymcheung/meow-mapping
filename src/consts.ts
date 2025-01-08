@@ -10,12 +10,16 @@ export const categories = [
   {
     title: 'Islands',
     slug: 'islands',
-    icon: Islands
+    icon: Islands,
+    description:
+      'Cat Islands in Japan is often remote from tourism spots. Even the ports take hours of common transportations like trains. To make the expperience of the trips immersive, it is recommend to stay in the island for 1 or 2 days.'
   },
   {
     title: 'Temples',
     slug: 'temples',
-    icon: Temples
+    icon: Temples,
+    description:
+      'Many temples and shrines (神社) take care of cats. As they become more famous, they may offer omamori (protective charms) or goshuin stamps for you to collect as memories.'
   }
   // {
   //   title: 'Town',

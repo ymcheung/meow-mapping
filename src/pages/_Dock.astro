@@ -22,9 +22,11 @@ const Box = as || 'div';
       {
         categories.map(({ title, slug, icon }) => {
           const Icon = icon;
+          const isCurrentPath = `/${slug}` === pathname;
+
           return (
             <li class="categoryItem">
-              <a class="link" href={`/${slug}`}>
+              <a class:list={['link', { isCurrent: isCurrentPath }]} href={`/${slug}`}>
                 <Icon class="icon" size={24} />
               </a>
             </li>
@@ -53,6 +55,7 @@ const Box = as || 'div';
     position: fixed;
     right: var(--size-2);
     bottom: var(--size-2);
+    z-index: var(--layer-5);
     margin-block-start: calc(var(--size-2) * -1);
     background-color: hsl(var(--gray-0-hsl) / 80%);
     backdrop-filter: blur(12px);
@@ -73,17 +76,29 @@ const Box = as || 'div';
   }
 
   .categoryItem {
-    padding-inline-start: var(--size-0);
+    padding-inline-start: 0;
     list-style-type: none;
   }
 
   .categoryItem .link {
-    color: hsl(var(--gray-10-hsl));
+    color: hsl(var(--gray-7-hsl));
   }
 
 
   @media (--OSdark) {
     .categoryItem .link {
+      color: hsl(var(--gray-5-hsl));
+    }
+  }
+
+
+  .categoryItem .link.isCurrent {
+    color: hsl(var(--gray-10-hsl));
+    pointer-events: none;
+  }
+
+  @media (--OSdark) {
+    .categoryItem .link.isCurrent {
       color: hsl(var(--gray-2-hsl));
     }
   }
@@ -125,7 +140,7 @@ const Box = as || 'div';
 
   .logoDescription {
     display: block;
-    margin-inline-start: var(--size-7);
+    margin-inline-start: var(--size-4);
     color: hsl(var(--gray-10-hsl));
     font-size: var(--font-size-1);
     font-weight: normal;
