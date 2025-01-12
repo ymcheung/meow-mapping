@@ -1,5 +1,5 @@
 ---
-import { INTERSECTION, INTERSECTION_DESCRIPTION } from '@/consts';
+import { SITE_NAME, INTERSECTION, INTERSECTION_DESCRIPTION } from '@/consts';
 import { ClientRouter } from 'astro:transitions';
 import siteUrl from '@/helpers/siteUrl';
 
@@ -62,11 +62,11 @@ const schema = () => {
 
 <head>
   <meta charset="utf-8" />
-  <title>{title ?? INTERSECTION}</title>
+  <title>{title ?? SITE_NAME}</title>
   <meta name="description" content={description} />
   <link rel="canonical" href={siteUrl(pathname)} />
   <meta name="viewport" content="width=device-width" />
-  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
   <link rel="icon" href="/icon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href={siteUrl('/apple-touch-icon.png')} />
   <link rel="manifest" href={siteUrl('/manifest.webmanifest')} />
