@@ -19,12 +19,15 @@ const dateModified = '2025-01-13T23:59:59+08:00';
 
 <Layout description={SITE_DESCRIPTION} dateModified={dateModified}>
   <main>
+    <h2 class="pageTitle">What are those places?</h2>
+    <p class="description">Discover authentic travel experiences at some of the best cat spots, focusing on how to get to these destinations.</p>
+
     {categories.map(({ title, slug }) => {
       const postsOfCategory = filterPosts(slug);
 
       return (
         <>
-          <h2>{title}</h2>
+          <h2 class="articleTitle">{title}</h2>
           {postsOfCategory.length > 0 &&
             <PostPreviewList>
               {postsOfCategory.map(({ id, data: { title, transportation: { from }, dateVisited }}) =>
@@ -62,7 +65,25 @@ const dateModified = '2025-01-13T23:59:59+08:00';
     }
   }
 
-  h2 {
+  .pageTitle {
+    margin-block-start: var(--size-3);
+    font-size: var(--font-size-fluid-2);
+    transform: skewY(-2deg);
+  }
+
+  .description {
+    margin-block-start: var(--size-3);
+    color: hsl(var(--gray-7-hsl));
+    font-size: var(--font-size-fluid-1);
+  }
+
+  @media (--OSdark) {
+    .description {
+      color: hsl(var(--gray-5-hsl));
+    }
+  }
+
+  .articleTitle {
     margin-block-start: var(--size-4);
     font-size: var(--font-size-fluid-3);
     transform: skewY(-2deg);
