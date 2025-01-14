@@ -1,5 +1,5 @@
 ---
-import { categories } from '@/consts';
+import {SITE_DESCRIPTION, categories } from '@/consts';
 import Layout from '@layouts/Index.astro';
 import { getCollection } from 'astro:content';
 import PostPreviewList from '@/pages/_PostPreviewList.astro';
@@ -13,9 +13,11 @@ function filterPosts(categorySlug: string) {
   })
 }
 
+const dateModified = '2025-01-13T23:59:59+08:00';
+
 ---
 
-<Layout>
+<Layout description={SITE_DESCRIPTION} dateModified={dateModified}>
   <main>
     {categories.map(({ title, slug }) => {
       const postsOfCategory = filterPosts(slug);
