@@ -14,7 +14,7 @@ export async function getStaticPaths() {
         category: slug
       },
       props: {
-        title,
+        title: `Cat Travel Guides to ${title}`,
         slug,
         description
       }
