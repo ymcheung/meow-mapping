@@ -4,25 +4,16 @@ import { ClientRouter } from 'astro:transitions';
 import siteUrl from '@/helpers/siteUrl';
 
 const { pathname } = Astro.url;
-const { slug } = Astro.params;
+const { blogPost } = Astro.params;
 const { title, description, dateModified, datePublished } = Astro.props;
 
-// const {
-//   image: {
-//     src: coverImageSrc,
-//     width: coverImageWidth,
-//     height: coverImageHeight,
-//     alt: coverImageAlt
-//   }
-// } = cover;
-
-const isArticle = !!slug;
+const isArticle = !!blogPost;
 const ogType = isArticle ? 'article' : 'webiste';
 
 const schema = () => {
   const website = {
     '@type': 'Website',
-    name: 'Meow Mapping',
+    name: 'Meow Mapping: Cat Travel Guides',
     url: import.meta.env.SITE_URL
   };
 
