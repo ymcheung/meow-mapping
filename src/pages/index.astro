@@ -29,7 +29,11 @@ const dateModified = '2025-01-13T23:59:59+08:00';
         const { data: { dateVisited: olderDateVisited } } = a;
         const { data: { dateVisited: newerDateVisited } } = b;
 
-        return newerDateVisited - olderDateVisited
+        if (olderDateVisited > newerDateVisited) {
+          return -1;
+        }
+
+        return 0;
       })
 
       return (
