@@ -1,6 +1,7 @@
 ---
 import { getCollection, getEntry, render } from 'astro:content';
-import Layout from '@layouts/Page.astro'
+import Layout from '@layouts/Page.astro';
+import Figure from './_components/Figure.astro';
 // import { locales } from '@i18n/i18n';
 // import { getLocaleFromUrl} from '@i18n/utilities';
 
@@ -39,5 +40,9 @@ const { Content } = await render(post);
   dateModified={dateModified}
   datePublished={datePublished}
 >
-  <Content />
+  <Content
+    components={{
+      img: Figure
+    }}
+  />
 </Layout>
