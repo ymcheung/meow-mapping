@@ -1,0 +1,31 @@
+---
+import { Image } from 'astro:assets';
+
+const { src, alt } = Astro.props;
+
+---
+
+<figure>
+  <Image src={src} alt={alt} />
+  {!!alt && <figcaption>{alt}</figcaption>}
+</figure>
+
+<style>
+  @import "open-props/media";
+  @import "open-props/colors-hsl";
+
+  figure {
+    place-items: start;
+  }
+
+  figcaption {
+    color: hsl(var(--gray-7-hsl));
+    text-wrap: initial;
+  }
+
+  @media (--OSdark) {
+    figcaption {
+      color: hsl(var(--gray-5-hsl));
+    }
+  }
+</style>

@@ -1,7 +1,7 @@
 ---
-import { z } from "zod";
+import { z } from 'zod';
 import type { HTMLTag } from 'astro/types';
-import { categories } from "@/consts";
+import { categories } from '@/consts';
 
 const dockProps = z.object({
   as: z.custom<HTMLTag>().optional()
