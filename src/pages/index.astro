@@ -25,12 +25,19 @@ const dateModified = '2025-01-13T23:59:59+08:00';
     {categories.map(({ title, slug }) => {
       const postsOfCategory = filterPosts(slug);
 
+      const postsOfCategorySorted = postsOfCategory.sort((a, b) => {
+        const { data: { dateVisited: olderDateVisited } } = a;
+        const { data: { dateVisited: newerDateVisited } } = b;
+
+        return newerDateVisited - olderDateVisited
+      })
+
       return (
         <>
           <h2 class="articleTitle">{title}</h2>
           {postsOfCategory.length > 0 &&
             <PostPreviewList>
-              {postsOfCategory.map(({ id, data: { title, transportation: { from }, dateVisited }}) =>
+              {postsOfCategorySorted.map(({ id, data: { title, transportation: { from }, dateVisited }}) =>
                 <PostPreview
                   categorySlug={slug}
                   postId={id}
