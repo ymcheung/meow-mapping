@@ -23,7 +23,7 @@ export async function getStaticPaths() {
 }
 
 const { blogPost } = Astro.params
-const {  title, description, category, dateVisited, dateModified, datePublished } = Astro.props;
+const {  title, description, category, difficulty, feed, dateVisited, dateModified, datePublished } = Astro.props;
 
 const post = await getEntry('posts', blogPost);
 if (!post) return;
@@ -35,6 +35,8 @@ const { Content } = await render(post);
 <Layout
   title={title}
   description={description}
+  difficulty={difficulty}
+  feed={feed}
   category={category}
   dateVisited={dateVisited}
   dateModified={dateModified}
