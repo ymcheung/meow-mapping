@@ -1,12 +1,13 @@
 ---
-// import { z } from "zod";
-// import { minutesToHours } from 'date-fns';
-import formatDuration from '@/helpers/formatDuration'
+import { z } from "zod";
+import { postSchema } from '@/schema';
+import formatDuration from '@/helpers/formatDuration';
 
-const { frontmatter } = Astro.props;
+const transportationSchema = postSchema.pick({ transportation: true });
 
+type Props = z.infer<typeof transportationSchema>;
 
-const { difficulty, transportation } = frontmatter;
+const { transportation } = Astro.props as Props;
 
 const { duration, unit } = formatDuration(transportation.duration);
 
