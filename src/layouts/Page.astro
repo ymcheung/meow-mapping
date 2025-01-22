@@ -7,10 +7,14 @@ import { format } from "date-fns";
 const { title,
         description,
         category,
+        difficulty,
+        feed,
         dateVisited,
         dateModified,
-        datePublished
-      } = Astro.props;
+        datePublished,
+        frontmatter
+      }
+  = Astro.props;
 
 const formatDateModified = format(dateModified, 'MM-dd-yyyy');
 const formatDateVisited = format(dateVisited, 'MM-dd-yyyy HH:mm');
@@ -32,6 +36,20 @@ const fullTitle = `Cat Travel Guide to ${title}`;
         <span class="prefix">Cat Travel Guide to</span>
         <span class="title">{title}</span>
       </h1>
+      <dl class="meta">
+        <div class="metaItem">
+          <dt class="metaTitle">Difficulty</dt>
+          <dd class="metaDetail capitalize">
+            {difficulty.level}
+          </dd>
+        </div>
+        <div class="metaItem">
+          <dt class="metaTitle">Feed</dt>
+          <dd class="metaDetail capitalize">
+            {feed ? 'Yes' : 'No'}
+          </dd>
+        </div>
+      </dl>
   	  <slot />
       <dl class="meta">
         <div class="metaItem">
@@ -183,7 +201,7 @@ const fullTitle = `Cat Travel Guide to ${title}`;
   }
 
   :global(article > p:first-of-type) {
-    margin-block-start: var(--size-7);
+    margin-block-start: var(--size-5);
   }
 
   :global(p:not(article > p + p)) {
@@ -192,6 +210,10 @@ const fullTitle = `Cat Travel Guide to ${title}`;
 
   :global(article > p + p) {
     margin-block-start: var(--size-3);
+  }
+
+  :global(figure) {
+    margin-block-start: var(--size-2);
   }
 
   .updated {
@@ -213,6 +235,10 @@ const fullTitle = `Cat Travel Guide to ${title}`;
     font-size: var(--font-size-0);
     letter-spacing: var(--size-1);
     text-transform: uppercase;
+  }
+
+  .capitalize {
+    text-transform: capitalize;
   }
 
 </style>
