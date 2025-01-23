@@ -21,7 +21,9 @@ export const postSchema = z.object({
       place: z.string(),
       kanji: z.string()
     }),
-    by: z.string().array()
+    by: z
+      .enum(['bicycle', 'ferry', 'train', 'taxi', 'walk', 'motorcycle'])
+      .array()
   }),
   category: z.enum(['islands', 'temples', 'towns']),
   dateVisited: z.coerce.date(),

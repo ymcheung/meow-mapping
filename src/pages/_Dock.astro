@@ -20,7 +20,7 @@ const Box = as || 'div';
   <div class="dockChild">
     <ul class="categories">
       {
-        categories.map(({ title, slug, icon }) => {
+        categories.map(({ slug, icon }) => {
           const Icon = icon;
           const isCurrentPath = `/${slug}` === pathname;
 
