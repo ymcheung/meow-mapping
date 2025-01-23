@@ -1,5 +1,11 @@
 import Islands from '@assets/islands.svg';
 import Temples from '@assets/temples.svg';
+import Bicycle from '@assets/bicycle.svg';
+import Ferry from '@assets/ferry.svg';
+import Motorcycle from '@assets/motorcycle.svg';
+import Train from '@assets/train.svg';
+import Walk from '@assets/walk.svg';
+import Taxi from '@assets/taxi.svg';
 
 export const SITE_URL = 'https://meow.carrier.express';
 export const SITE_NAME = 'Cat Travel Guides - Meow Mapping';
@@ -29,3 +35,24 @@ export const categories = [
   //   slug: 'town'
   // }
 ];
+
+export const transportations = {
+  bicycle: {
+    icon: Bicycle
+  },
+  ferry: {
+    icon: Ferry
+  },
+  motorcycle: {
+    icon: Motorcycle
+  },
+  train: {
+    icon: Train
+  },
+  walk: {
+    icon: Walk
+  },
+  taxi: {
+    icon: Taxi
+  }
+};

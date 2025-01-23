@@ -9,7 +9,7 @@ transportation:
   from:
     place: 'Takamatsu, Kagawa, Japan'
     kanji: '香川県高松'
-  by: ['train', 'walk', 'motorcycle']
+  by: ['train', 'walk', 'ferry', 'motorcycle']
 category: 'islands'
 dateVisited: '2024-09-05T17:00:00+09:00'
 dateModified: '2025-01-20T18:00:00+08:00'
@@ -20,7 +20,7 @@ import Abstract from '@pages/[category]/[...blogPost]/_Abstract.astro';
 
 Sanagijima is an island located in the Seto Inland Sea. While this region hosts the Setouchi International Art Triennale every three years, it does not feature any exhibitions on the island itself.
 
-<Abstract frontmatter={frontmatter} />
+<Abstract transportation={frontmatter.transportation} />
 
 ## Access
 

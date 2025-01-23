@@ -1,20 +1,36 @@
 ---
-// import { z } from "zod";
-// import { minutesToHours } from 'date-fns';
-import formatDuration from '@/helpers/formatDuration'
+import { z } from "zod";
+import { transportations as  transportationIcon } from "@/consts";
+import { postSchema } from '@/schema';
+import formatDuration from '@/helpers/formatDuration';
 
-const { frontmatter } = Astro.props;
+const transportationSchema = postSchema.pick({ transportation: true });
 
+type Props = z.infer<typeof transportationSchema>;
 
-const { difficulty, transportation } = frontmatter;
+const { transportation } = Astro.props as Props;
 
 const { duration, unit } = formatDuration(transportation.duration);
 
 ---
 
 <div class="abstract">
-  <strong class="transportationTime">~{duration}</strong>
-  <span class="transportationUnit">{unit}</span>
+  <div class="time">
+    <strong class="transportationTime">~{duration}</strong>
+    <span class="transportationUnit">{unit}</span>
+  </div>
+  {!!transportation.by &&
+    <ul class="by">
+      {transportation.by.map((by) => {
+        const Icon = transportationIcon[by].icon;
+        return (
+          <li>
+            <Icon class="icon" />
+          </li>
+        )
+      })}
+    </ul>
+  }
   <p class="transportationFrom">from {transportation.from.place}<br />{transportation.from.kanji}</p>
 </div>
 
@@ -23,6 +39,9 @@ const { duration, unit } = formatDuration(transportation.duration);
   @import "open-props/colors-hsl";
 
   .abstract {
+    display: grid;
+    grid: "time by" auto
+          "from from" auto / var(--size-11) 1fr;
     margin-block-start: var(--size-3);
     margin-inline: calc(var(--size-2) * -1);
     padding-inline: var(--size-2);
@@ -48,10 +67,8 @@ const { duration, unit } = formatDuration(transportation.duration);
     }
   }
 
-  .difficulty {
-    font-size: var(--font-size-4);
-    letter-spacing: var(--font-letterspacing-3);
-    text-transform: uppercase;
+  .time {
+    grid-area: time;
   }
 
   .transportationTime {
@@ -71,7 +88,41 @@ const { duration, unit } = formatDuration(transportation.duration);
     font-size: var(--font-size-1);
   }
 
+  .by {
+    display: grid;
+    grid: auto / repeat(auto-fill, minmax(var(--size-8), 1fr));
+    align-items: center;
+    grid-area: by;
+    padding-inline-start: 0;
+    padding-inline-end: var(--size-2);
+  }
+
+  @media (--md-n-above) {
+    .by {
+      grid: auto / repeat(auto-fit, var(--size-8));
+      justify-content: end;
+      padding-inline-end: 0;
+    }
+  }
+
+  .by li {
+    padding-inline-start: 0;
+    list-style-type: none;
+  }
+
+  .by .icon {
+    margin-inline-start: auto;
+    color: hsl(var(--gray-6-hsl));
+  }
+
+  @media (--OSdark) {
+    .by .icon {
+      color: hsl(var(--gray-5-hsl));
+    }
+  }
+
   .transportationFrom {
+    grid-area: from;
     color: hsl(var(--gray-7-hsl));
     font-size: var(--font-size-1);
   }

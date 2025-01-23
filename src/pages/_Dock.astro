@@ -22,11 +22,13 @@ const Box = as || 'div';
       {
         categories.map(({ title, slug, icon }) => {
           const Icon = icon;
+          const label = `Category Link to ${title}`
           const isCurrentPath = `/${slug}` === pathname;
+
 
           return (
             <li class="categoryItem">
-              <a class:list={['link', { isCurrent: isCurrentPath }]} href={`/${slug}`}>
+              <a class:list={['link', { isCurrent: isCurrentPath }]} href={`/${slug}`} aria-label={label}>
                 <Icon class="icon" size={24} />
               </a>
             </li>

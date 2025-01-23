@@ -1,5 +1,5 @@
-import { postSchema } from './schema';
-import { z, defineCollection } from 'astro:content';
+import { postSchema } from '@/schema';
+import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 
 const postsCollection = defineCollection({
