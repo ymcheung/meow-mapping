@@ -2,15 +2,20 @@ import { experimental_AstroContainer as AstroContainer } from 'astro/container';
 import { expect, test } from 'vitest';
 import Dock from '@pages/_Dock.astro';
 
-test('Card with slots', async () => {
+test('Render div for logo', async () => {
+  const container = await AstroContainer.create();
+  const result = await container.renderToString(Dock, {});
+
+  expect(result).toContain('<div class="logo"');
+});
+
+test('Render h1 for logo', async () => {
   const container = await AstroContainer.create();
   const result = await container.renderToString(Dock, {
     props: {
-      as: 'div'
+      as: 'h1'
     }
   });
 
-  console.log({ result });
-
-  expect(result).toContain('div');
+  expect(result).toContain('<h1 class="logo"');
 });
