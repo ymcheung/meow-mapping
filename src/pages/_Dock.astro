@@ -25,7 +25,6 @@ const Box = as || 'div';
           const label = `Category Link to ${title}`
           const isCurrentPath = `/${slug}` === pathname;
 
-
           return (
             <li class="categoryItem">
               <a class:list={['link', { isCurrent: isCurrentPath }]} href={`/${slug}`} aria-label={label}>
