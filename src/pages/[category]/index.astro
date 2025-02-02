@@ -40,12 +40,13 @@ const postsOfCategorySorted = postsOfCategory.sort((a, b) => {
   return 0;
 });
 
-const dateModified = '2024-12-31T23:59:59+08:00'
+const dateModified = '2025-02-02T18:00:59+08:00'
 
 ---
 <Layout title={title} description={description} dateModified={dateModified}>
   <main>
-    <h1>{title}</h1>
+      <h1>{title}</h1>
+      <p class="description">{description}</p>
     {postsOfCategory.length > 0 &&
       <PostPreviewList>
         {postsOfCategorySorted.map(({ id, data: { title, transportation: { from }, dateVisited }}) =>
@@ -78,4 +79,16 @@ const dateModified = '2024-12-31T23:59:59+08:00'
     transform: skewY(-2deg);
   }
 
+  .description {
+    margin-block-start: var(--size-2);
+    color: hsl(var(--gray-7-hsl));
+    font-size: var(--font-size-fluid-1);
+    transform: skewY(-2deg);
+  }
+
+  @media (--OSdark) {
+    .description {
+      color: hsl(var(--gray-5-hsl));
+    }
+  }
 </style>
