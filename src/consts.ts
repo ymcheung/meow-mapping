@@ -21,7 +21,7 @@ export const categories = [
     slug: 'islands',
     icon: Islands,
     description:
-      'Cat Islands in Japan is often remote from tourism spots. Even the ports take hours of common transportations like trains. To make the expperience of the trips immersive, it is recommend to stay in the island for 1 or 2 days.'
+      'Cat Islands in Japan is often remote from tourism spots. Even the ports take hours of common transportations like trains. To make the experience of the trips immersive, it is recommend to stay in the island for 1 or 2 days.'
   },
   {
     title: 'Temples',
