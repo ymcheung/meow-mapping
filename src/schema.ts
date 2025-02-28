@@ -25,7 +25,7 @@ export const postSchema = z.object({
       .enum(['bicycle', 'ferry', 'train', 'taxi', 'walk', 'motorcycle'])
       .array()
   }),
-  category: z.enum(['islands', 'temples', 'towns']),
+  category: z.enum(['islands', 'temples', 'streets']),
   dateVisited: z.coerce.date(),
   dateModified: z.coerce.date(),
   datePublished: z.coerce.date()

@@ -1,5 +1,6 @@
 import Islands from '@assets/islands.svg';
 import Temples from '@assets/temples.svg';
+import Streets from '@assets/buildings.svg';
 import Bicycle from '@assets/bicycle.svg';
 import Ferry from '@assets/ferry.svg';
 import Motorcycle from '@assets/motorcycle.svg';
@@ -29,11 +30,14 @@ export const categories = [
     icon: Temples,
     description:
       'Many temples and shrines (神社) take care of cats. As they become more famous, they may offer omamori (protective charms) or goshuin stamps for you to collect as memories.'
+  },
+  {
+    title: 'Streets',
+    slug: 'streets',
+    icon: Streets,
+    description:
+      'These are the spots with cats living between the buildings. Most of them are easy to reach for novice backpackers.'
   }
-  // {
-  //   title: 'Town',
-  //   slug: 'town'
-  // }
 ];
 
 export const transportations = {
