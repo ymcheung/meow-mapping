@@ -36,7 +36,7 @@ export const categories = [
     slug: 'streets',
     icon: Streets,
     description:
-      'These are the spots with cats living between the buildings. Most of them are easy to reach for novice backpackers.'
+      'These are the spots with cats living among the buildings. For the streets I have visited so far, you could find the cats in a tourism spot, a hiking trail, and a tiny town.'
   }
 ];
 
