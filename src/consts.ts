@@ -9,7 +9,7 @@ import Walk from '@assets/walk.svg';
 import Taxi from '@assets/taxi.svg';
 
 export const SITE_URL = 'https://meow.carrier.express';
-export const SITE_NAME = 'Cat Travel Guides - Meow Mapping';
+export const SITE_NAME = 'Cat Spotting Guides - Meow Mapping';
 export const SITE_DESCRIPTION =
   'Discover authentic travel experiences at some of the best cat spots, focusing on how to get to these destinations instead of just basic information. Primarily featured in Japan, these unique locales offer a chance to immerse yourself in the region with cats.';
 export const INTERSECTION = '𝙄 𝙉 𝙏 𝙀 𝙍 𝙎 𝙀 𝘾 𝙏 𝙄 𝙊 𝙉';

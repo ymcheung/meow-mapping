@@ -1,5 +1,5 @@
 # Meow Mapping
 
-## Cat Travel Guides
+## Cat Spotting Guides
 
 https://meow.carrier.express
