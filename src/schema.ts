@@ -1,4 +1,4 @@
-import { z } from 'astro/zod';
+import { z } from 'astro:content';
 
 export const indexProps = z.object({
   title: z.string(),
@@ -11,6 +11,7 @@ export const indexProps = z.object({
 export const postSchema = z.object({
   title: z.string(),
   description: z.string(),
+  hasCover: z.boolean(),
   difficulty: z.object({
     level: z.enum(['easy', 'medium', 'hard'])
   }),
