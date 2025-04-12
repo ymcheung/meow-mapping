@@ -1,5 +1,5 @@
 ---
-import { z } from "zod";
+import { z } from 'astro:content';
 import { transportations as  transportationIcon } from "@/consts";
 import { postSchema } from '@/schema';
 import formatDuration from '@/helpers/formatDuration';
@@ -8,7 +8,7 @@ const transportationSchema = postSchema.pick({ transportation: true });
 
 type Props = z.infer<typeof transportationSchema>;
 
-const { transportation } = Astro.props as Props;
+const { transportation } = Astro.props;
 
 const { duration, unit } = formatDuration(transportation.duration);
 

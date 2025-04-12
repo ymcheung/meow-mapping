@@ -6,15 +6,14 @@ import { format } from "date-fns";
 
 const { title,
         description,
+        hasCover,
         category,
         difficulty,
         feed,
         dateVisited,
         dateModified,
-        datePublished,
-        frontmatter
-      }
-  = Astro.props;
+        datePublished
+} = Astro.props;
 
 const formatDateModified = format(dateModified, 'MM-dd-yyyy');
 const formatDateVisited = format(dateVisited, 'MM-dd-yyyy HH:mm');
@@ -26,6 +25,7 @@ const fullTitle = `Cat Spotting in ${title}`;
  	<BaseHead
     title={fullTitle}
     description={description}
+    hasCover={hasCover}
     dateModified={dateModified}
     datePublished={datePublished}
   />
