@@ -25,8 +25,6 @@ export async function getStaticPaths() {
 const { blogPost } = Astro.params
 const { title, description, hasCover, category, difficulty, feed, dateVisited, dateModified, datePublished } = Astro.props;
 
-console.log(Astro.props)
-
 const post = await getEntry('posts', blogPost);
 if (!post) return;
 
