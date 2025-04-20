@@ -16,12 +16,26 @@ const { src, alt } = Astro.props;
 
   figure {
     place-items: start;
+    margin-inline: calc(var(--size-3) * -1);
+  }
+
+  @media (--md-n-above) {
+    figure {
+      margin-inline: 0;
+    }
   }
 
   figcaption {
+    padding-inline: var(--size-3);
     color: hsl(var(--gray-6-hsl));
     font-size: var(--font-size-1);
     text-wrap: initial;
+  }
+
+  @media (--md-n-above) {
+    figcaption {
+      padding-inline: 0;
+    }
   }
 
 </style>
