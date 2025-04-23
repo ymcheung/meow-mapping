@@ -2,6 +2,7 @@
 import { SITE_NAME, SITE_DESCRIPTION, INTERSECTION, INTERSECTION_DESCRIPTION } from '@/consts';
 import { ClientRouter } from 'astro:transitions';
 import siteUrl from '@/helpers/siteUrl';
+import { Font } from 'astro:assets'
 
 const { pathname } = Astro.url;
 const { blogPost } = Astro.params;
@@ -95,5 +96,6 @@ const schema = () => {
       />
     )
   }
+  <Font cssVariable='--font-asap' preload />
   <ClientRouter />
 </head>
