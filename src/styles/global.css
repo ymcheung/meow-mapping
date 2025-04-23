@@ -2,7 +2,7 @@
 @import 'open-props/open-props.min.css';
 @import 'open-props/media.min.css';
 
-@font-face {
+/* @font-face {
   font-family: 'Asap';
   src: url('/fonts/Asap-Regular.woff') format('woff');
   font-weight: normal;
@@ -32,10 +32,10 @@
   font-weight: bold;
   font-style: italic;
   font-display: fallback;
-}
+} */
 
 body {
-  font-family: 'Asap';
+  font-family: var(--font-asap);
   background-color: hsl(var(--gray-0-hsl));
 }
 

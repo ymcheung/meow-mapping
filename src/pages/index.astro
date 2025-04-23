@@ -38,7 +38,7 @@ const dateModified = '2025-04-20T09:20:00+08:00';
 
       return (
         <>
-          <h2 class="articleTitle">{title}</h2>
+          <h2 class="categoryTitle">{title}</h2>
           {postsOfCategory.length > 0 &&
             <PostPreviewList>
               {postsOfCategorySorted.map(({ id, data: { title, transportation: { from }, dateVisited }}) =>
@@ -105,9 +105,10 @@ const dateModified = '2025-04-20T09:20:00+08:00';
     }
   }
 
-  .articleTitle {
+  .categoryTitle {
     margin-block-start: var(--size-4);
-    font-size: var(--font-size-fluid-3);
+    font-size: var(--font-size-fluid-2);
+    font-weight: 700;
     transform: skewY(-2deg);
   }
 

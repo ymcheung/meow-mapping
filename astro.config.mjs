@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig, fontProviders } from 'astro/config';
 // import { defaultLocale, locales } from './src/i18n/i18n';
 import mdx from '@astrojs/mdx';
 import rehypeUnwrapImages from 'rehype-unwrap-images';
@@ -18,6 +18,12 @@ export default defineConfig({
     rehypePlugins: [rehypeUnwrapImages]
   },
   experimental: {
-    svg: true
+    fonts: [
+      {
+        provider: fontProviders.fontsource(),
+        name: 'Asap',
+        cssVariable: '--font-asap'
+      }
+    ]
   }
 });
