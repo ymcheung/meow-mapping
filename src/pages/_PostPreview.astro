@@ -39,6 +39,12 @@ const formatDateVisited = format(dateVisited, 'yyyy-MM-dd');
     z-index: 1;
   }
 
+  @media (--md-n-above) {
+    .link {
+      left: calc(var(--size-8) * -1);
+    }
+  }
+
   .cta {
     display: inline-block;
     overflow: hidden;
@@ -62,7 +68,7 @@ const formatDateVisited = format(dateVisited, 'yyyy-MM-dd');
     font-size: var(--font-size-fluid-2);
     line-height: var(--font-lineheight-1);
     transform: skewY(-2deg);
-    transition: padding-inline-start ease-out 0.2s;
+    transition: padding-inline-start 0.3s cubic-bezier(.32, 0, .67, 0);
   }
 
   @media (--OSdark) {
@@ -77,18 +83,18 @@ const formatDateVisited = format(dateVisited, 'yyyy-MM-dd');
     content: "Read";
     padding-inline: var(--size-2);
     padding-block: var(--size-1);
-    color: hsl(var(--sand-7-hsl));
+    color: hsl(var(--sand-3-hsl));
     font-size: var(--font-size-fluid-1);
-    background-color: hsl(var(--sand-7-hsl));
-    transition: right ease-out 0.2s,
-                background-color ease-out 0.2s;
+    background-color: hsl(var(--gray-1-hsl));
+    transition: right 0.3s cubic-bezier(.32, 0, .67, 0),
+                background-color 0.3s cubic-bezier(.32, 0, .67, 0);
   }
 
   @media (--OSdark) {
     .title::before,
     .title::after {
+      color: hsl(var(--sand-7-hsl));
       background-color: hsl(var(--gray-8-hsl));
-      /* background-color: hsl(46, 100%, 48%); */
     }
   }
 
@@ -117,13 +123,14 @@ const formatDateVisited = format(dateVisited, 'yyyy-MM-dd');
 
   .link:hover + .title {
     padding-inline-start: 16px;
-    transition: padding-inline-start ease-in 0.2s;
+    transition: padding-inline-start 0.3s cubic-bezier(.32, 0, .67, 0);
   }
 
   .link:hover + .title::before {
-    right: calc(100% - 8px);
-    transition: right ease-in 0.2s,
-                background-color ease-in 0.2s;
+    color: hsl(var(--gray-0-hsl));
+    background-color: hsl(var(--sand-7-hsl));
+    transition: color 0.3s cubic-bezier(.32, 0, .67, 0),
+                background-color 0.3s cubic-bezier(.32, 0, .67, 0);
   }
 
   @media (--OSdark) {
@@ -132,6 +139,14 @@ const formatDateVisited = format(dateVisited, 'yyyy-MM-dd');
       background-color: hsl(46, 100%, 48%);
     }
   }
+
+  @media (--md-n-above) {
+    .link:hover + .title::before {
+      right: calc(100% - 8px);
+      transition: right 0.3s cubic-bezier(.32, 0, .67, 0);
+    }
+  }
+
 
   .description {
     display: inline-block;
