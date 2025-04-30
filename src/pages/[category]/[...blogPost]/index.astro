@@ -1,7 +1,7 @@
 ---
 import { getCollection, getEntry, render } from 'astro:content';
 import Layout from '@layouts/Page.astro';
-import HeadingLv2 from './_components/HeadingLv2.astro';
+import HeadingLv3 from './_components/HeadingLv3.astro';
 import Figure from './_components/Figure.astro';
 // import { locales } from '@i18n/i18n';
 // import { getLocaleFromUrl} from '@i18n/utilities';
@@ -47,7 +47,7 @@ const { Content } = await render(post);
   <Content
     components={{
       img: Figure,
-      h2: HeadingLv2
+      h3: HeadingLv3
     }}
   />
 </Layout>

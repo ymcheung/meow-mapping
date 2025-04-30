@@ -192,6 +192,24 @@ const fullTitle = `Cat Spotting in ${title}`;
     }
   }
 
+  :global(h3 > .icon) {
+    display: inline-block;
+    margin-inline-end: 8px;
+    vertical-align: top;
+  }
+
+  @media (--md-n-above) {
+    :global(article > h3) {
+      position: relative;
+    }
+
+    :global(h3 > .icon) {
+      position: absolute;
+      right: 100%;
+    }
+  }
+
+
   :global(article > p) {
     color: hsl(var(--gray-7-hsl));
   }
