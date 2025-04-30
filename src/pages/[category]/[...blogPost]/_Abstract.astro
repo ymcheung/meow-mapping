@@ -1,5 +1,7 @@
 ---
 import { z } from 'astro:content';
+import { getEntry, render } from 'astro:content';
+
 import { transportations as  transportationIcon } from "@/consts";
 import { postSchema } from '@/schema';
 import formatDuration from '@/helpers/formatDuration';
@@ -11,6 +13,18 @@ type Props = z.infer<typeof transportationSchema>;
 const { transportation } = Astro.props;
 
 const { duration, unit } = formatDuration(transportation.duration);
+
+
+const { blogPost } = Astro.params;
+if (!blogPost) return;
+
+const post = await getEntry('posts', blogPost);
+if (!post) return;
+
+
+const { headings } = await render(post);
+
+const headingsLv2 = headings.filter(({ depth }) => depth === 2);
 
 ---
 
@@ -133,12 +147,18 @@ const { duration, unit } = formatDuration(transportation.duration);
     }
   }
 
-  hr {
-    /* margin-block-start: var(--size-1);
-    margin-block-end: 0; */
-    margin-block: var(--size-3);
-    background-color: transparent;
-    border: 1px dashed hsl(var(--gray-7-hsl));
-    /* border-bottom: none; */
+  .tableOfContent {
+    display: none;
   }
+
+
+  @media (--md-n-above) {
+    .tableOfContent {
+      display: initial;
+      position: absolute;
+      left: 100%;
+      margin-inline-start: var(--size-2);
+    }
+  }
+
 </style>

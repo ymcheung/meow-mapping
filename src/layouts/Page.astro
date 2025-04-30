@@ -7,9 +7,9 @@ import { format } from "date-fns";
 const { title,
         description,
         hasCover,
-        // category,
         difficulty,
         feed,
+        headings,
         dateVisited,
         dateModified,
         datePublished
@@ -19,6 +19,8 @@ const formatDateModified = format(dateModified, 'MM-dd-yyyy');
 const formatDateVisited = format(dateVisited, 'MM-dd-yyyy HH:mm');
 
 const fullTitle = `Cat Spotting in ${title}`;
+
+
 ---
 
 <html lang="en">
@@ -194,7 +196,7 @@ const fullTitle = `Cat Spotting in ${title}`;
 
   :global(h3 > .icon) {
     display: inline-block;
-    margin-inline-end: 8px;
+    margin-inline-end: var(--size-2);
     vertical-align: top;
   }
 
