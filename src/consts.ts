@@ -59,4 +59,6 @@ export const transportations = {
   taxi: {
     icon: Taxi
   }
-};
+} as const;
+
+export type TransportationLabel = keyof typeof transportations;
