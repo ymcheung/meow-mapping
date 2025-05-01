@@ -9,7 +9,6 @@ const { title,
         hasCover,
         difficulty,
         feed,
-        headings,
         dateVisited,
         dateModified,
         datePublished
@@ -179,6 +178,10 @@ const fullTitle = `Cat Spotting in ${title}`;
     :global(article > h2) {
       color: hsl(46, 100%, 48%);
     }
+  }
+
+  :global(article > h2:first-of-type) {
+    margin-block-start: var(--size-6);
   }
 
   :global(article > h3) {

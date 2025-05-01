@@ -29,9 +29,7 @@ const { title, description, hasCover, difficulty, feed, dateVisited, dateModifie
 const post = await getEntry('posts', blogPost);
 if (!post) return;
 
-const { Content, headings } = await render(post);
-
-console.log({headings})
+const { Content } = await render(post);
 
 ---
 
@@ -41,7 +39,6 @@ console.log({headings})
   hasCover={hasCover}
   difficulty={difficulty}
   feed={feed}
-  headings={headings}
   dateVisited={dateVisited}
   dateModified={dateModified}
   datePublished={datePublished}
