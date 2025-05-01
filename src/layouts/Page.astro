@@ -7,7 +7,6 @@ import { format } from "date-fns";
 const { title,
         description,
         hasCover,
-        category,
         difficulty,
         feed,
         dateVisited,
@@ -19,6 +18,8 @@ const formatDateModified = format(dateModified, 'MM-dd-yyyy');
 const formatDateVisited = format(dateVisited, 'MM-dd-yyyy HH:mm');
 
 const fullTitle = `Cat Spotting in ${title}`;
+
+
 ---
 
 <html lang="en">
@@ -179,6 +180,10 @@ const fullTitle = `Cat Spotting in ${title}`;
     }
   }
 
+  :global(article > h2:first-of-type) {
+    margin-block-start: var(--size-6);
+  }
+
   :global(article > h3) {
     margin-block-start: var(--size-3);
     color: hsl(var(--gray-8-hsl));
@@ -191,6 +196,24 @@ const fullTitle = `Cat Spotting in ${title}`;
       color: hsl(var(--gray-4-hsl));
     }
   }
+
+  :global(h3 > .icon) {
+    display: inline-block;
+    margin-inline-end: var(--size-2);
+    vertical-align: top;
+  }
+
+  @media (--md-n-above) {
+    :global(article > h3) {
+      position: relative;
+    }
+
+    :global(h3 > .icon) {
+      position: absolute;
+      right: 100%;
+    }
+  }
+
 
   :global(article > p) {
     color: hsl(var(--gray-7-hsl));

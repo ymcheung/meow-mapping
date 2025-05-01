@@ -104,7 +104,7 @@ const formatDateVisited = format(dateVisited, 'yyyy-MM-dd');
 
   .title::after {
     display: inline-block;
-    margin-inline-start: 8px;
+    margin-inline-start: var(--size-2);
     vertical-align: text-bottom;
   }
 
@@ -113,7 +113,7 @@ const formatDateVisited = format(dateVisited, 'yyyy-MM-dd');
       display: block;
       position: absolute;
       top: 6px;
-      right: calc(100% + 8px);
+      right: calc(100% + var(--size-2));
     }
 
     .title::after {
@@ -122,7 +122,7 @@ const formatDateVisited = format(dateVisited, 'yyyy-MM-dd');
   }
 
   .link:hover + .title {
-    padding-inline-start: 16px;
+    padding-inline-start: var(--size-3);
     transition: padding-inline-start 0.3s cubic-bezier(.32, 0, .67, 0);
   }
 
@@ -142,7 +142,7 @@ const formatDateVisited = format(dateVisited, 'yyyy-MM-dd');
 
   @media (--md-n-above) {
     .link:hover + .title::before {
-      right: calc(100% - 8px);
+      right: calc(100% - var(--size-2));
       transition: right 0.3s cubic-bezier(.32, 0, .67, 0);
     }
   }

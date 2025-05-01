@@ -1,5 +1,7 @@
 ---
 import { z } from 'astro:content';
+import { getEntry, render } from 'astro:content';
+
 import { transportations as  transportationIcon } from "@/consts";
 import { postSchema } from '@/schema';
 import formatDuration from '@/helpers/formatDuration';
@@ -11,6 +13,17 @@ type Props = z.infer<typeof transportationSchema>;
 const { transportation } = Astro.props;
 
 const { duration, unit } = formatDuration(transportation.duration);
+
+const { blogPost } = Astro.params;
+if (!blogPost) return;
+
+const post = await getEntry('posts', blogPost);
+if (!post) return;
+
+
+const { headings } = await render(post);
+
+const headingsLv2 = headings.filter(({ depth }) => depth === 2);
 
 ---
 
@@ -32,6 +45,21 @@ const { duration, unit } = formatDuration(transportation.duration);
     </ul>
   }
   <p class="transportationFrom">from {transportation.from.place}<br />{transportation.from.kanji}</p>
+</div>
+<div class="tableOfContent">
+  <strong class="tableOfContentTitle">Contents</strong>
+  {
+    headingsLv2.length > 0 && (
+    <ul>
+      {
+        headingsLv2.map(({ slug, text }) =>
+          <li>
+            <a href={`#${slug}`}>{text}</a>
+          </li>
+        )
+      }
+    </ul>
+  )}
 </div>
 
 <style>
@@ -59,7 +87,6 @@ const { duration, unit } = formatDuration(transportation.duration);
     }
   }
 
-
   @media (--md-n-above) {
     .abstract {
       margin-inline: calc(var(--size-3) * -1);
@@ -76,7 +103,6 @@ const { duration, unit } = formatDuration(transportation.duration);
     font-size: var(--font-size-5);
   }
 
-
   @media (--OSdark) {
     .transportationTime {
       color: hsl(var(--gray-2-hsl));
@@ -90,7 +116,6 @@ const { duration, unit } = formatDuration(transportation.duration);
 
   .by {
     display: grid;
-    /* grid: auto / repeat(auto-fill, minmax(var(--size-8), 1fr)); */
     grid: auto / repeat(auto-fit, var(--size-8));
     align-items: center;
     justify-content: end;
@@ -133,12 +158,68 @@ const { duration, unit } = formatDuration(transportation.duration);
     }
   }
 
-  hr {
-    /* margin-block-start: var(--size-1);
-    margin-block-end: 0; */
-    margin-block: var(--size-3);
-    background-color: transparent;
-    border: 1px dashed hsl(var(--gray-7-hsl));
-    /* border-bottom: none; */
+  .tableOfContent {
+    display: none;
   }
+
+  @media (--md-n-above) {
+    .tableOfContent {
+      display: block;
+      width: var(--size-13);
+      position: relative;
+      z-index: var(--layer-1);
+      margin-inline-start: auto;
+      margin-inline-end: calc(var(--size-3) * -1);
+      margin-block-start: calc(var(--size-8) * -1);
+      padding-inline: var(--size-3);
+      padding-block: var(--size-2);
+      background-color: hsl(var(--gray-2-hsl));
+      border-radius: var(--radius-3);
+      box-shadow: var(--shadow-1);
+    }
+  }
+
+  @media (--OSdark) {
+    .tableOfContent {
+      background-color: hsl(var(--gray-8-hsl));
+    }
+  }
+
+  .tableOfContentTitle {
+    color: hsl(var(--gray-7-hsl));
+  }
+
+  @media (--OSdark) {
+    .tableOfContentTitle {
+      color: hsl(var(--gray-5-hsl));
+    }
+  }
+
+  .tableOfContent ul {
+    display: grid;
+    row-gap: var(--size-2);
+    margin-block-start: var(--size-2);
+    padding-inline-start: 0;
+  }
+
+  .tableOfContent ul li {
+    padding-inline-start: 0;
+    list-style-type: none;
+  }
+
+  .tableOfContent ul li  {
+    padding-inline-start: 0;
+    list-style-type: none;
+  }
+
+  .tableOfContent a {
+    color: hsl(var(--gray-7-hsl));
+  }
+
+  @media (--OSdark) {
+    .tableOfContent a {
+      color: hsl(var(--gray-2-hsl));
+    }
+  }
+
 </style>

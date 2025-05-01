@@ -1,0 +1,18 @@
+---
+import { transportations as  transportationIcon, type TransportationLabel  } from "@/consts";
+
+const { id } = Astro.props;
+
+const headingSource = await Astro.slots.render('default');
+
+const matchLabel = /^\[(.*?)\]\s*(.*)/.exec(headingSource?.toString());
+
+const label = matchLabel?.[1] as TransportationLabel ?? '' ;
+
+const Icon = transportationIcon[label]?.icon;
+
+const heading = matchLabel ? matchLabel?.[2] : headingSource;
+
+---
+
+<h3 id={id}>{matchLabel && <Icon class="icon" width={24} height={24} />}{heading}</h3>
