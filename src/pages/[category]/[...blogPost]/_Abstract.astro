@@ -209,12 +209,25 @@ const headingsLv2 = headings.filter(({ depth }) => depth === 2);
 
   .tableOfContent a {
     color: hsl(var(--gray-7-hsl));
+    text-decoration-line: underline;
+    text-decoration-color: hsl(var(--gray-5-hsl));
+    text-decoration-style: solid;
+  }
+
+  .tableOfContent a:hover {
+    text-decoration-color: hsl(var(--gray-7-hsl));
   }
 
   @media (--OSdark) {
     .tableOfContent a {
       color: hsl(var(--gray-2-hsl));
+      text-decoration-color: hsl(var(--gray-7-hsl));
     }
+
+    .tableOfContent a:hover {
+      text-decoration-color: hsl(var(--gray-5-hsl));
+    }
+
   }
 
 </style>

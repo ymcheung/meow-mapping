@@ -22,7 +22,8 @@ export default defineConfig({
       {
         provider: fontProviders.fontsource(),
         name: 'Asap',
-        cssVariable: '--font-asap'
+        cssVariable: '--font-asap',
+        weights: [400, 600, 700]
       }
     ]
   }
