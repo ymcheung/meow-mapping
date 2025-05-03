@@ -88,9 +88,17 @@ const dateModified = '2025-04-20T09:20:00+08:00';
   .pageTitle {
     display: block;
     margin-block-start: var(--size-3);
+    color: hsl(var(--gray-7-hsl));
     font-size: var(--font-size-fluid-2);
     transform: skewY(-2deg);
   }
+
+  @media (--OSdark) {
+    .pageTitle {
+      color: hsl(var(--gray-4-hsl));
+    }
+  }
+
 
   .description {
     margin-block-start: var(--size-2);
@@ -107,9 +115,16 @@ const dateModified = '2025-04-20T09:20:00+08:00';
 
   .categoryTitle {
     margin-block-start: var(--size-4);
+    color: hsl(var(--gray-7-hsl));
     font-size: var(--font-size-fluid-2);
     font-weight: 700;
     transform: skewY(-2deg);
+  }
+
+  @media (--OSdark) {
+    .categoryTitle {
+      color: hsl(var(--gray-4-hsl));
+    }
   }
 
 </style>

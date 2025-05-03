@@ -81,6 +81,7 @@ const fullTitle = `Cat Spotting in ${title}`;
 
   h1 .prefix {
     font-size: var(--font-size-fluid-1);
+    color: hsl(var(--gray-7-hsl));
     font-weight: 400;
     font-style: italic;
     transform: skewY(-4deg);
@@ -88,7 +89,7 @@ const fullTitle = `Cat Spotting in ${title}`;
 
   h1 .title {
     padding-inline-start: var(--size-5);
-    color: hsl(var(--sand-7-hsl));
+    color: hsl(var(--choco-7-hsl));
     font-size: var(--font-size-fluid-3);
     font-weight: 700;
     transform: skewY(-4deg);
@@ -97,6 +98,10 @@ const fullTitle = `Cat Spotting in ${title}`;
   @media (--OSdark) {
     h1 .title {
       color: hsl(46, 100%, 48%);
+    }
+
+    h1 .prefix {
+      color: hsl(var(--gray-4-hsl));
     }
   }
 
@@ -163,13 +168,9 @@ const fullTitle = `Cat Spotting in ${title}`;
     }
   }
 
-  /* :global(h1 + p) {
-    margin-block-start: var(--size-5);
-  } */
-
   :global(article > h2) {
     margin-block-start: var(--size-4);
-    color: hsl(var(--sand-7-hsl));
+    color: hsl(var(--choco-7-hsl));
     font-size: var(--font-size-5);
     font-weight: 600;
   }
@@ -266,4 +267,14 @@ const fullTitle = `Cat Spotting in ${title}`;
     text-transform: capitalize;
   }
 
+  .metaDetail {
+    color: hsl(var(--gray-7-hsl));
+  }
+
+
+  @media (--OSdark) {
+    .metaDetail {
+      color: hsl(var(--gray-4-hsl));
+    }
+  }
 </style>
