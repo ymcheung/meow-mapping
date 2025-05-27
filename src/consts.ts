@@ -32,11 +32,11 @@ export const categories = [
       'Many temples and shrines (神社) take care of cats. As they become more famous, they may offer omamori (protective charms) or goshuin stamps for you to collect as memories.'
   },
   {
-    title: 'Streets',
-    slug: 'streets',
+    title: 'Neighborhoods',
+    slug: 'neighborhoods',
     icon: Streets,
     description:
-      'These are the spots with cats living among the buildings. For the streets I have visited so far, you could find the cats in a tourism spot, a hiking trail, and a tiny town.'
+      'These are the spots with cats living among the buildings. For the neighborhoods I have visited so far, you could find the cats in a tourism spot, a hiking trail, and a tiny town.'
   }
 ];
 
