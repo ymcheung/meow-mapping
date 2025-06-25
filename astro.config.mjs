@@ -17,10 +17,10 @@ export default defineConfig({
   markdown: {
     rehypePlugins: [rehypeUnwrapImages]
   },
-  redirects: {
-    '/streets': '/neighborhoods',
-    '/streets/[...blogPost]': '/neighborhoods/[...blogPost]'
-  },
+  // redirects: {
+  //   '/streets': '/neighborhoods',
+  //   '/streets/[...blogPost]': '/neighborhoods/[...blogPost]'
+  // },
   experimental: {
     fonts: [
       {
