@@ -38,7 +38,18 @@ const postsOfCategorySorted = postsOfCategory.sort((a, b) => {
   return 0;
 });
 
-const dateModified = '2025-02-02T18:00:59+08:00'
+const postsOfCategoryLatest = postsOfCategory.sort((a, b) => {
+  const { data: { datePublished: olderDatePublished } } = a;
+  const { data: { datePublished: newerDatePublished } } = b;
+
+  if (olderDatePublished > newerDatePublished) {
+    return -1;
+  }
+
+  return 0;
+})[0];
+
+const dateModified = postsOfCategoryLatest?.data?.datePublished;
 
 ---
 <Layout title={title} description={description} dateModified={dateModified}>
