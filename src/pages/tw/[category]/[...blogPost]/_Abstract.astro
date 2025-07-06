@@ -10,8 +10,6 @@ const transportationSchema = postSchema.pick({ transportation: true });
 
 type Props = z.infer<typeof transportationSchema>;
 
-const { locale } = Astro.currentLocale;
-
 const { transportation } = Astro.props;
 
 const { duration, unit } = formatDuration(transportation.duration);
@@ -19,7 +17,7 @@ const { duration, unit } = formatDuration(transportation.duration);
 const { blogPost } = Astro.params;
 if (!blogPost) return;
 
-const post = await getEntry(locale === 'en' ? 'posts' : 'postsTw', blogPost);
+const post = await getEntry('posts', blogPost);
 if (!post) return;
 
 

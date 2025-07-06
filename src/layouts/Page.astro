@@ -4,6 +4,10 @@ import BaseHead from "./_BaseHead.astro";
 import Dock from "@/pages/_Dock.astro";
 import { format } from "date-fns";
 
+const locale = Astro.currentLocale;
+
+const isTW = locale === 'tw';
+
 const { title,
         description,
         hasCover,
@@ -21,7 +25,7 @@ const fullTitle = `Cat Spotting in ${title}`;
 
 ---
 
-<html lang="en">
+<html lang={isTW ? 'zh-TW' : locale}>
  	<BaseHead
     title={fullTitle}
     description={description}

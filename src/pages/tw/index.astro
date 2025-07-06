@@ -1,0 +1,130 @@
+---
+import {SITE_DESCRIPTION, categories } from '@/consts';
+import Layout from '@layouts/Index.astro';
+import { getCollection } from 'astro:content';
+import PostPreviewList from '@/pages/_PostPreviewList.astro';
+import PostPreview from '@/pages/_PostPreview.astro';
+
+const posts = await getCollection('postsTw');
+
+function filterPosts(categorySlug: string) {
+  return posts.filter(({ data: { category }}) => {
+    return categorySlug === category
+  })
+}
+
+const dateModified = '2025-07-06T14:30:00+08:00';
+
+---
+
+<Layout description={SITE_DESCRIPTION} dateModified={dateModified}>
+  <main>
+    <strong class="pageTitle">What are those places?</strong>
+    <p class="description">Discover authentic travel experiences at some of the best cat spots, focusing on how to get to these destinations.</p>
+
+    {categories.map(({ title, slug }) => {
+      const postsOfCategory = filterPosts(slug);
+
+      const postsOfCategorySorted = postsOfCategory.sort((a, b) => {
+        const { data: { dateVisited: olderDateVisited } } = a;
+        const { data: { dateVisited: newerDateVisited } } = b;
+
+        if (olderDateVisited > newerDateVisited) {
+          return -1;
+        }
+
+        return 0;
+      })
+
+      return (
+        <>
+          <h2 class="categoryTitle">{title}</h2>
+          {postsOfCategory.length > 0 &&
+            <PostPreviewList>
+              {postsOfCategorySorted.map(({ id, data: { title, transportation: { from }, dateVisited }}) =>
+                <PostPreview
+                  categorySlug={slug}
+                  postId={id}
+                  title={title}
+                  from={from}
+                  dateVisited={dateVisited}
+                />
+              )}
+            </PostPreviewList>
+          }
+        </>
+      )
+    })}
+  </main>
+  <aside>
+    <strong class="pageTitle">About</strong>
+    <p class="description">My backpacker travels aren’t about collecting flags, but finding cat spots. I’ve been wandering this way since 2014, and these days, I travel with my partner too.</p>
+  </aside>
+</Layout>
+
+<style>
+  @import "open-props/media";
+  @import "open-props/colors-hsl";
+
+  main {
+    padding-inline: var(--size-3);
+    padding-block-start: var(--size-4);
+  }
+
+  aside {
+    padding-inline: var(--size-3);
+    padding-block-start: var(--size-4);
+    padding-block-end: var(--size-11);
+  }
+
+  @media (--md-n-above) {
+    main, aside {
+      max-width: var(--size-content-3);
+      margin-inline: auto;
+      padding-inline: 0;
+    }
+  }
+
+  .pageTitle {
+    display: block;
+    margin-block-start: var(--size-3);
+    color: hsl(var(--gray-7-hsl));
+    font-size: var(--font-size-fluid-2);
+    transform: skewY(-2deg);
+  }
+
+  @media (--OSdark) {
+    .pageTitle {
+      color: hsl(var(--gray-4-hsl));
+    }
+  }
+
+
+  .description {
+    margin-block-start: var(--size-2);
+    color: hsl(var(--gray-7-hsl));
+    font-size: var(--font-size-fluid-1);
+    transform: skewY(-2deg);
+  }
+
+  @media (--OSdark) {
+    .description {
+      color: hsl(var(--gray-5-hsl));
+    }
+  }
+
+  .categoryTitle {
+    margin-block-start: var(--size-4);
+    color: hsl(var(--gray-7-hsl));
+    font-size: var(--font-size-fluid-2);
+    font-weight: 700;
+    transform: skewY(-2deg);
+  }
+
+  @media (--OSdark) {
+    .categoryTitle {
+      color: hsl(var(--gray-4-hsl));
+    }
+  }
+
+</style>

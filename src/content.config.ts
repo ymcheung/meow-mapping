@@ -7,6 +7,12 @@ const postsCollection = defineCollection({
   schema: postSchema
 });
 
+const postsTwCollection = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.mdx', base: './src/data/tw/posts' }),
+  schema: postSchema
+});
+
 export const collections = {
-  posts: postsCollection
+  posts: postsCollection,
+  postsTw: postsTwCollection
 };

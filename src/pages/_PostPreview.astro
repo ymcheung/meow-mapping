@@ -1,8 +1,10 @@
 ---
 import { format } from "date-fns";
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+const locale = Astro.currentLocale;
 
 const { title, categorySlug, postId, from, dateVisited } = Astro.props;
-
 
 const formatDateVisited = format(dateVisited, 'yyyy-MM-dd');
 
@@ -10,7 +12,8 @@ const formatDateVisited = format(dateVisited, 'yyyy-MM-dd');
 
 <li>
   <div class="card">
-    <a class="link" href={`/${categorySlug}/${postId}`} />
+    <!-- <a class="link" href={`/${categorySlug}/${postId}`} /> -->
+    <a class="link" href={`${getRelativeLocaleUrl(locale, `${categorySlug}/${postId}`)}`} />
     <strong class="title">{title}</strong>
     <span class="description">Visited on {formatDateVisited} from {from.place}.</span>
   </div>

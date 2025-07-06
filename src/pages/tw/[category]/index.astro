@@ -1,0 +1,103 @@
+---
+// import { indexProps } from '@/schema';
+// import { z } from 'zod';
+import { getCollection } from 'astro:content';
+import { categories } from '@/consts';
+import Layout from '@layouts/Index.astro';
+import PostPreviewList from '@/pages/_PostPreviewList.astro';
+import PostPreview from '../_PostPreview.astro';
+
+export async function getStaticPaths() {
+  return categories.map(({ title, slug, description }) => {
+    return ({
+      params: {
+        category: slug
+      },
+      props: {
+        title: `Cat Spotting in ${title}`,
+        slug,
+        description
+      }
+    })
+  });
+}
+
+const { title, slug, description } = Astro.props;
+
+const posts = await getCollection('posts');
+const postsOfCategory = posts.filter(({ data: { category }}) => category === slug);
+
+const postsOfCategorySorted = postsOfCategory.sort((a, b) => {
+  const { data: { dateVisited: olderDateVisited } } = a;
+  const { data: { dateVisited: newerDateVisited } } = b;
+
+  if (olderDateVisited > newerDateVisited) {
+    return -1;
+  }
+
+  return 0;
+});
+
+const postsOfCategoryLatest = postsOfCategory.sort((a, b) => {
+  const { data: { datePublished: olderDatePublished } } = a;
+  const { data: { datePublished: newerDatePublished } } = b;
+
+  if (olderDatePublished > newerDatePublished) {
+    return -1;
+  }
+
+  return 0;
+})[0];
+
+const dateModified = postsOfCategoryLatest?.data?.datePublished;
+
+---
+<Layout title={title} description={description} dateModified={dateModified}>
+  <main>
+      <h1>{title}</h1>
+      <p class="description">{description}</p>
+    {postsOfCategory.length > 0 &&
+      <PostPreviewList>
+        {postsOfCategorySorted.map(({ id, data: { title, transportation: { from }, dateVisited }}) =>
+        <PostPreview categorySlug={slug} postId={id} title={title} from={from} dateVisited={dateVisited} />
+        )}
+      </PostPreviewList>
+    }
+  </main>
+</Layout>
+
+<style>
+  @import "open-props/media";
+  @import "open-props/colors-hsl";
+
+  main {
+    padding-inline: var(--size-3);
+    padding-block-start: var(--size-4);
+    padding-block-end: var(--size-11);
+  }
+
+  @media (--md-n-above) {
+    main {
+      max-width: var(--size-content-3);
+      margin-inline: auto;
+      padding-inline: 0;
+    }
+  }
+
+  h1 {
+    transform: skewY(-2deg);
+  }
+
+  .description {
+    margin-block-start: var(--size-2);
+    color: hsl(var(--gray-7-hsl));
+    font-size: var(--font-size-fluid-1);
+    transform: skewY(-2deg);
+  }
+
+  @media (--OSdark) {
+    .description {
+      color: hsl(var(--gray-5-hsl));
+    }
+  }
+</style>
