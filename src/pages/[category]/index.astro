@@ -8,7 +8,7 @@ import PostPreviewList from '@/pages/_PostPreviewList.astro';
 import PostPreview from '../_PostPreview.astro';
 
 export async function getStaticPaths() {
-  return categories.map(({ title, slug, description }) => {
+  return categories.map(({ en: { title }, slug, description }) => {
     return ({
       params: {
         category: slug
@@ -56,12 +56,12 @@ const dateModified = postsOfCategoryLatest?.data?.datePublished;
   <main>
       <h1>{title}</h1>
       <p class="description">{description}</p>
-    {postsOfCategory.length > 0 &&
-      <PostPreviewList>
-        {postsOfCategorySorted.map(({ id, data: { title, transportation: { from }, dateVisited }}) =>
-        <PostPreview categorySlug={slug} postId={id} title={title} from={from} dateVisited={dateVisited} />
-        )}
-      </PostPreviewList>
+      {postsOfCategory.length > 0 &&
+        <PostPreviewList>
+          {postsOfCategorySorted.map(({ id, data: { title, transportation: { from }, dateVisited }}) =>
+          <PostPreview categorySlug={slug} postId={id} title={title} from={from} dateVisited={dateVisited} />
+          )}
+        </PostPreviewList>
     }
   </main>
 </Layout>

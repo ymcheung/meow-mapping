@@ -19,10 +19,11 @@ const dateModified = '2025-07-06T14:30:00+08:00';
 
 <Layout description={SITE_DESCRIPTION} dateModified={dateModified}>
   <main>
-    <strong class="pageTitle">What are those places?</strong>
-    <p class="description">Discover authentic travel experiences at some of the best cat spots, focusing on how to get to these destinations.</p>
-
-    {categories.map(({ title, slug }) => {
+    <strong class="pageTitle">這些地方是？</strong>
+    <p class="description">
+      以實際的自身體驗，找出超棒的貓聚集地。專注在自助旅行時，搭乘交通工具的經驗。
+    </p>
+    {categories.map(({ tw: { title }, slug }) => {
       const postsOfCategory = filterPosts(slug);
 
       const postsOfCategorySorted = postsOfCategory.sort((a, b) => {
@@ -37,9 +38,9 @@ const dateModified = '2025-07-06T14:30:00+08:00';
       })
 
       return (
-        <>
-          <h2 class="categoryTitle">{title}</h2>
-          {postsOfCategory.length > 0 &&
+        postsOfCategory.length > 0 &&
+          <>
+            <h2 class="categoryTitle">{title}</h2>
             <PostPreviewList>
               {postsOfCategorySorted.map(({ id, data: { title, transportation: { from }, dateVisited }}) =>
                 <PostPreview
@@ -51,14 +52,14 @@ const dateModified = '2025-07-06T14:30:00+08:00';
                 />
               )}
             </PostPreviewList>
-          }
-        </>
-      )
+          </>)
     })}
   </main>
   <aside>
-    <strong class="pageTitle">About</strong>
-    <p class="description">My backpacker travels aren’t about collecting flags, but finding cat spots. I’ve been wandering this way since 2014, and these days, I travel with my partner too.</p>
+    <strong class="pageTitle">我的自助旅行經驗</strong>
+    <p class="description">
+      我的自助旅行不是為了在個人資料放上國旗，而是找貓。我從 2014 年開始就這樣自助旅行，而現在也跟隊友一起行動
+    </p>
   </aside>
 </Layout>
 

@@ -5,10 +5,10 @@ import { getCollection } from 'astro:content';
 import { categories } from '@/consts';
 import Layout from '@layouts/Index.astro';
 import PostPreviewList from '@/pages/_PostPreviewList.astro';
-import PostPreview from '../_PostPreview.astro';
+import PostPreview from '../../_PostPreview.astro';
 
 export async function getStaticPaths() {
-  return categories.map(({ title, slug, description }) => {
+  return categories.map(({ tw: { title }, slug, description }) => {
     return ({
       params: {
         category: slug

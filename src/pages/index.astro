@@ -22,7 +22,7 @@ const dateModified = '2025-06-29T23:00:00+08:00';
     <strong class="pageTitle">What are those places?</strong>
     <p class="description">Discover authentic travel experiences at some of the best cat spots, focusing on how to get to these destinations.</p>
 
-    {categories.map(({ title, slug }) => {
+    {categories.map(({ en: { title }, slug }) => {
       const postsOfCategory = filterPosts(slug);
 
       const postsOfCategorySorted = postsOfCategory.sort((a, b) => {
@@ -38,19 +38,21 @@ const dateModified = '2025-06-29T23:00:00+08:00';
 
       return (
         <>
-          <h2 class="categoryTitle">{title}</h2>
           {postsOfCategory.length > 0 &&
-            <PostPreviewList>
-              {postsOfCategorySorted.map(({ id, data: { title, transportation: { from }, dateVisited }}) =>
-                <PostPreview
-                  categorySlug={slug}
-                  postId={id}
-                  title={title}
-                  from={from}
-                  dateVisited={dateVisited}
-                />
-              )}
-            </PostPreviewList>
+            <>
+              <h2 class="categoryTitle">{title}</h2>
+              <PostPreviewList>
+                {postsOfCategorySorted.map(({ id, data: { title, transportation: { from }, dateVisited }}) =>
+                  <PostPreview
+                    categorySlug={slug}
+                    postId={id}
+                    title={title}
+                    from={from}
+                    dateVisited={dateVisited}
+                  />
+                )}
+              </PostPreviewList>
+            </>
           }
         </>
       )
@@ -58,7 +60,7 @@ const dateModified = '2025-06-29T23:00:00+08:00';
   </main>
   <aside>
     <strong class="pageTitle">About</strong>
-    <p class="description">My backpacker travels aren’t about collecting flags, but finding cat spots. I’ve been wandering this way since 2014, and these days, I travel with my partner too.</p>
+    <p class="description">My backpacker travels aren’t about collecting flags in my profile, but finding cat spots. I’ve been wandering this way since 2014, and these days, I travel with my partner too.</p>
   </aside>
 </Layout>
 
