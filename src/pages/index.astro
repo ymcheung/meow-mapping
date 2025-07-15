@@ -74,8 +74,8 @@ const dateModified = '2025-06-29T23:00:00+08:00';
   }
 
   aside {
+    margin-block-start: var(--size-8);
     padding-inline: var(--size-3);
-    padding-block-start: var(--size-4);
     padding-block-end: var(--size-11);
   }
 
@@ -89,7 +89,6 @@ const dateModified = '2025-06-29T23:00:00+08:00';
 
   .pageTitle {
     display: block;
-    margin-block-start: var(--size-3);
     color: hsl(var(--gray-7-hsl));
     font-size: var(--font-size-fluid-2);
     transform: skewY(-2deg);
@@ -121,6 +120,10 @@ const dateModified = '2025-06-29T23:00:00+08:00';
     font-size: var(--font-size-fluid-2);
     font-weight: 700;
     transform: skewY(-2deg);
+  }
+
+  .categoryTitle:first-of-type {
+    margin-block-start: var(--size-8);
   }
 
   @media (--OSdark) {

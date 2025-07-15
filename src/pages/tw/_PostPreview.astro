@@ -1,0 +1,166 @@
+---
+import { format } from "date-fns";
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+const locale = Astro.currentLocale;
+
+const { title, categorySlug, postId, from, dateVisited } = Astro.props;
+
+const formatDateVisited = format(dateVisited, 'yyyy-MM-dd');
+
+---
+
+<li>
+  <div class="card">
+    <a class="link" href={`${getRelativeLocaleUrl(locale, `${categorySlug}/${postId}`)}`} />
+    <strong class="title">{title}</strong>
+    <span class="description">從{from.kanji}出發 ({formatDateVisited})</span>
+  </div>
+</li>
+
+<style>
+  @import "open-props/media";
+
+  li {
+    padding-inline-start: 0;
+    list-style-type: none;
+  }
+
+  li + li {
+    margin-block-start: var(--size-4);
+  }
+
+  .card {
+    position: relative;
+  }
+
+  .link {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  @media (--md-n-above) {
+    .link {
+      left: calc(var(--size-8) * -1);
+    }
+  }
+
+  .cta {
+    display: inline-block;
+    overflow: hidden;
+    width: 0;
+    height: 40px;
+    margin-inline-start: var(--size-1);
+    background-color: hsl(var(--sand-7-hsl));
+    vertical-align: text-top;
+  }
+
+  @media (--OSdark) {
+    .cta {
+      background-color: hsl(46, 100%, 48%);
+    }
+  }
+
+  .title {
+    display: block;
+    position: relative;
+    color: hsl(var(--choco-7-hsl));
+    font-size: var(--font-size-fluid-2);
+    line-height: var(--font-lineheight-1);
+    transform: skewY(-2deg);
+    transition: padding-inline-start 0.3s cubic-bezier(.32, 0, .67, 0);
+  }
+
+  @media (--OSdark) {
+    .title {
+      color: hsl(46, 100%, 48%);
+    }
+  }
+
+  .title::before,
+  .title::after {
+    width: max-content;
+    content: "Read";
+    padding-inline: var(--size-2);
+    padding-block: var(--size-1);
+    color: hsl(var(--choco-2-hsl));
+    font-size: var(--font-size-fluid-1);
+    background-color: hsl(var(--gray-1-hsl));
+    transition: right 0.3s cubic-bezier(.32, 0, .67, 0),
+                background-color 0.3s cubic-bezier(.32, 0, .67, 0);
+  }
+
+  @media (--OSdark) {
+    .title::before,
+    .title::after {
+      color: hsl(var(--sand-7-hsl));
+      background-color: hsl(var(--gray-8-hsl));
+    }
+  }
+
+  .title::before {
+    display: none;
+  }
+
+  .title::after {
+    display: inline-block;
+    margin-inline-start: var(--size-2);
+    vertical-align: text-bottom;
+  }
+
+  @media (--md-n-above) {
+    .title::before {
+      display: block;
+      position: absolute;
+      top: 6px;
+      right: calc(100% + var(--size-2));
+    }
+
+    .title::after {
+      display: none;
+    }
+  }
+
+  .link:hover + .title {
+    padding-inline-start: var(--size-3);
+    transition: padding-inline-start 0.3s cubic-bezier(.32, 0, .67, 0);
+  }
+
+  .link:hover + .title::before {
+    color: hsl(var(--gray-0-hsl));
+    background-color: hsl(var(--sand-7-hsl));
+    transition: color 0.3s cubic-bezier(.32, 0, .67, 0),
+                background-color 0.3s cubic-bezier(.32, 0, .67, 0);
+  }
+
+  @media (--OSdark) {
+    .link:hover + .title::before {
+      color: hsl(var(--gray-9-hsl));
+      background-color: hsl(46, 100%, 48%);
+    }
+  }
+
+  @media (--md-n-above) {
+    .link:hover + .title::before {
+      right: calc(100% - var(--size-2));
+      transition: right 0.3s cubic-bezier(.32, 0, .67, 0);
+    }
+  }
+
+
+  .description {
+    display: inline-block;
+    color: hsl(var(--gray-7-hsl));
+    font-size: var(--font-size-fluid-1);
+    transform: skewY(-2deg);
+  }
+
+  @media (--OSdark) {
+    .description {
+      color: hsl(var(--gray-5-hsl));
+    }
+  }
+
+</style>

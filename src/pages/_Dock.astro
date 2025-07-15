@@ -2,6 +2,7 @@
 import { z } from 'zod';
 import type { HTMLTag } from 'astro/types';
 import { categories } from '@/consts';
+import { getRelativeLocaleUrl } from 'astro:i18n';
 
 const dockProps = z.object({
   as: z.custom<HTMLTag>().optional()
@@ -9,6 +10,8 @@ const dockProps = z.object({
 
 type Props = z.infer<typeof dockProps>;
 const { as } = Astro.props as Props;
+
+const locale = Astro.currentLocale;
 
 const { pathname } = Astro.url;
 const isHome = pathname === '/';
@@ -23,11 +26,11 @@ const Box = as || 'div';
         categories.map(({ title, slug, icon }) => {
           const Icon = icon;
           const label = `Category Link to ${title}`
-          const isCurrentPath = `/${slug}` === pathname;
+          const isCurrentPath = getRelativeLocaleUrl(locale, slug) === pathname;
 
           return (
             <li class="categoryItem">
-              <a class:list={['link', { isCurrent: isCurrentPath }]} href={`/${slug}`} aria-label={label}>
+              <a class:list={['link', { isCurrent: isCurrentPath }]} href={`${getRelativeLocaleUrl(locale, slug)}`} aria-label={label}>
                 <Icon class="icon" width={24} height={24} />
               </a>
             </li>
@@ -40,7 +43,7 @@ const Box = as || 'div';
     <strong class="logoName">Meow Mapping</strong>
     <span class="logoDescription">Cat Spotting Guides</span>
     {
-      !isHome && <a class="link" href="/" title="Home" />
+      !isHome && <a class="link" href={getRelativeLocaleUrl(locale)} title="Home" />
     }
   </Box>
 </nav>
@@ -77,6 +80,7 @@ const Box = as || 'div';
   }
 
   .categoryItem {
+    position: relative;
     padding-inline-start: 0;
     list-style-type: none;
   }

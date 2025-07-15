@@ -3,7 +3,7 @@ import {SITE_DESCRIPTION, categories } from '@/consts';
 import Layout from '@layouts/Index.astro';
 import { getCollection } from 'astro:content';
 import PostPreviewList from '@/pages/_PostPreviewList.astro';
-import PostPreview from '@/pages/_PostPreview.astro';
+import PostPreview from '@/pages/tw/_PostPreview.astro';
 
 const posts = await getCollection('postsTw');
 
@@ -73,8 +73,8 @@ const dateModified = '2025-07-06T14:30:00+08:00';
   }
 
   aside {
+    margin-block-start: var(--size-8);
     padding-inline: var(--size-3);
-    padding-block-start: var(--size-4);
     padding-block-end: var(--size-11);
   }
 
@@ -88,7 +88,6 @@ const dateModified = '2025-07-06T14:30:00+08:00';
 
   .pageTitle {
     display: block;
-    margin-block-start: var(--size-3);
     color: hsl(var(--gray-7-hsl));
     font-size: var(--font-size-fluid-2);
     transform: skewY(-2deg);
@@ -120,6 +119,10 @@ const dateModified = '2025-07-06T14:30:00+08:00';
     font-size: var(--font-size-fluid-2);
     font-weight: 700;
     transform: skewY(-2deg);
+  }
+
+  .categoryTitle:first-of-type {
+    margin-block-start: var(--size-8);
   }
 
   @media (--OSdark) {

@@ -14,7 +14,7 @@ export async function getStaticPaths() {
         category: slug
       },
       props: {
-        title: `Cat Spotting in ${title}`,
+        title: `在${title}找到貓`,
         slug,
         description
       }
@@ -24,7 +24,7 @@ export async function getStaticPaths() {
 
 const { title, slug, description } = Astro.props;
 
-const posts = await getCollection('posts');
+const posts = await getCollection('postsTw');
 const postsOfCategory = posts.filter(({ data: { category }}) => category === slug);
 
 const postsOfCategorySorted = postsOfCategory.sort((a, b) => {
@@ -54,8 +54,8 @@ const dateModified = postsOfCategoryLatest?.data?.datePublished;
 ---
 <Layout title={title} description={description} dateModified={dateModified}>
   <main>
-      <h1>{title}</h1>
-      <p class="description">{description}</p>
+    <h1>{title}</h1>
+    <p class="description">{description}</p>
     {postsOfCategory.length > 0 &&
       <PostPreviewList>
         {postsOfCategorySorted.map(({ id, data: { title, transportation: { from }, dateVisited }}) =>
