@@ -10,7 +10,10 @@ const transportationSchema = postSchema.pick({ transportation: true });
 
 type Props = z.infer<typeof transportationSchema>;
 
-const locale  = Astro.currentLocale;
+const locale  = Astro.currentLocale as 'en' | 'tw';
+
+if (!locale) return null;
+
 const isDefaultLocale = locale === 'en';
 
 

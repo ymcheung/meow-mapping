@@ -4,6 +4,8 @@ import type { HTMLTag } from 'astro/types';
 import { categories } from '@/consts';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 
+type Locale = 'en' | 'tw';
+
 const dockProps = z.object({
   as: z.custom<HTMLTag>().optional()
 }).passthrough();
@@ -11,7 +13,9 @@ const dockProps = z.object({
 type Props = z.infer<typeof dockProps>;
 const { as } = Astro.props as Props;
 
-const locale = Astro.currentLocale;
+const locale = Astro.currentLocale as Locale;
+
+if (!locale) return null;
 
 const { pathname } = Astro.url;
 const isHome = pathname === '/';
@@ -23,7 +27,9 @@ const Box = as || 'div';
   <div class="dockChild">
     <ul class="categories">
       {
-        categories.map(({ title, slug, icon }) => {
+        categories.map((category) => {
+        const { title } = category[locale];
+        const { slug, icon } = category;
           const Icon = icon;
           const label = `Category Link to ${title}`
           const isCurrentPath = getRelativeLocaleUrl(locale, slug) === pathname;

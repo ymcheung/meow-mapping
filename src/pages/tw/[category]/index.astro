@@ -8,7 +8,7 @@ import PostPreviewList from '@/pages/_PostPreviewList.astro';
 import PostPreview from '../../_PostPreview.astro';
 
 export async function getStaticPaths() {
-  return categories.map(({ tw: { title }, slug, description }) => {
+  return categories.map(({ tw: { title, description }, slug }) => {
     return ({
       params: {
         category: slug
