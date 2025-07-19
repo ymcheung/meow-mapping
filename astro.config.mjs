@@ -11,9 +11,9 @@ export default defineConfig({
   i18n: {
     locales: ['en', 'tw'],
     defaultLocale: 'en',
-    fallback: {
-      tw: 'en'
-    },
+    // fallback: {
+    //   tw: 'en'
+    // },
     routing: {
       fallbackType: 'rewrite'
     }
