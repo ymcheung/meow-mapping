@@ -8,11 +8,14 @@ const { title, description, dateModified } = Astro.props;
 const { pathname } = Astro.url;
 const isHome = pathname === '/';
 
+const locale = Astro.currentLocale;
+const isTW = locale === 'tw';
+
 const datePublished = '2024-12-31T23:59:59+08:00';
 
 ---
 
-<html lang="en">
+<html lang={isTW ? 'zh-TW' : locale}>
   <BaseHead
     title={title}
     description={description}
