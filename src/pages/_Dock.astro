@@ -13,9 +13,7 @@ const dockProps = z.object({
 type Props = z.infer<typeof dockProps>;
 const { as } = Astro.props as Props;
 
-const locale = Astro.currentLocale as Locale;
-
-if (!locale) return null;
+const locale = (Astro.currentLocale as Locale) || 'en';
 
 const { pathname } = Astro.url;
 const isHome = pathname === '/';
