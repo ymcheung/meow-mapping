@@ -5,16 +5,16 @@ import { getCollection } from 'astro:content';
 import { categories } from '@/consts';
 import Layout from '@layouts/Index.astro';
 import PostPreviewList from '@/pages/_PostPreviewList.astro';
-import PostPreview from '../_PostPreview.astro';
+import PostPreview from '../../_PostPreview.astro';
 
 export async function getStaticPaths() {
-  return categories.map(({ en: { title, description }, slug }) => {
+  return categories.map(({ tw: { title, description }, slug }) => {
     return ({
       params: {
         category: slug
       },
       props: {
-        title: `Cat Spotting in ${title}`,
+        title: `在${title}找到貓`,
         slug,
         description
       }
@@ -24,7 +24,7 @@ export async function getStaticPaths() {
 
 const { title, slug, description } = Astro.props;
 
-const posts = await getCollection('posts');
+const posts = await getCollection('postsTw');
 const postsOfCategory = posts.filter(({ data: { category }}) => category === slug);
 
 const postsOfCategorySorted = postsOfCategory.sort((a, b) => {
@@ -54,14 +54,14 @@ const dateModified = postsOfCategoryLatest?.data?.datePublished;
 ---
 <Layout title={title} description={description} dateModified={dateModified}>
   <main>
-      <h1>{title}</h1>
-      <p class="description">{description}</p>
-      {postsOfCategory.length > 0 &&
-        <PostPreviewList>
-          {postsOfCategorySorted.map(({ id, data: { title, transportation: { from }, dateVisited }}) =>
-          <PostPreview categorySlug={slug} postId={id} title={title} from={from} dateVisited={dateVisited} />
-          )}
-        </PostPreviewList>
+    <h1>{title}</h1>
+    <p class="description">{description}</p>
+    {postsOfCategory.length > 0 &&
+      <PostPreviewList>
+        {postsOfCategorySorted.map(({ id, data: { title, transportation: { from }, dateVisited }}) =>
+        <PostPreview categorySlug={slug} postId={id} title={title} from={from} dateVisited={dateVisited} />
+        )}
+      </PostPreviewList>
     }
   </main>
 </Layout>

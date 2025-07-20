@@ -3,9 +3,9 @@ import {SITE_DESCRIPTION, categories } from '@/consts';
 import Layout from '@layouts/Index.astro';
 import { getCollection } from 'astro:content';
 import PostPreviewList from '@/pages/_PostPreviewList.astro';
-import PostPreview from '@/pages/_PostPreview.astro';
+import PostPreview from '@/pages/tw/_PostPreview.astro';
 
-const posts = await getCollection('posts');
+const posts = await getCollection('postsTw');
 
 function filterPosts(categorySlug: string) {
   return posts.filter(({ data: { category }}) => {
@@ -13,16 +13,17 @@ function filterPosts(categorySlug: string) {
   })
 }
 
-const dateModified = '2025-06-29T23:00:00+08:00';
+const dateModified = '2025-07-06T14:30:00+08:00';
 
 ---
 
 <Layout description={SITE_DESCRIPTION} dateModified={dateModified}>
   <main>
-    <strong class="pageTitle">What are those places?</strong>
-    <p class="description">Discover authentic travel experiences at some of the best cat spots, focusing on how to get to these destinations.</p>
-
-    {categories.map(({ en: { title }, slug }) => {
+    <strong class="pageTitle">這些地方是？</strong>
+    <p class="description">
+      以實際的自身體驗，找出超棒的貓聚集地。專注在自助旅行時，搭乘交通工具的經驗。
+    </p>
+    {categories.map(({ tw: { title }, slug }) => {
       const postsOfCategory = filterPosts(slug);
 
       const postsOfCategorySorted = postsOfCategory.sort((a, b) => {
@@ -37,30 +38,28 @@ const dateModified = '2025-06-29T23:00:00+08:00';
       })
 
       return (
-        <>
-          {postsOfCategory.length > 0 &&
-            <>
-              <h2 class="categoryTitle">{title}</h2>
-              <PostPreviewList>
-                {postsOfCategorySorted.map(({ id, data: { title, transportation: { from }, dateVisited }}) =>
-                  <PostPreview
-                    categorySlug={slug}
-                    postId={id}
-                    title={title}
-                    from={from}
-                    dateVisited={dateVisited}
-                  />
-                )}
-              </PostPreviewList>
-            </>
-          }
-        </>
-      )
+        postsOfCategory.length > 0 &&
+          <>
+            <h2 class="categoryTitle">{title}</h2>
+            <PostPreviewList>
+              {postsOfCategorySorted.map(({ id, data: { title, transportation: { from }, dateVisited }}) =>
+                <PostPreview
+                  categorySlug={slug}
+                  postId={id}
+                  title={title}
+                  from={from}
+                  dateVisited={dateVisited}
+                />
+              )}
+            </PostPreviewList>
+          </>)
     })}
   </main>
   <aside>
-    <strong class="pageTitle">About</strong>
-    <p class="description">My backpacker travels aren’t about collecting flags in my profile, but finding cat spots. I’ve been wandering this way since 2014, and these days, I travel with my partner too.</p>
+    <strong class="pageTitle">我的自助旅行經驗</strong>
+    <p class="description">
+      我的自助旅行不是為了在個人資料放上國旗，而是找貓。我從 2014 年開始就這樣自助旅行，而現在也跟隊友一起行動
+    </p>
   </aside>
 </Layout>
 

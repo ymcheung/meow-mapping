@@ -1,0 +1,52 @@
+---
+import { getCollection, getEntry, render } from 'astro:content';
+import Layout from '@layouts/Page.astro';
+import HeadingLv3 from './_components/HeadingLv3.astro';
+import Figure from './_components/Figure.astro';
+// import { locales } from '@i18n/i18n';
+// import { getLocaleFromUrl} from '@i18n/utilities';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('postsTw');
+  return posts.map((post) => {
+    const { id, data } = post;
+
+    return ({
+      params: {
+        category: data.category,
+        blogPost: id
+      },
+      props: {
+        ...data
+      }
+    })
+  });
+}
+
+const { blogPost } = Astro.params;
+const { title, description, hasCover, difficulty, feed, dateVisited, dateModified, datePublished } = Astro.props;
+
+const post = await getEntry('postsTw', blogPost);
+if (!post) return;
+
+const { Content } = await render(post);
+
+---
+
+<Layout
+  title={title}
+  description={description}
+  hasCover={hasCover}
+  difficulty={difficulty}
+  feed={feed}
+  dateVisited={dateVisited}
+  dateModified={dateModified}
+  datePublished={datePublished}
+>
+  <Content
+    components={{
+      img: Figure,
+      h3: HeadingLv3
+    }}
+  />
+</Layout>

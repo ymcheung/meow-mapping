@@ -1,21 +1,14 @@
 ---
 import { z } from 'astro:content';
 import { getEntry, render } from 'astro:content';
+
 import { transportations as  transportationIcon } from "@/consts";
 import { postSchema } from '@/schema';
 import formatDuration from '@/helpers/formatDuration';
-import messages from '@/i18n/messages';
 
 const transportationSchema = postSchema.pick({ transportation: true });
 
 type Props = z.infer<typeof transportationSchema>;
-
-const locale  = Astro.currentLocale as 'en' | 'tw';
-
-if (!locale) return null;
-
-const isDefaultLocale = locale === 'en';
-
 
 const { transportation } = Astro.props;
 
@@ -24,8 +17,9 @@ const { duration, unit } = formatDuration(transportation.duration);
 const { blogPost } = Astro.params;
 if (!blogPost) return;
 
-const post = await getEntry(isDefaultLocale ? 'posts' : 'postsTw', blogPost);
+const post = await getEntry('posts', blogPost);
 if (!post) return;
+
 
 const { headings } = await render(post);
 
@@ -50,10 +44,10 @@ const headingsLv2 = headings.filter(({ depth }) => depth === 2);
       })}
     </ul>
   }
-  <p class="transportationFrom">{isDefaultLocale && <>{messages.en.abstract.transportation.from.prefix}{transportation.from.place}<br /></>}{!isDefaultLocale && messages.tw.abstract.transportation.from.prefix}{transportation.from.kanji}{!isDefaultLocale && messages.tw.abstract.transportation.from.affix}</p>
+  <p class="transportationFrom">from {transportation.from.place}<br />{transportation.from.kanji}</p>
 </div>
 <div class="tableOfContent">
-  <strong class="tableOfContentTitle">{messages[locale].abstract.tableOfContent.title}</strong>
+  <strong class="tableOfContentTitle">Contents</strong>
   {
     headingsLv2.length > 0 && (
     <ul>

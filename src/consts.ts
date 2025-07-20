@@ -18,25 +18,46 @@ export const INTERSECTION_DESCRIPTION =
 
 export const categories = [
   {
-    title: 'Islands',
     slug: 'islands',
     icon: Islands,
-    description:
-      'Cat Islands in Japan is often remote from tourism spots. Even the ports take hours of common transportations like trains. To make the experience of the trips immersive, it is recommend to stay in the island for 1 or 2 days.'
+    en: {
+      title: 'Islands',
+      description:
+        'Cat Islands in Japan are often remote from tourism spots. Even reaching the ports takes hours of common transportations like trains. To make the experience of the trips immersive, it is recommend to stay in the islands for 1 or 2 days.'
+    },
+    tw: {
+      title: '離島',
+      description:
+        'Cat Islands in Japan are often remote from tourism spots. Even reaching the ports takes hours of common transportations like trains. To make the experience of the trips immersive, it is recommend to stay in the islands for 1 or 2 days.'
+    }
   },
   {
-    title: 'Temples',
     slug: 'temples',
     icon: Temples,
-    description:
-      'Many temples and shrines (神社) take care of cats. As they become more famous, they may offer omamori (protective charms) or goshuin stamps for you to collect as memories.'
+    en: {
+      title: 'Temples',
+      description:
+        'Many temples and shrines (神社) take care of cats. As they become more famous, they may offer omamori (protective charms) or goshuin stamps for you to collect as memories.'
+    },
+    tw: {
+      title: '寺廟神社',
+      description:
+        'Many temples and shrines (神社) take care of cats. As they become more famous, they may offer omamori (protective charms) or goshuin stamps for you to collect as memories.'
+    }
   },
   {
-    title: 'Neighborhoods',
     slug: 'neighborhoods',
     icon: Streets,
-    description:
-      'These are the spots with cats living among the buildings. For the neighborhoods I have visited so far, you could find the cats in a tourism spot, a hiking trail, and a tiny town.'
+    en: {
+      title: 'Neighborhoods',
+      description:
+        'These are the spots with cats living among the buildings. For the neighborhoods I have visited so far, you could find the cats in a tourism spot, a hiking trail, and a tiny town.'
+    },
+    tw: {
+      title: '鄰里',
+      description:
+        'These are the spots with cats living among the buildings. For the neighborhoods I have visited so far, you could find the cats in a tourism spot, a hiking trail, and a tiny town.'
+    }
   }
 ];
 
