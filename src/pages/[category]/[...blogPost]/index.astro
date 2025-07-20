@@ -24,7 +24,7 @@ export async function getStaticPaths() {
 }
 
 const { blogPost } = Astro.params;
-const { title, description, hasCover, difficulty, feed, dateVisited, dateModified, datePublished } = Astro.props;
+const { title, description, hasCover, cover, difficulty, feed, dateVisited, dateModified, datePublished } = Astro.props;
 
 const post = await getEntry('posts', blogPost);
 if (!post) return;
@@ -37,6 +37,7 @@ const { Content } = await render(post);
   title={title}
   description={description}
   hasCover={hasCover}
+  cover={cover}
   difficulty={difficulty}
   feed={feed}
   dateVisited={dateVisited}

@@ -12,6 +12,11 @@ export const postSchema = z.object({
   title: z.string(),
   description: z.string(),
   hasCover: z.boolean(),
+  cover: z
+    .object({
+      alt: z.string()
+    })
+    .optional(),
   difficulty: z.object({
     level: z.enum(['easy', 'medium', 'hard'])
   }),
