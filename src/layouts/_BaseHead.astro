@@ -10,8 +10,8 @@ const {  pathname } = Astro.url;
 const { category, blogPost } = Astro.params;
 const { title, description, hasCover, cover, dateModified, datePublished } = Astro.props;
 
-const locale = Astro.currentLocale;
-const isDefaultLocale = locale === 'en';
+// const locale = Astro.currentLocale;
+// const isDefaultLocale = locale === 'en';
 
 const isArticle = !!blogPost;
 const hasArticleCover = !!blogPost && hasCover;
@@ -73,7 +73,7 @@ const schema = () => {
   {hasAlternate ? (
     <>
       <link rel="alternate" hreflang="zh-TW" href={getAbsoluteLocaleUrl('tw', `${!!category ? `${category}/` : ''}${!!isArticle ? `${blogPost}` : ''}`)} />
-      <link rel="alternate" hreflang={isDefaultLocale ? 'x-default' : 'en-US'} href={getAbsoluteLocaleUrl('en', `${!!category ? `${category}/` : ''}${!!isArticle ? `${blogPost}` : ''}`)} />
+      <link rel="alternate" hreflang="en-US" href={getAbsoluteLocaleUrl('en', `${!!category ? `${category}/` : ''}${!!isArticle ? `${blogPost}` : ''}`)} />
     </>
   ) : ''}
   <meta property="og:type" content={ogType} />
