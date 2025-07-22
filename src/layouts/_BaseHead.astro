@@ -14,6 +14,7 @@ const { title, description, hasCover, cover, dateModified, datePublished } = Ast
 // const isDefaultLocale = locale === 'en';
 
 const isArticle = !!blogPost;
+const isRoot = !category && !isArticle;
 const hasArticleCover = !!blogPost && hasCover;
 const ogType = isArticle ? 'article' : 'webiste';
 
@@ -72,7 +73,7 @@ const schema = () => {
   <link rel="manifest" href={siteUrl('/manifest.webmanifest')} />
   {hasAlternate ? (
     <>
-      <link rel="alternate" hreflang="zh-TW" href={getAbsoluteLocaleUrl('tw', `${!!category ? `${category}/` : ''}${!!isArticle ? `${blogPost}` : ''}`)} />
+      <link rel="alternate" hreflang="zh-TW" href={getAbsoluteLocaleUrl('tw', isRoot ? undefined : (`${!!category ? `${category}/` : ''}${!!isArticle ? `${blogPost}` : ''}`))} />
       <link rel="alternate" hreflang="en-US" href={getAbsoluteLocaleUrl('en', `${!!category ? `${category}/` : ''}${!!isArticle ? `${blogPost}` : ''}`)} />
     </>
   ) : ''}
