@@ -4,6 +4,8 @@ import Layout from '@layouts/Index.astro';
 import { getCollection } from 'astro:content';
 import PostPreviewList from '@/pages/_PostPreviewList.astro';
 import PostPreview from '@/pages/tw/_PostPreview.astro';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import IconLanguage from '@assets/language.svg'
 
 const posts = await getCollection('postsTw');
 
@@ -23,6 +25,13 @@ const dateModified = '2025-07-06T14:30:00+08:00';
     <p class="description">
       以實際的自身體驗，找出超棒的貓聚集地。專注在自助旅行時，搭乘交通工具的經驗。
     </p>
+    <div>
+      <span class="languageSwitch">
+        <IconLanguage width={20} height={20} />
+        <span class="label">English</span>
+        <a class="link" href={getRelativeLocaleUrl('en')} />
+      </span>
+    </div>
     {categories.map(({ tw: { title }, slug }) => {
       const postsOfCategory = filterPosts(slug);
 
@@ -99,6 +108,38 @@ const dateModified = '2025-07-06T14:30:00+08:00';
     }
   }
 
+  .languageSwitch {
+    display: grid;
+    width: max-content;
+    grid-template-columns: auto 1fr;
+    align-content: center;
+    column-gap: var(--size-2);
+    position: relative;
+    margin-inline-start: auto;
+    margin-inline-end: 0;
+    padding: var(--size-2);
+    background-color: hsl(var(--gray-2-hsl));
+    border-radius: var(--radius-2);
+  }
+
+  .languageSwitch .label {
+    line-height: var(--font-lineheight-1);
+  }
+
+
+  @media (--OSdark) {
+    .languageSwitch  {
+      background-color: hsl(var(--gray-8-hsl));
+    }
+  }
+
+  .languageSwitch .link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+  }
 
   .description {
     margin-block-start: var(--size-2);
