@@ -73,8 +73,8 @@ const schema = () => {
   <link rel="manifest" href={siteUrl('/manifest.webmanifest')} />
   {hasAlternate ? (
     <>
-      <link rel="alternate" hreflang="zh-TW" href={getAbsoluteLocaleUrl('tw', isRoot ? undefined : (`${!!category ? `${category}/` : ''}${!!isArticle ? `${blogPost}` : ''}`))} />
-      <link rel="alternate" hreflang="en-US" href={getAbsoluteLocaleUrl('en', `${!!category ? `${category}/` : ''}${!!isArticle ? `${blogPost}` : ''}`)} />
+      <link rel="alternate" hreflang="zh-Hant" href={getAbsoluteLocaleUrl('tw', isRoot ? undefined : (`${!!category ? `${category}/` : ''}${!!isArticle ? `${blogPost}` : ''}`))} />
+      <link rel="alternate" hreflang="en" href={getAbsoluteLocaleUrl('en', `${!!category ? `${category}/` : ''}${!!isArticle ? `${blogPost}` : ''}`)} />
     </>
   ) : ''}
   <meta property="og:type" content={ogType} />
