@@ -5,8 +5,6 @@ export default function siteUrl(pathname: string) {
 
   const previewDeployUrl = process.env.RENDER_EXTERNAL_URL;
 
-  console.log({ previewDeployUrl });
-
   if (isDevelopment)
     return !!previewDeployUrl
       ? `https://${previewDeployUrl}${pathname}`
