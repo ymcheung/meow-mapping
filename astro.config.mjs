@@ -22,10 +22,21 @@ export default defineConfig({
   markdown: {
     rehypePlugins: [rehypeUnwrapImages]
   },
-  // redirects: {
-  //   '/streets': '/neighborhoods',
-  //   '/streets/[...blogPost]': '/neighborhoods/[...blogPost]'
-  // },
+  redirects: {
+    '/temples/gotanjouji': '/temples/fukui-gotanjouji',
+    '/islands/ainoshima': '/islands//fukuoka-ainoshima',
+    '/islands/sanagijima': '/islands//kagawa-sanagijima',
+    '/neighborhoods/enoshima': '/neighborhoods/kamakura-enoshima',
+    '/temples/fushimiinaritaisha': '/temples/kyoto-fushimiinaritaisha',
+    '/islands/tashirojima': '/islands/miyagi-tashirojima',
+    '/neighborhoods/beppu': '/neighborhoods/oita-beppu',
+    '/neighborhoods//nekonohosomichi':
+      '/neighborhoods/onomichi-nekonohosomichi',
+    '/temples/gokokuji': '/temples/tokyo-gokokuji',
+    '/tw/gotanjouji': '/tw/temples/fukui-gotanjouji',
+    '/tw/sanagijima': '/tw/islands/kagawa-sanagijima',
+    '/tw/beppu': '/tw/neighborhoods/oita-beppu'
+  },
   experimental: {
     fonts: [
       {
