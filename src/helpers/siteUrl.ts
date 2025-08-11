@@ -8,7 +8,7 @@ export default function siteUrl(pathname: string) {
   if (isDevelopment)
     return !!previewDeployUrl
       ? `https://${previewDeployUrl}${pathname}`
-      : `${import.meta.env.SITE_URL}${pathname}`;
+      : `${import.meta.env.SITE}${pathname}`;
 
   return `${import.meta.env.SITE}${pathname}`;
 }
