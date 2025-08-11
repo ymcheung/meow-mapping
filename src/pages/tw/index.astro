@@ -1,5 +1,5 @@
 ---
-import {SITE_DESCRIPTION, categories } from '@/consts';
+import {SITE_DESCRIPTION_TW, categories } from '@/consts';
 import Layout from '@layouts/Index.astro';
 import { getCollection } from 'astro:content';
 import PostPreviewList from '@/pages/_PostPreviewList.astro';
@@ -19,7 +19,7 @@ const dateModified = '2025-07-06T14:30:00+08:00';
 
 ---
 
-<Layout description={SITE_DESCRIPTION} dateModified={dateModified}>
+<Layout description={SITE_DESCRIPTION_TW} dateModified={dateModified}>
   <main>
     <strong class="pageTitle">這些地方是？</strong>
     <p class="description">

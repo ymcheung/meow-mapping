@@ -6,7 +6,8 @@ import Dock from "@pages/_Dock.astro";
 const { title, description, dateModified } = Astro.props;
 
 const { pathname } = Astro.url;
-const isHome = pathname === '/';
+
+const isHome = pathname === '/' || pathname === '/tw';
 
 const locale = Astro.currentLocale;
 const isTW = locale === 'tw';

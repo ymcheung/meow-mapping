@@ -12,6 +12,9 @@ import Taxi from '@assets/taxi.svg';
 export const SITE_NAME = 'Cat Spotting Guides - Meow Mapping';
 export const SITE_DESCRIPTION =
   'Discover authentic travel experiences at some of the best cat spots, focusing on how to get to these destinations instead of just basic information. Primarily featured in Japan, these unique locales offer a chance to immerse yourself in the region with cats.';
+export const SITE_DESCRIPTION_TW =
+  '探索可以造訪貓聚集地點的實際旅遊經驗，集中在如何前往，而不是只有一些基本資訊。目前主要集中在日本，這些獨特的地點讓人沉浸在充滿貓的日常。';
+
 export const INTERSECTION = '𝙄 𝙉 𝙏 𝙀 𝙍 𝙎 𝙀 𝘾 𝙏 𝙄 𝙊 𝙉';
 export const INTERSECTION_DESCRIPTION =
   '優化、插件、高清、視頻、反饋、交互設計：已經看膩這些中國用語。';
