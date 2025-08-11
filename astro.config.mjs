@@ -33,9 +33,9 @@ export default defineConfig({
     '/neighborhoods//nekonohosomichi':
       '/neighborhoods/onomichi-nekonohosomichi',
     '/temples/gokokuji': '/temples/tokyo-gokokuji',
-    '/tw/gotanjouji': '/tw/temples/fukui-gotanjouji',
-    '/tw/sanagijima': '/tw/islands/kagawa-sanagijima',
-    '/tw/beppu': '/tw/neighborhoods/oita-beppu'
+    '/tw/temples/gotanjouji': '/tw/temples/fukui-gotanjouji',
+    '/tw/islands/sanagijima': '/tw/islands/kagawa-sanagijima',
+    '/tw/neighborhoods/beppu': '/tw/neighborhoods/oita-beppu'
   },
   experimental: {
     fonts: [
