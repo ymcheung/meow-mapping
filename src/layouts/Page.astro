@@ -32,8 +32,8 @@ const { title,
 } = Astro.props as Props;
 
 const formatDateModified = format(dateModified, 'MM-dd-yyyy');
-const formatDateVisited = format(dateVisited, 'MM-dd-yyyy HH:mm');
 
+const formatDateVisited = format(dateVisited, 'MM-dd-yyyy HH:mm');
 
 const locale = Astro.currentLocale as 'en' | 'tw';
 const isTW = locale === 'tw';
