@@ -43,7 +43,7 @@ export const categories = [
         'Many temples and shrines (神社) take care of cats. As they become more famous, they may offer omamori (protective charms) or goshuin stamps for you to collect as memories.'
     },
     tw: {
-      title: '寺廟神社',
+      title: '寺廟、神社',
       description:
         'Many temples and shrines (神社) take care of cats. As they become more famous, they may offer omamori (protective charms) or goshuin stamps for you to collect as memories.'
     }

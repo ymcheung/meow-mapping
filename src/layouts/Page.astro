@@ -1,11 +1,24 @@
 ---
+import { postSchema } from "@/schema";
+import messages from "@/i18n/messages";
 import "@/styles/global.css";
 import BaseHead from "./_BaseHead.astro";
 import Dock from "@/pages/_Dock.astro";
 import { format } from "date-fns";
+import type { z } from "astro:content";
 
-const locale = Astro.currentLocale;
-const isTW = locale === 'tw';
+const pageProps = postSchema.pick({
+  title: true,
+  description: true,
+  hasCover: true,
+  cover: true,
+  difficulty: true,
+  feed: true,
+  dateVisited: true,
+  dateModified: true,
+  datePublished: true
+})
+type Props = z.infer<typeof pageProps>;
 
 const { title,
         description,
@@ -16,12 +29,18 @@ const { title,
         dateVisited,
         dateModified,
         datePublished
-} = Astro.props;
+} = Astro.props as Props;
 
 const formatDateModified = format(dateModified, 'MM-dd-yyyy');
 const formatDateVisited = format(dateVisited, 'MM-dd-yyyy HH:mm');
 
-const fullTitle = `Cat Spotting in ${title}`;
+
+const locale = Astro.currentLocale as 'en' | 'tw';
+const isTW = locale === 'tw';
+
+if (!locale) return null;
+
+const fullTitle = isTW ? `到${title}${messages[locale].layout.page.title}` : `Cat Spotting in ${title}`;
 
 ---
 
@@ -38,35 +57,35 @@ const fullTitle = `Cat Spotting in ${title}`;
   	<main>
   	 <article>
       <h1>
-        <span class="prefix">Cat Spotting in</span>
+        <span class:list={{ prefix: true, isItalic: !isTW }}>{messages[locale].layout.page.title}</span>
         <span class="title">{title}</span>
       </h1>
       <dl class="meta">
         <div class="metaItem">
-          <dt class="metaTitle">Difficulty</dt>
-          <dd class="metaDetail capitalize">
-            {difficulty.level}
+          <dt class="metaTitle">{messages[locale].layout.page.difficulty.title}</dt>
+          <dd class="metaDetail">
+            {messages[locale].layout.page.difficulty[difficulty.level].description}
           </dd>
         </div>
         <div class="metaItem">
-          <dt class="metaTitle">Feeding</dt>
-          <dd class="metaDetail capitalize">
-            {feed ? 'Yes' : 'No'}
+          <dt class="metaTitle">{messages[locale].layout.page.feeding.title}</dt>
+          <dd class="metaDetail">
+            {messages[locale].layout.page.feeding[feed ? 'true' : 'false'].description}
           </dd>
         </div>
       </dl>
   	  <slot />
       <dl class="meta">
         <div class="metaItem">
-          <dt class="metaTitle">Visited</dt>
+          <dt class="metaTitle">{messages[locale].layout.page.visited.title}</dt>
           <dd class="metaDetail">
             {formatDateVisited}
           </dd>
         </div>
         <div class="metaItem">
-          <dt class="metaTitle">Updated</dt>
+          <dt class="metaTitle">{messages[locale].layout.page.updated.title}</dt>
           <dd class="metaDetail">
-            <time datetime={dateModified}>{formatDateModified}</time>
+            <time datetime={dateModified.toISOString()}>{formatDateModified}</time>
           </dd>
         </div>
       </dl>
@@ -79,6 +98,10 @@ const fullTitle = `Cat Spotting in ${title}`;
   @import "open-props/media";
   @import "open-props/colors-hsl";
 
+  h1 {
+    max-inline-size: var(--size-header-3);
+  }
+
   h1 span {
     display: block;
   }
@@ -87,8 +110,11 @@ const fullTitle = `Cat Spotting in ${title}`;
     font-size: var(--font-size-fluid-1);
     color: hsl(var(--gray-7-hsl));
     font-weight: 400;
+    transform: skewY(-2deg);
+  }
+
+  .isItalic {
     font-style: italic;
-    transform: skewY(-4deg);
   }
 
   h1 .title {
@@ -96,7 +122,7 @@ const fullTitle = `Cat Spotting in ${title}`;
     color: hsl(var(--choco-7-hsl));
     font-size: var(--font-size-fluid-3);
     font-weight: 700;
-    transform: skewY(-4deg);
+    transform: skewY(-2deg);
   }
 
   @media (--OSdark) {
@@ -173,9 +199,9 @@ const fullTitle = `Cat Spotting in ${title}`;
   }
 
   :global(article > h2) {
-    margin-block-start: var(--size-4);
+    margin-block-start: var(--size-6);
     color: hsl(var(--choco-7-hsl));
-    font-size: var(--font-size-5);
+    font-size: var(--font-size-fluid-2);
     font-weight: 600;
   }
 
@@ -192,7 +218,7 @@ const fullTitle = `Cat Spotting in ${title}`;
   :global(article > h3) {
     margin-block-start: var(--size-3);
     color: hsl(var(--gray-8-hsl));
-    font-size: var(--font-size-3);
+    font-size: var(--font-size-fluid-1);
     font-weight: 600;
   }
 
@@ -267,9 +293,9 @@ const fullTitle = `Cat Spotting in ${title}`;
     text-transform: uppercase;
   }
 
-  .capitalize {
+  /*.capitalize {
     text-transform: capitalize;
-  }
+  }*/
 
   .metaDetail {
     color: hsl(var(--gray-7-hsl));

@@ -84,7 +84,7 @@ describe('Categories Configuration', () => {
 
     expect(temples).toBeDefined();
     expect(temples!.en.title).toBe('Temples');
-    expect(temples!.tw.title).toBe('寺廟神社');
+    expect(temples!.tw.title).toBe('寺廟、神社');
     expect(temples!.en.description).toContain('temples');
     expect(temples!.en.description).toContain('shrines');
     expect(temples!.en.description).toContain('神社');
