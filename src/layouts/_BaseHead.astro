@@ -18,7 +18,7 @@ const isRoot = !category && !isArticle;
 const hasArticleCover = !!blogPost && hasCover;
 const ogType = isArticle ? 'article' : 'webiste';
 
-const hasAlternate = !blogPost || (isArticle ? (['kagawa-sanagijima', 'tokyo-gokokuji', 'fukui-gotanjouji', 'oita-beppu'].includes(blogPost)) : false);
+const hasAlternate = !blogPost || (isArticle ? (['kagawa-sanagijima', 'tokyo-gokokuji', 'fukui-gotanjouji', 'oita-beppu', 'miyagi-tashirojima'].includes(blogPost)) : false);
 
 const schema = () => {
   const website = {
