@@ -18,7 +18,7 @@ const isRoot = !category && !isArticle;
 const hasArticleCover = !!blogPost && hasCover;
 const ogType = isArticle ? 'article' : 'webiste';
 
-const hasAlternate = !blogPost || (isArticle ? (['sanagijima', 'gokokuji', 'beppo'].includes(blogPost)) : false);
+const hasAlternate = !blogPost || (isArticle ? (['kagawa-sanagijima', 'tokyo-gokokuji', 'fukui-gotanjouji', 'oita-beppu'].includes(blogPost)) : false);
 
 const schema = () => {
   const website = {
@@ -31,6 +31,9 @@ const schema = () => {
     '@type': 'BlogPosting',
     url: siteUrl(pathname),
     headline: title,
+    ...(hasArticleCover ? {
+      image: [siteUrl(`/assets/${blogPost}/og.jpg`)]
+    } : []),
     dateModified: dateModified,
     datePublished: datePublished,
     author: [
@@ -83,7 +86,7 @@ const schema = () => {
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   {
-  isArticle && hasArticleCover && (
+ hasArticleCover && (
     <>
       <meta property="og:image" content={siteUrl(`/assets/${blogPost}/og.jpg`)} />
       <meta property="og:image:alt" content={cover?.alt} />
