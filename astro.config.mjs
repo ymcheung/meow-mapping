@@ -24,14 +24,13 @@ export default defineConfig({
   },
   redirects: {
     '/temples/gotanjouji': '/temples/fukui-gotanjouji',
-    '/islands/ainoshima': '/islands//fukuoka-ainoshima',
-    '/islands/sanagijima': '/islands//kagawa-sanagijima',
+    '/islands/ainoshima': '/islands/fukuoka-ainoshima',
+    '/islands/sanagijima': '/islands/kagawa-sanagijima',
     '/neighborhoods/enoshima': '/neighborhoods/kamakura-enoshima',
     '/temples/fushimiinaritaisha': '/temples/kyoto-fushimiinaritaisha',
     '/islands/tashirojima': '/islands/miyagi-tashirojima',
     '/neighborhoods/beppu': '/neighborhoods/oita-beppu',
-    '/neighborhoods//nekonohosomichi':
-      '/neighborhoods/onomichi-nekonohosomichi',
+    '/neighborhoods/nekonohosomichi': '/neighborhoods/onomichi-nekonohosomichi',
     '/temples/gokokuji': '/temples/tokyo-gokokuji',
     '/tw/temples/gotanjouji': '/tw/temples/fukui-gotanjouji',
     '/tw/islands/sanagijima': '/tw/islands/kagawa-sanagijima',
