@@ -14,7 +14,8 @@ const { title, description, hasCover, cover, dateModified, datePublished } = Ast
 // const isDefaultLocale = locale === 'en';
 
 const isArticle = !!blogPost;
-const isRoot = !category && !isArticle;
+const isHome = !category && !isArticle;
+const isRoot = pathname === '/';
 const hasArticleCover = !!blogPost && hasCover;
 const ogType = isArticle ? 'article' : 'webiste';
 
@@ -59,7 +60,7 @@ const schema = () => {
 
   return JSON.stringify({
     '@context': 'https://schema.org/',
-    '@graph': [website, ...(isArticle ? [blogPosting] : [])]
+    '@graph': [...(isRoot ? [website] : []), ...(isArticle ? [blogPosting] : [])]
   });
 };
 ---
@@ -76,7 +77,7 @@ const schema = () => {
   <link rel="manifest" href={siteUrl('/manifest.webmanifest')} />
   {hasAlternate ? (
     <>
-      <link rel="alternate" hreflang="zh-Hant" href={getAbsoluteLocaleUrl('tw', isRoot ? undefined : (`${!!category ? `${category}/` : ''}${!!isArticle ? `${blogPost}` : ''}`))} />
+      <link rel="alternate" hreflang="zh-Hant" href={getAbsoluteLocaleUrl('tw', isHome ? undefined : (`${!!category ? `${category}/` : ''}${!!isArticle ? `${blogPost}` : ''}`))} />
       <link rel="alternate" hreflang="en" href={getAbsoluteLocaleUrl('en', `${!!category ? `${category}/` : ''}${!!isArticle ? `${blogPost}` : ''}`)} />
     </>
   ) : ''}
