@@ -1,23 +1,22 @@
 ---
-import "@/styles/global.css";
-import Dock from "@pages/_Dock.astro";
+import '@/styles/global.css';
+import Dock from '@pages/_Dock.astro';
 import type { Locale } from '@/types';
 
 const locale = Astro.currentLocale as Locale;
 const isTW = locale === 'tw';
-
 ---
 
 <html lang={isTW ? 'zh-TW' : locale}>
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Travel Guides for Cats</title>
-	</head>
-	<body>
-  	<Dock as="h1" />
-	  <slot />
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Travel Guides for Cats</title>
+  </head>
+  <body>
+    <Dock as="h1" />
+    <slot />
+  </body>
 </html>

@@ -1,7 +1,7 @@
 ---
-import "@/styles/global.css";
-import BaseHead from "./_BaseHead.astro";
-import Dock from "@pages/_Dock.astro";
+import '@/styles/global.css';
+import BaseHead from './_BaseHead.astro';
+import Dock from '@pages/_Dock.astro';
 import type { Locale } from '@/types';
 
 const { title, description, dateModified } = Astro.props;
@@ -14,7 +14,6 @@ const locale = Astro.currentLocale as Locale;
 const isTW = locale === 'tw';
 
 const datePublished = '2024-12-31T23:59:59+08:00';
-
 ---
 
 <html lang={isTW ? 'zh-TW' : locale}>
@@ -24,8 +23,8 @@ const datePublished = '2024-12-31T23:59:59+08:00';
     dateModified={dateModified}
     datePublished={datePublished}
   />
-	<body>
-  	<Dock {...(isHome ? { as: 'h1' } : {})} />
-	  <slot />
-	</body>
+  <body>
+    <Dock {...isHome ? { as: 'h1' } : {}} />
+    <slot />
+  </body>
 </html>
