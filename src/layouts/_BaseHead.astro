@@ -1,5 +1,5 @@
 ---
-import { SITE_NAME, SITE_DESCRIPTION, INTERSECTION, INTERSECTION_DESCRIPTION } from '@/consts';
+import { SITE_NAME, SITE_DESCRIPTION, INTERSECTION, INTERSECTION_DESCRIPTION, categories } from '@/consts';
 import { ClientRouter } from 'astro:transitions';
 import siteUrl from '@/helpers/siteUrl';
 import { Font } from 'astro:assets'
@@ -10,8 +10,11 @@ const { pathname } = Astro.url;
 const { category, blogPost } = Astro.params;
 const { title, description, hasCover, cover, dateModified, datePublished } = Astro.props;
 
-// const locale = Astro.currentLocale;
-// const isDefaultLocale = locale === 'en';
+const locale = Astro.currentLocale as 'en' | 'tw';
+const isDefaultLocale = locale === 'en';
+
+const foundCategory = category ? categories.find(({ slug }) => category === slug) : undefined;
+const categoryTitle = foundCategory ? foundCategory[locale].title : undefined;
 
 const isArticle = !!blogPost;
 const isHome = !category && !isArticle;
@@ -24,7 +27,7 @@ const hasAlternate = !blogPost || (isArticle ? (['kagawa-sanagijima', 'tokyo-gok
 const schema = () => {
   const website = {
     '@type': 'Website',
-    name: 'Meow Mapping: Cat Spotting Guides',
+    name:  SITE_NAME,
     url: import.meta.env.SITE_URL
   };
 
@@ -58,9 +61,22 @@ const schema = () => {
     }
   };
 
+  const breadcrumb = {
+    '@type': 'BreadcrumbList',
+    name: title,
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: categoryTitle,
+        item: siteUrl(`${isDefaultLocale ? '' : '/tw'}/${category}`)
+      }
+    ]
+  };
+
   return JSON.stringify({
     '@context': 'https://schema.org/',
-    '@graph': [...(isRoot ? [website] : []), ...(isArticle ? [blogPosting] : [])]
+    '@graph': [...(isRoot ? [website] : []), ...(isArticle ? [blogPosting, breadcrumb] : [])]
   });
 };
 ---
