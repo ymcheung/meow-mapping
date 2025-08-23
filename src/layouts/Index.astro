@@ -2,6 +2,7 @@
 import "@/styles/global.css";
 import BaseHead from "./_BaseHead.astro";
 import Dock from "@pages/_Dock.astro";
+import type { Locale } from '@/types';
 
 const { title, description, dateModified } = Astro.props;
 
@@ -9,7 +10,7 @@ const { pathname } = Astro.url;
 
 const isHome = pathname === '/' || pathname === '/tw';
 
-const locale = Astro.currentLocale;
+const locale = Astro.currentLocale as Locale;
 const isTW = locale === 'tw';
 
 const datePublished = '2024-12-31T23:59:59+08:00';

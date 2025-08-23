@@ -1,4 +1,4 @@
-export type Locale = 'en' | 'tw' | string;
+import type { Locale } from '@/types';
 
 interface Fallback {
   [key: string]: string;

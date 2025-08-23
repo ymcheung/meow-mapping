@@ -2,7 +2,8 @@
 import { format } from "date-fns";
 import { getRelativeLocaleUrl } from 'astro:i18n';
 
-const locale = Astro.currentLocale;
+import type { Locale } from '@/types';
+const locale = Astro.currentLocale as Locale;
 
 if (!locale) return null;
 

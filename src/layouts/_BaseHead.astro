@@ -1,16 +1,17 @@
 ---
-import { SITE_NAME, SITE_DESCRIPTION, INTERSECTION, INTERSECTION_DESCRIPTION, categories } from '@/consts';
+import { SITE_NAME,SITE_DESCRIPTION, INTERSECTION, INTERSECTION_DESCRIPTION, categories } from '@/consts';
 import { ClientRouter } from 'astro:transitions';
 import siteUrl from '@/helpers/siteUrl';
 import { Font } from 'astro:assets'
 import { getAbsoluteLocaleUrl } from 'astro:i18n';
+import type { Locale } from '@/types';
 
 const { pathname } = Astro.url;
 
 const { category, blogPost } = Astro.params;
 const { title, description, hasCover, cover, dateModified, datePublished } = Astro.props;
 
-const locale = Astro.currentLocale as 'en' | 'tw';
+const locale = Astro.currentLocale as Locale;
 const isDefaultLocale = locale === 'en';
 
 const foundCategory = category ? categories.find(({ slug }) => category === slug) : undefined;

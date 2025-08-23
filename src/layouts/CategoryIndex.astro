@@ -1,8 +1,9 @@
 ---
 import "@/styles/global.css";
 import Dock from "@pages/_Dock.astro";
+import type { Locale } from '@/types';
 
-const locale = Astro.currentLocale;
+const locale = Astro.currentLocale as Locale;
 const isTW = locale === 'tw';
 
 ---

@@ -1,5 +1,6 @@
 // @ts-check
 import { defineConfig, fontProviders } from 'astro/config';
+import { locales, defaultLocale } from './src/i18n-config';
 import mdx from '@astrojs/mdx';
 import rehypeUnwrapImages from 'rehype-unwrap-images';
 import sitemap from '@astrojs/sitemap';
@@ -9,8 +10,8 @@ export default defineConfig({
   site: 'https://meow.carrier.express',
   trailingSlash: 'never',
   i18n: {
-    locales: ['en', 'tw'],
-    defaultLocale: 'en',
+    locales: [...locales],
+    defaultLocale,
     // fallback: {
     //   tw: 'en'
     // },
