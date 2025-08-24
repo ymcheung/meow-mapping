@@ -1,25 +1,28 @@
 ---
-import {SITE_DESCRIPTION_TW, categories } from '@/consts';
+import { SITE_NAME_TW, SITE_DESCRIPTION_TW, categories } from '@/consts';
 import Layout from '@layouts/Index.astro';
 import { getCollection } from 'astro:content';
 import PostPreviewList from '@/pages/_PostPreviewList.astro';
 import PostPreview from '@/pages/tw/_PostPreview.astro';
 import { getRelativeLocaleUrl } from 'astro:i18n';
-import IconLanguage from '@assets/language.svg'
+import IconLanguage from '@assets/language.svg';
 
 const posts = await getCollection('postsTw');
 
 function filterPosts(categorySlug: string) {
-  return posts.filter(({ data: { category }}) => {
-    return categorySlug === category
-  })
+  return posts.filter(({ data: { category } }) => {
+    return categorySlug === category;
+  });
 }
 
-const dateModified = '2025-07-06T14:30:00+08:00';
-
+const dateModified = '2025-08-24T08:30:00+08:00';
 ---
 
-<Layout description={SITE_DESCRIPTION_TW} dateModified={dateModified}>
+<Layout
+  title={SITE_NAME_TW}
+  description={SITE_DESCRIPTION_TW}
+  dateModified={dateModified}
+>
   <main>
     <strong class="pageTitle">這些地方是？</strong>
     <p class="description">
@@ -29,52 +32,70 @@ const dateModified = '2025-07-06T14:30:00+08:00';
       <span class="languageSwitch">
         <IconLanguage width={20} height={20} />
         <span class="label">English</span>
-        <a class="link" href={getRelativeLocaleUrl('en')} />
+        <a class="link" href={getRelativeLocaleUrl('en')}></a>
       </span>
     </div>
-    {categories.map(({ tw: { title }, slug }) => {
-      const postsOfCategory = filterPosts(slug);
+    {
+      categories.map(({ tw: { title }, slug }) => {
+        const postsOfCategory = filterPosts(slug);
 
-      const postsOfCategorySorted = postsOfCategory.sort((a, b) => {
-        const { data: { dateVisited: olderDateVisited } } = a;
-        const { data: { dateVisited: newerDateVisited } } = b;
+        const postsOfCategorySorted = postsOfCategory.sort((a, b) => {
+          const {
+            data: { dateVisited: olderDateVisited }
+          } = a;
+          const {
+            data: { dateVisited: newerDateVisited }
+          } = b;
 
-        if (olderDateVisited > newerDateVisited) {
-          return -1;
-        }
+          if (olderDateVisited > newerDateVisited) {
+            return -1;
+          }
 
-        return 0;
+          return 0;
+        });
+
+        return (
+          postsOfCategory.length > 0 && (
+            <>
+              <h2 class="categoryTitle">{title}</h2>
+              <PostPreviewList>
+                {postsOfCategorySorted.map(
+                  ({
+                    id,
+                    data: {
+                      title,
+                      transportation: { from },
+                      dateVisited
+                    }
+                  }) => (
+                    <PostPreview
+                      categorySlug={slug}
+                      postId={id}
+                      title={title}
+                      from={from}
+                      dateVisited={dateVisited}
+                    />
+                  )
+                )}
+              </PostPreviewList>
+            </>
+          )
+        );
       })
-
-      return (
-        postsOfCategory.length > 0 &&
-          <>
-            <h2 class="categoryTitle">{title}</h2>
-            <PostPreviewList>
-              {postsOfCategorySorted.map(({ id, data: { title, transportation: { from }, dateVisited }}) =>
-                <PostPreview
-                  categorySlug={slug}
-                  postId={id}
-                  title={title}
-                  from={from}
-                  dateVisited={dateVisited}
-                />
-              )}
-            </PostPreviewList>
-          </>)
-    })}
+    }
   </main>
   <aside>
-    <strong class="pageTitle">我的自助旅行經驗</strong>
+    <strong class="pageTitle">我的找貓點經驗</strong>
     <p class="description">
-      我的自助旅行不是為了在個人資料放上國旗，而是找貓。我從 2014 年開始就這樣自助旅行，而現在也跟隊友一起行動
+      我的自助旅行不是為了在個人資料放上國旗，而是找貓。我從 2014
+      年開始就這樣自助旅行，而現在也跟隊友一起行動
     </p>
   </aside>
 </Layout>
 
 <style>
-  @import "open-props/media";
-  @import "open-props/colors-hsl";
+  @import 'open-props/media';
+  @import 'open-props/colors-hsl';
 
   main {
     padding-inline: var(--size-3);
@@ -88,7 +109,8 @@ const dateModified = '2025-07-06T14:30:00+08:00';
   }
 
   @media (--md-n-above) {
-    main, aside {
+    main,
+    aside {
       max-width: var(--size-content-3);
       margin-inline: auto;
       padding-inline: 0;
@@ -126,9 +148,8 @@ const dateModified = '2025-07-06T14:30:00+08:00';
     line-height: var(--font-lineheight-1);
   }
 
-
   @media (--OSdark) {
-    .languageSwitch  {
+    .languageSwitch {
       background-color: hsl(var(--gray-8-hsl));
     }
   }
@@ -171,5 +192,4 @@ const dateModified = '2025-07-06T14:30:00+08:00';
       color: hsl(var(--gray-4-hsl));
     }
   }
-
 </style>

@@ -27,12 +27,12 @@ export const categories = [
     en: {
       title: 'Islands',
       description:
-        'Cat Islands in Japan are often remote from tourism spots. Even reaching the ports takes hours of common transportations like trains. To make the experience of the trips immersive, it is recommend to stay in the islands for 1 or 2 days.'
+        'Cat islands in Japan are often remote from tourism spots. Even reaching the ports takes hours of common transportations like trains. To make the experience of the trips immersive, it is recommended to stay in the islands for 1 or 2 days.'
     },
     tw: {
       title: '離島',
       description:
-        'Cat Islands in Japan are often remote from tourism spots. Even reaching the ports takes hours of common transportations like trains. To make the experience of the trips immersive, it is recommend to stay in the islands for 1 or 2 days.'
+        '貓島通常距離旅遊景點很遠。即使只是到港口，就可能要搭電車幾個小時。如果要讓旅途更有沉浸感，建議在島上待 1、2 天。'
     }
   },
   {
@@ -46,7 +46,7 @@ export const categories = [
     tw: {
       title: '寺廟、神社',
       description:
-        'Many temples and shrines (神社) take care of cats. As they become more famous, they may offer omamori (protective charms) or goshuin stamps for you to collect as memories.'
+        '有許多寺廟和神社收編貓。如果有一定的知名度，還會以御守和朱印募款，來蒐集留作紀念。'
     }
   },
   {
