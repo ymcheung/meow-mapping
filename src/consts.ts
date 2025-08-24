@@ -60,7 +60,7 @@ export const categories = [
     tw: {
       title: '鄰里',
       description:
-        'These are the spots with cats living among the buildings. For the neighborhoods I have visited so far, you could find the cats in a tourism spot, a hiking trail, and a tiny town.'
+        '這些地點的貓，在建築物的縫隙之間生活。目前我拜訪過的地點，是在旅遊景點、登山步道和小鎮找到貓。'
     }
   }
 ];

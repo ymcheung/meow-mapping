@@ -3,12 +3,13 @@ import { z } from 'zod';
 // import type { HTMLTag } from 'astro/types';
 import { categories } from '@/consts';
 import { getRelativeLocaleUrl } from 'astro:i18n';
-
 import type { Locale } from '@/types';
 
-const dockProps = z.object({
-  as: z.literal('h1').optional()
-}).passthrough();
+const dockProps = z
+  .object({
+    as: z.literal('h1').optional()
+  })
+  .passthrough();
 
 type Props = z.infer<typeof dockProps>;
 const { as } = Astro.props as Props;
@@ -19,27 +20,31 @@ const { pathname } = Astro.url;
 const isHome = pathname === '/';
 
 const Box = as || 'div';
-
 ---
+
 <nav class="dock">
   <div class="dockChild">
     <ul class="categories">
       {
         categories.map((category) => {
-        const { title } = category[locale];
-        const { slug, icon } = category;
+          const { title } = category[locale];
+          const { slug, icon } = category;
           const Icon = icon;
-          const label = `Category Link to ${title}`
+          const label = `Category Link to ${title}`;
           const isCurrentPath = getRelativeLocaleUrl(locale, slug) === pathname;
 
           return (
             <li class="categoryItem">
-              <a class:list={['link', { isCurrent: isCurrentPath }]} href={`${getRelativeLocaleUrl(locale, slug)}`} aria-label={label}>
+              <a
+                class:list={['link', { isCurrent: isCurrentPath }]}
+                href={`${getRelativeLocaleUrl(locale, slug)}`}
+                aria-label={label}
+              >
                 <Icon class="icon" width={24} height={24} />
               </a>
             </li>
-          )}
-        )
+          );
+        })
       }
     </ul>
   </div>
@@ -47,14 +52,16 @@ const Box = as || 'div';
     <strong class="logoName">Meow Mapping</strong>
     <span class="logoDescription">Cat Spotting Guides</span>
     {
-      !isHome && <a class="link" href={getRelativeLocaleUrl(locale)} title="Home" />
+      !isHome && (
+        <a class="link" href={getRelativeLocaleUrl(locale)} title="Home" />
+      )
     }
   </Box>
 </nav>
 
 <style>
-  @import "open-props/media";
-  @import "open-props/colors-hsl";
+  @import 'open-props/media';
+  @import 'open-props/colors-hsl';
 
   .dock {
     display: grid;
@@ -92,7 +99,6 @@ const Box = as || 'div';
   .categoryItem .link {
     color: hsl(var(--gray-7-hsl));
   }
-
 
   @media (--OSdark) {
     .categoryItem .link {

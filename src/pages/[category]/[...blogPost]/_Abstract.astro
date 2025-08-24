@@ -2,7 +2,7 @@
 import { z } from 'astro:content';
 import type { Locale } from '@/types';
 import { getEntry, render } from 'astro:content';
-import { transportations as  transportationIcon } from "@/consts";
+import { transportations as transportationIcon } from '@/consts';
 import { postSchema } from '@/schema';
 import formatDuration from '@/helpers/formatDuration';
 import messages from '@/i18n/messages';
@@ -11,15 +11,13 @@ const transportationSchema = postSchema.pick({ transportation: true });
 
 type Props = z.infer<typeof transportationSchema>;
 
-const locale  = Astro.currentLocale as Locale;
-
-// if (!locale) return null;
+const locale = Astro.currentLocale as Locale;
 
 const isDefaultLocale = locale === 'en';
 
 const { transportation } = Astro.props;
 
-const { duration, unit } = formatDuration(transportation.duration);
+const { duration, unit } = formatDuration(transportation.duration, 'en');
 
 const { blogPost } = Astro.params;
 if (!blogPost) return;
@@ -30,7 +28,6 @@ if (!post) return;
 const { headings } = await render(post);
 
 const headingsLv2 = headings.filter(({ depth }) => depth === 2);
-
 ---
 
 <div class="abstract">
@@ -38,44 +35,60 @@ const headingsLv2 = headings.filter(({ depth }) => depth === 2);
     <strong class="transportationTime">~{duration}</strong>
     <span class="transportationUnit">{unit}</span>
   </div>
-  {!!transportation.by &&
-    <ul class="by">
-      {transportation.by.map((by) => {
-        const Icon = transportationIcon[by].icon;
-        return (
-          <li>
-            <Icon class="icon" />
-          </li>
-        )
-      })}
-    </ul>
+  {
+    !!transportation.by && (
+      <ul class="by">
+        {transportation.by.map((by) => {
+          const Icon = transportationIcon[by].icon;
+          return (
+            <li>
+              <Icon class="icon" width={28} height={28} />
+            </li>
+          );
+        })}
+      </ul>
+    )
   }
-  <p class="transportationFrom">{isDefaultLocale && <>{messages.en.abstract.transportation.from.prefix}{transportation.from.place}<br /></>}{!isDefaultLocale && messages.tw.abstract.transportation.from.prefix}{transportation.from.kanji}{!isDefaultLocale && messages.tw.abstract.transportation.from.affix}</p>
+  <p class="transportationFrom">
+    {
+      isDefaultLocale && (
+        <>
+          {messages.en.abstract.transportation.from.prefix}
+          {transportation.from.place}
+          <br />
+        </>
+      )
+    }{!isDefaultLocale && messages.tw.abstract.transportation.from.prefix}{
+      transportation.from.kanji
+    }{!isDefaultLocale && messages.tw.abstract.transportation.from.affix}
+  </p>
 </div>
 <div class="tableOfContent">
-  <strong class="tableOfContentTitle">{messages[locale].abstract.tableOfContent.title}</strong>
+  <strong class="tableOfContentTitle"
+    >{messages[locale].abstract.tableOfContent.title}</strong
+  >
   {
     headingsLv2.length > 0 && (
-    <ul>
-      {
-        headingsLv2.map(({ slug, text }) =>
+      <ul>
+        {headingsLv2.map(({ slug, text }) => (
           <li>
             <a href={`#${slug}`}>{text}</a>
           </li>
-        )
-      }
-    </ul>
-  )}
+        ))}
+      </ul>
+    )
+  }
 </div>
 
 <style>
-  @import "open-props/media";
-  @import "open-props/colors-hsl";
+  @import 'open-props/media';
+  @import 'open-props/colors-hsl';
 
   .abstract {
     display: grid;
-    grid: "time by" auto
-          "from from" auto / var(--size-11) 1fr;
+    grid:
+      'time by' auto
+      'from from' auto / var(--size-11) 1fr;
     margin-block-start: var(--size-3);
     margin-inline: calc(var(--size-2) * -1);
     padding-inline: var(--size-2);
@@ -233,7 +246,5 @@ const headingsLv2 = headings.filter(({ depth }) => depth === 2);
     .tableOfContent a:hover {
       text-decoration-color: hsl(var(--gray-5-hsl));
     }
-
   }
-
 </style>

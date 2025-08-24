@@ -130,11 +130,13 @@ const fullTitle = isTW
     font-size: var(--font-size-fluid-1);
     color: hsl(var(--gray-7-hsl));
     font-weight: 400;
+    text-decoration-color: hsl(var(--gray-3-hsl));
     text-decoration-line: underline;
     transform: skewY(-2deg);
   }
 
   .prefix:hover {
+    text-decoration-color: hsl(var(--choco-7-hsl));
     text-decoration-style: double;
   }
 
@@ -157,6 +159,12 @@ const fullTitle = isTW
 
     .prefix {
       color: hsl(var(--gray-4-hsl));
+      text-decoration-color: hsl(var(--gray-6-hsl));
+    }
+
+    .prefix:hover {
+      color: hsl(var(--gray-4-hsl));
+      text-decoration-color: hsl(46, 100%, 48%);
     }
   }
 
