@@ -73,7 +73,7 @@ describe('Categories Configuration', () => {
 
     expect(islands).toBeDefined();
     expect(islands!.en.title).toBe('Islands');
-    expect(islands!.tw.title).toBe('離島');
+    expect(islands!.tw.title).toBe('貓島');
     expect(islands!.en.description).toContain('Cat islands');
     expect(islands!.en.description).toContain('Japan');
     expect(islands!.en.description).toContain('remote');

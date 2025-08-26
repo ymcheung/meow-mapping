@@ -30,7 +30,7 @@ export const categories = [
         'Cat islands in Japan are often remote from tourism spots. Even reaching the ports takes hours of common transportations like trains. To make the experience of the trips immersive, it is recommended to stay in the islands for 1 or 2 days.'
     },
     tw: {
-      title: '離島',
+      title: '貓島',
       description:
         '貓島通常距離旅遊景點很遠。即使只是到港口，就可能要搭電車幾個小時。如果要讓旅途更有沉浸感，建議在島上待 1、2 天。'
     }
