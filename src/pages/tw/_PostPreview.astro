@@ -1,5 +1,5 @@
 ---
-import { format } from "date-fns";
+import { format } from 'date-fns';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 
 import type { Locale } from '@/types';
@@ -10,19 +10,20 @@ if (!locale) return null;
 const { title, categorySlug, postId, from, dateVisited } = Astro.props;
 
 const formatDateVisited = format(dateVisited, 'yyyy-MM-dd');
-
 ---
 
 <li>
   <div class="card">
-    <a class="link" href={`${getRelativeLocaleUrl(locale, `${categorySlug}/${postId}`)}`} />
+    <a
+      class="link"
+      href={`${getRelativeLocaleUrl(locale, `${categorySlug}/${postId}`)}`}></a>
     <strong class="title">{title}</strong>
     <span class="description">從{from.kanji}出發 ({formatDateVisited})</span>
   </div>
 </li>
 
 <style>
-  @import "open-props/media";
+  @import 'open-props/media';
 
   li {
     padding-inline-start: 0;
@@ -73,7 +74,7 @@ const formatDateVisited = format(dateVisited, 'yyyy-MM-dd');
     font-size: var(--font-size-fluid-2);
     line-height: var(--font-lineheight-1);
     transform: skewY(-2deg);
-    transition: padding-inline-start 0.3s cubic-bezier(.32, 0, .67, 0);
+    transition: padding-inline-start 0.3s cubic-bezier(0.32, 0, 0.67, 0);
   }
 
   @media (--OSdark) {
@@ -85,14 +86,15 @@ const formatDateVisited = format(dateVisited, 'yyyy-MM-dd');
   .title::before,
   .title::after {
     width: max-content;
-    content: "Read";
+    content: 'Read';
     padding-inline: var(--size-2);
     padding-block: var(--size-1);
-    color: hsl(var(--choco-2-hsl));
+    color: hsl(var(--gray-5-hsl));
     font-size: var(--font-size-fluid-1);
     background-color: hsl(var(--gray-1-hsl));
-    transition: right 0.3s cubic-bezier(.32, 0, .67, 0),
-                background-color 0.3s cubic-bezier(.32, 0, .67, 0);
+    transition:
+      right 0.3s cubic-bezier(0.32, 0, 0.67, 0),
+      background-color 0.3s cubic-bezier(0.32, 0, 0.67, 0);
   }
 
   @media (--OSdark) {
@@ -128,14 +130,15 @@ const formatDateVisited = format(dateVisited, 'yyyy-MM-dd');
 
   .link:hover + .title {
     padding-inline-start: var(--size-3);
-    transition: padding-inline-start 0.3s cubic-bezier(.32, 0, .67, 0);
+    transition: padding-inline-start 0.3s cubic-bezier(0.32, 0, 0.67, 0);
   }
 
   .link:hover + .title::before {
     color: hsl(var(--gray-0-hsl));
     background-color: hsl(var(--sand-7-hsl));
-    transition: color 0.3s cubic-bezier(.32, 0, .67, 0),
-                background-color 0.3s cubic-bezier(.32, 0, .67, 0);
+    transition:
+      color 0.3s cubic-bezier(0.32, 0, 0.67, 0),
+      background-color 0.3s cubic-bezier(0.32, 0, 0.67, 0);
   }
 
   @media (--OSdark) {
@@ -148,10 +151,9 @@ const formatDateVisited = format(dateVisited, 'yyyy-MM-dd');
   @media (--md-n-above) {
     .link:hover + .title::before {
       right: calc(100% - var(--size-2));
-      transition: right 0.3s cubic-bezier(.32, 0, .67, 0);
+      transition: right 0.3s cubic-bezier(0.32, 0, 0.67, 0);
     }
   }
-
 
   .description {
     display: inline-block;
@@ -165,5 +167,4 @@ const formatDateVisited = format(dateVisited, 'yyyy-MM-dd');
       color: hsl(var(--gray-5-hsl));
     }
   }
-
 </style>
