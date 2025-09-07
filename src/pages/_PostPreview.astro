@@ -1,6 +1,8 @@
 ---
 import { format } from 'date-fns';
 import { getRelativeLocaleUrl } from 'astro:i18n';
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 
 import type { Locale } from '@/types';
 const locale = Astro.currentLocale as Locale;
@@ -10,27 +12,50 @@ if (!locale) return null;
 const { title, categorySlug, postId, from, dateVisited } = Astro.props;
 
 const formatDateVisited = format(dateVisited, 'yyyy-MM-dd');
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/**/og.jpg'
+);
+const imagePath = `/src/assets/${postId}/og.jpg`;
+const imageModule = images[imagePath];
+const image = imageModule ? (await imageModule()).default : undefined;
 ---
 
 <li>
-  <div class="card">
-    <!-- <a class="link" href={`/${categorySlug}/${postId}`} /> -->
+  <figure class="card">
+    {
+      image && (
+        <div class="cover">
+          <Image
+            class="coverImage"
+            src={image}
+            width={image.width}
+            height={image.height}
+            alt={title}
+          />
+        </div>
+      )
+    }
+    <div class="cardContent">
+      <strong class="title">{title}</strong>
+      <span class="description"
+        >Visited on {formatDateVisited} from {from?.place}.</span
+      >
+    </div>
     <a
       class="link"
       href={`${getRelativeLocaleUrl(locale, `${categorySlug}/${postId}`)}`}></a>
-    <strong class="title">{title}</strong>
-    <span class="description"
-      >Visited on {formatDateVisited} from {from.place}.</span
-    >
-  </div>
+  </figure>
 </li>
 
 <style>
   @import 'open-props/media';
 
   li {
+    max-inline-size: unset;
     padding-inline-start: 0;
     list-style-type: none;
+    transform: skewY(-2deg);
   }
 
   li + li {
@@ -38,7 +63,36 @@ const formatDateVisited = format(dateVisited, 'yyyy-MM-dd');
   }
 
   .card {
+    grid: auto / var(--size-11) 1fr;
+    place-items: unset;
+    column-gap: var(--size-3);
     position: relative;
+  }
+
+  @media (--md-n-above) {
+    .card {
+      grid: auto / var(--size-12) 1fr;
+    }
+  }
+
+  .cover {
+    overflow: hidden;
+    position: relative;
+    aspect-ratio: 1.5;
+    border-radius: var(--radius-3);
+  }
+
+  .coverImage {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (--md-n-above) {
+    .cardContent {
+      margin-inline-end: calc(var(--size-3) * -1);
+    }
   }
 
   .link {
@@ -73,10 +127,10 @@ const formatDateVisited = format(dateVisited, 'yyyy-MM-dd');
   .title {
     display: block;
     position: relative;
+    margin-block-start: -6px;
     color: hsl(var(--choco-7-hsl));
     font-size: var(--font-size-fluid-2);
     line-height: var(--font-lineheight-1);
-    transform: skewY(-2deg);
     transition: padding-inline-start 0.3s cubic-bezier(0.32, 0, 0.67, 0);
   }
 
@@ -86,7 +140,7 @@ const formatDateVisited = format(dateVisited, 'yyyy-MM-dd');
     }
   }
 
-  .title::before,
+  /*.title::before,
   .title::after {
     width: max-content;
     content: 'Read';
@@ -98,7 +152,7 @@ const formatDateVisited = format(dateVisited, 'yyyy-MM-dd');
     transition:
       right 0.3s cubic-bezier(0.32, 0, 0.67, 0),
       background-color 0.3s cubic-bezier(0.32, 0, 0.67, 0);
-  }
+  }*/
 
   @media (--OSdark) {
     .title::before,
@@ -162,7 +216,6 @@ const formatDateVisited = format(dateVisited, 'yyyy-MM-dd');
     display: inline-block;
     color: hsl(var(--gray-7-hsl));
     font-size: var(--font-size-fluid-1);
-    transform: skewY(-2deg);
   }
 
   @media (--OSdark) {
