@@ -3,11 +3,9 @@ import { format } from 'date-fns';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
-
 import type { Locale } from '@/types';
-const locale = Astro.currentLocale as Locale;
 
-if (!locale) return null;
+const locale = Astro.currentLocale as Locale;
 
 const { title, categorySlug, postId, from, dateVisited } = Astro.props;
 

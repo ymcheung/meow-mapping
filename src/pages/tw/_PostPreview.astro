@@ -4,9 +4,25 @@ import { getRelativeLocaleUrl } from 'astro:i18n';
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import type { Locale } from '@/types';
+import { z } from 'astro:content';
+import { postSchema } from '@/schema';
+import { categories } from '@/consts';
+
 const locale = Astro.currentLocale as Locale;
 
-const { title, categorySlug, postId, from, dateVisited } = Astro.props;
+if (!locale) return null;
+
+const propsSchema = postSchema.pick({ title: true, dateVisited: true }).extend({
+  categorySlug: z.enum(
+    categories.map((category) => category.slug) as [string, ...string[]]
+  ),
+  postId: z.string(),
+  from: postSchema.shape.transportation.shape.from
+});
+
+type Props = z.infer<typeof propsSchema>;
+
+const { title, categorySlug, postId, from, dateVisited } = Astro.props as Props;
 
 const formatDateVisited = format(dateVisited, 'yyyy-MM-dd');
 

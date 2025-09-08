@@ -8,12 +8,20 @@ export const indexProps = z.object({
   datePublished: z.coerce.date()
 });
 
+// export const imageSchema = ({ image }: SchemaContext) =>
+//   z.object({
+//     image: image(),
+//     alt: z.string().optional()
+//   });
+
 export const postSchema = z.object({
   title: z.string(),
   description: z.string(),
   hasCover: z.boolean(),
+  // cover: imageSchema({ image }),
   cover: z
     .object({
+      // image: image().optional(),
       alt: z.string()
     })
     .optional(),

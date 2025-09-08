@@ -1,15 +1,12 @@
 ---
-import { z } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 import type { Locale } from '@/types';
 import { getEntry, render } from 'astro:content';
 import { transportations as transportationIcon } from '@/consts';
-import { postSchema } from '@/schema';
 import formatDuration from '@/helpers/formatDuration';
 import messages from '@/i18n/messages';
 
-const transportationSchema = postSchema.pick({ transportation: true });
-
-type Props = z.infer<typeof transportationSchema>;
+type Props = Pick<CollectionEntry<'posts'>['data'], 'transportation'>;
 
 const locale = Astro.currentLocale as Locale;
 
@@ -88,7 +85,7 @@ const headingsLv2 = headings.filter(({ depth }) => depth === 2);
     display: grid;
     grid:
       'time by' auto
-      'from from' auto / var(--size-11) 1fr;
+      'from from' auto / var(--size-12) 1fr;
     margin-block-start: var(--size-3);
     margin-inline: calc(var(--size-2) * -1);
     padding-inline: var(--size-2);

@@ -11,7 +11,7 @@ export async function getStaticPaths() {
   return posts.map((post) => {
     const { id, data } = post;
 
-    return ({
+    return {
       params: {
         category: data.category,
         blogPost: id
@@ -19,18 +19,27 @@ export async function getStaticPaths() {
       props: {
         ...data
       }
-    })
+    };
   });
 }
 
 const { blogPost } = Astro.params;
-const { title, description, hasCover, cover, difficulty, feed, dateVisited, dateModified, datePublished } = Astro.props;
+const {
+  title,
+  description,
+  hasCover,
+  cover,
+  difficulty,
+  feed,
+  dateVisited,
+  dateModified,
+  datePublished
+} = Astro.props;
 
 const post = await getEntry('posts', blogPost);
 if (!post) return;
 
 const { Content } = await render(post);
-
 ---
 
 <Layout
