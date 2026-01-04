@@ -29,6 +29,7 @@ const categoryTitle = foundCategory ? foundCategory[locale].title : undefined;
 const isBlogPost = !!blogPost;
 const isHome = !category && !isBlogPost;
 const isRoot = pathname === '/';
+const isCategoryIndex = !!category && !isBlogPost;
 const hasArticleCover = !!blogPost && hasCover;
 const ogType = isBlogPost ? 'article' : 'webiste';
 
@@ -112,6 +113,7 @@ const schema = () => {
   <title>{title ?? SITE_NAME}</title>
   <meta name="description" content={description} />
   <link rel="canonical" href={siteUrl(pathname)} />
+  {isCategoryIndex && <meta name="robots" content="noindex" />}
   <meta name="viewport" content="width=device-width" />
   <link rel="icon" href="/favicon.ico" sizes="32x32" />
   <link rel="icon" href="/icon.svg" type="image/svg+xml" />

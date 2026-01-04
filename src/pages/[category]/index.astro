@@ -117,6 +117,12 @@ const dateModified = postsOfCategoryLatest?.data?.datePublished;
     transform: skewY(-2deg);
   }
 
+  @media (--OSdark) {
+    h1 {
+      color: hsl(var(--gray-3-hsl));
+    }
+  }
+
   .description {
     margin-block-start: var(--size-2);
     color: hsl(var(--gray-7-hsl));
