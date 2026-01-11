@@ -19,7 +19,19 @@ export default defineConfig({
       fallbackType: 'rewrite'
     }
   },
-  integrations: [mdx(), sitemap()],
+  integrations: [
+    mdx(),
+    sitemap({
+      filter: (page) =>
+        page !== 'https://meow.carrier.express/' &&
+        page !== 'https://meow.carrier.express/islands' &&
+        page !== 'https://meow.carrier.express/temples' &&
+        page !== 'https://meow.carrier.express/neighborhoods' &&
+        page !== 'https://meow.carrier.express/tw/islands' &&
+        page !== 'https://meow.carrier.express/tw/temples' &&
+        page !== 'https://meow.carrier.express/tw/neighborhoods'
+    })
+  ],
   markdown: {
     rehypePlugins: [rehypeUnwrapImages]
   },

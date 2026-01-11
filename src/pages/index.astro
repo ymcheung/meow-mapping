@@ -1,80 +1,101 @@
 ---
-import {SITE_DESCRIPTION, categories } from '@/consts';
+import { SITE_DESCRIPTION, categories } from '@/consts';
 import Layout from '@layouts/Index.astro';
 import { getCollection } from 'astro:content';
 import PostPreviewList from '@/pages/_PostPreviewList.astro';
 import PostPreview from '@/pages/_PostPreview.astro';
 import { getRelativeLocaleUrl } from 'astro:i18n';
-import IconLanguage from '@assets/language.svg'
+import IconLanguage from '@assets/language.svg';
 
 const posts = await getCollection('posts');
 
 function filterPosts(categorySlug: string) {
-  return posts.filter(({ data: { category }}) => {
-    return categorySlug === category
-  })
+  return posts.filter(({ data: { category } }) => {
+    return categorySlug === category;
+  });
 }
 
 const dateModified = '2025-06-29T23:00:00+08:00';
-
 ---
 
 <Layout description={SITE_DESCRIPTION} dateModified={dateModified}>
   <main>
     <strong class="pageTitle">What are those places?</strong>
-    <p class="description">Discover authentic travel experiences at some of the best cat spots, focusing on how to get to these destinations.</p>
+    <p class="description">
+      Discover authentic travel experiences at some of the best cat spots,
+      focusing on how to get to these destinations.
+    </p>
     <div>
       <span class="languageSwitch">
         <IconLanguage width={20} height={20} />
         <span class="label">中文</span>
-        <a class="link" href={getRelativeLocaleUrl('tw')} />
+        <a class="link" href={getRelativeLocaleUrl('tw')}></a>
       </span>
     </div>
-    {categories.map(({ en: { title }, slug }) => {
-      const postsOfCategory = filterPosts(slug);
+    {
+      categories.map(({ en: { title }, slug }) => {
+        const postsOfCategory = filterPosts(slug);
 
-      const postsOfCategorySorted = postsOfCategory.sort((a, b) => {
-        const { data: { dateVisited: olderDateVisited } } = a;
-        const { data: { dateVisited: newerDateVisited } } = b;
+        const postsOfCategorySorted = postsOfCategory.sort((a, b) => {
+          const {
+            data: { dateVisited: olderDateVisited }
+          } = a;
+          const {
+            data: { dateVisited: newerDateVisited }
+          } = b;
 
-        if (olderDateVisited > newerDateVisited) {
-          return -1;
-        }
-
-        return 0;
-      })
-
-      return (
-        <>
-          {postsOfCategory.length > 0 &&
-            <>
-              <h2 class="categoryTitle">{title}</h2>
-              <PostPreviewList>
-                {postsOfCategorySorted.map(({ id, data: { title, transportation: { from }, dateVisited }}) =>
-                  <PostPreview
-                    categorySlug={slug}
-                    postId={id}
-                    title={title}
-                    from={from}
-                    dateVisited={dateVisited}
-                  />
-                )}
-              </PostPreviewList>
-            </>
+          if (olderDateVisited > newerDateVisited) {
+            return -1;
           }
-        </>
-      )
-    })}
+
+          return 0;
+        });
+
+        return (
+          <>
+            {postsOfCategory.length > 0 && (
+              <>
+                <h2 class="categoryTitle">{title}</h2>
+                <PostPreviewList>
+                  {postsOfCategorySorted.map(
+                    ({
+                      id,
+                      data: {
+                        title,
+                        transportation: { from },
+                        dateVisited
+                      }
+                    }) => (
+                      <PostPreview
+                        categorySlug={slug}
+                        postId={id}
+                        title={title}
+                        from={from}
+                        dateVisited={dateVisited}
+                      />
+                    )
+                  )}
+                </PostPreviewList>
+              </>
+            )}
+          </>
+        );
+      })
+    }
   </main>
   <aside>
     <strong class="pageTitle">About</strong>
-    <p class="description">My backpacker travels aren’t about collecting flags in my profile, but finding cat spots. I’ve been wandering this way since 2014, and these days, I travel with my partner too.</p>
+    <p class="description">
+      My backpacker travels aren’t about collecting flags in my profile, but
+      finding cat spots. I’ve been wandering this way since 2014, and these
+      days, I travel with my partner too.
+    </p>
   </aside>
 </Layout>
 
 <style>
-  @import "open-props/media";
-  @import "open-props/colors-hsl";
+  @import 'open-props/media';
+  @import 'open-props/colors-hsl';
 
   main {
     padding-inline: var(--size-3);
@@ -88,7 +109,8 @@ const dateModified = '2025-06-29T23:00:00+08:00';
   }
 
   @media (--md-n-above) {
-    main, aside {
+    main,
+    aside {
       max-width: var(--size-content-3);
       margin-inline: auto;
       padding-inline: 0;
@@ -126,9 +148,8 @@ const dateModified = '2025-06-29T23:00:00+08:00';
     line-height: var(--font-lineheight-1);
   }
 
-
   @media (--OSdark) {
-    .languageSwitch  {
+    .languageSwitch {
       background-color: hsl(var(--gray-8-hsl));
     }
   }
@@ -171,5 +192,4 @@ const dateModified = '2025-06-29T23:00:00+08:00';
       color: hsl(var(--gray-4-hsl));
     }
   }
-
 </style>
