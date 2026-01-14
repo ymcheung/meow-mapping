@@ -1,7 +1,7 @@
 const en = {
   layout: {
     page: {
-      title: 'Cat Spotting in',
+      title: 'Meow Mapping',
       difficulty: {
         title: 'Difficulty',
         easy: { description: 'Easy' },
