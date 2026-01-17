@@ -17,6 +17,9 @@ export const indexProps = z.object({
 export const postSchema = z.object({
   title: z.string(),
   description: z.string(),
+  place: z.object({
+    title: z.string()
+  }),
   hasCover: z.boolean(),
   // cover: imageSchema({ image }),
   cover: z

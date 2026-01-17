@@ -29,7 +29,10 @@ const dateModified = '2025-06-29T23:00:00+08:00';
       <span class="languageSwitch">
         <IconLanguage width={20} height={20} />
         <span class="label">中文</span>
-        <a class="link" href={getRelativeLocaleUrl('tw')}></a>
+        <a
+          class="link"
+          href={getRelativeLocaleUrl('tw')}
+          aria-label="切換到中文"></a>
       </span>
     </div>
     {
@@ -57,24 +60,27 @@ const dateModified = '2025-06-29T23:00:00+08:00';
               <>
                 <h2 class="categoryTitle">{title}</h2>
                 <PostPreviewList>
-                  {postsOfCategorySorted.map(
-                    ({
+                  {postsOfCategorySorted.map((post, index) => {
+                    const {
                       id,
                       data: {
-                        title,
+                        place,
                         transportation: { from },
                         dateVisited
                       }
-                    }) => (
+                    } = post;
+
+                    return (
                       <PostPreview
                         categorySlug={slug}
                         postId={id}
-                        title={title}
+                        place={place}
                         from={from}
                         dateVisited={dateVisited}
+                        eager={index < 5}
                       />
-                    )
-                  )}
+                    );
+                  })}
                 </PostPreviewList>
               </>
             )}

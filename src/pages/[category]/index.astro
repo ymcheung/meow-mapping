@@ -71,22 +71,27 @@ const dateModified = postsOfCategoryLatest?.data?.datePublished;
       postsOfCategory.length > 0 && (
         <PostPreviewList>
           {postsOfCategorySorted.map(
-            ({
-              id,
-              data: {
-                title,
-                transportation: { from },
-                dateVisited
-              }
-            }) => (
+            (post, index) => {
+              const {
+                id,
+                data: {
+                  place,
+                  transportation: { from },
+                  dateVisited
+                }
+              } = post;
+
+              return (
               <PostPreview
-                categorySlug={slug}
-                postId={id}
-                title={title}
-                from={from}
-                dateVisited={dateVisited}
-              />
-            )
+                  categorySlug={slug}
+                  postId={id}
+                  place={place}
+                  from={from}
+                  dateVisited={dateVisited}
+                  eager={index === 0}
+                />
+              );
+            }
           )}
         </PostPreviewList>
       )

@@ -17,12 +17,13 @@ const propsSchema = postSchema.pick({ title: true, dateVisited: true }).extend({
     categories.map((category) => category.slug) as [string, ...string[]]
   ),
   postId: z.string(),
-  from: postSchema.shape.transportation.shape.from
+  from: postSchema.shape.transportation.shape.from,
+  eager: z.boolean().optional()
 });
 
 type Props = z.infer<typeof propsSchema>;
 
-const { title, categorySlug, postId, from, dateVisited } = Astro.props as Props;
+const { title, categorySlug, postId, from, dateVisited, eager = false } = Astro.props as Props;
 
 const formatDateVisited = format(dateVisited, 'yyyy-MM-dd');
 
@@ -45,6 +46,7 @@ const image = imageModule ? (await imageModule()).default : undefined;
             width={image.width}
             height={image.height}
             alt={title}
+            loading={eager ? 'eager' : 'lazy'}
           />
         </div>
       )
@@ -55,7 +57,8 @@ const image = imageModule ? (await imageModule()).default : undefined;
     </div>
     <a
       class="link"
-      href={`${getRelativeLocaleUrl(locale, `${categorySlug}/${postId}`)}`}></a>
+      href={`${getRelativeLocaleUrl(locale, `${categorySlug}/${postId}`)}`}
+      aria-label={title}></a>
   </figure>
 </li>
 

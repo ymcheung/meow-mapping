@@ -7,7 +7,7 @@ import type { Locale } from '@/types';
 
 const locale = Astro.currentLocale as Locale;
 
-const { title, categorySlug, postId, from, dateVisited } = Astro.props;
+const { place, categorySlug, postId, from, dateVisited, eager = false } = Astro.props;
 
 const formatDateVisited = format(dateVisited, 'yyyy-MM-dd');
 
@@ -29,20 +29,22 @@ const image = imageModule ? (await imageModule()).default : undefined;
             src={image}
             width={image.width}
             height={image.height}
-            alt={title}
+            alt={place.title}
+            loading={eager ? 'eager' : 'lazy'}
           />
         </div>
       )
     }
     <div class="cardContent">
-      <strong class="title">{title}</strong>
+      <strong class="title">{place.title}</strong>
       <span class="description"
         >Visited on {formatDateVisited} from {from?.place}.</span
       >
     </div>
     <a
       class="link"
-      href={`${getRelativeLocaleUrl(locale, `${categorySlug}/${postId}`)}`}></a>
+      href={`${getRelativeLocaleUrl(locale, `${categorySlug}/${postId}`)}`}
+      aria-label={place.title}></a>
   </figure>
 </li>
 

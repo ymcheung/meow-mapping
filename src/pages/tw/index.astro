@@ -59,24 +59,27 @@ const dateModified = '2025-08-24T08:30:00+08:00';
             <>
               <h2 class="categoryTitle">{title}</h2>
               <PostPreviewList>
-                {postsOfCategorySorted.map(
-                  ({
+                {postsOfCategorySorted.map((post, index) => {
+                  const {
                     id,
                     data: {
                       title,
                       transportation: { from },
                       dateVisited
                     }
-                  }) => (
+                  } = post;
+
+                  return (
                     <PostPreview
                       categorySlug={slug}
                       postId={id}
                       title={title}
                       from={from}
                       dateVisited={dateVisited}
+                      eager={index < 5}
                     />
-                  )
-                )}
+                  );
+                })}
               </PostPreviewList>
             </>
           )
