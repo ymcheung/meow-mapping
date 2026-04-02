@@ -9,6 +9,14 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://meow.carrier.express',
   trailingSlash: 'never',
+  fonts: [
+    {
+      provider: fontProviders.fontsource(),
+      name: 'Asap',
+      cssVariable: '--font-asap',
+      weights: [400, 600, 700]
+    }
+  ],
   i18n: {
     locales: [...locales],
     defaultLocale,
@@ -48,15 +56,5 @@ export default defineConfig({
     '/tw/temples/gotanjouji': '/tw/temples/fukui-gotanjouji',
     '/tw/islands/sanagijima': '/tw/islands/kagawa-sanagijima',
     '/tw/neighborhoods/beppu': '/tw/neighborhoods/oita-beppu'
-  },
-  experimental: {
-    fonts: [
-      {
-        provider: fontProviders.fontsource(),
-        name: 'Asap',
-        cssVariable: '--font-asap',
-        weights: [400, 600, 700]
-      }
-    ]
   }
 });

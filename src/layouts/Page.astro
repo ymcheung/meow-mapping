@@ -2,7 +2,7 @@
 import { postSchema } from '@/schema';
 import type { Locale } from '@/types';
 import type { ImageMetadata } from 'astro';
-import type { z } from 'astro:content';
+import { z } from 'zod';
 import messages from '@/i18n/messages';
 import BaseHead from './_BaseHead.astro';
 import Dock from '@/pages/_Dock.astro';
@@ -58,6 +58,12 @@ const pathHome = getRelativeLocaleUrl(locale);
 const fullTitle = isTW
   ? `到${title}${messages[locale].layout.page.title}`
   : title;
+const difficultyDescription =
+  difficulty.level === 'easy'
+    ? messages[locale].layout.page.difficulty.easy.description
+    : difficulty.level === 'medium'
+      ? messages[locale].layout.page.difficulty.medium.description
+      : messages[locale].layout.page.difficulty.hard.description;
 ---
 
 <html lang={isTW ? 'zh-TW' : locale}>
@@ -97,10 +103,7 @@ const fullTitle = isTW
               {messages[locale].layout.page.difficulty.title}
             </dt>
             <dd class="metaDetail">
-              {
-                messages[locale].layout.page.difficulty[difficulty.level]
-                  .description
-              }
+              {difficultyDescription}
             </dd>
           </div>
           <div class="metaItem">

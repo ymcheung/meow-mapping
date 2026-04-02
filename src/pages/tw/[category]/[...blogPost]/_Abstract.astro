@@ -1,7 +1,10 @@
 ---
-import { z } from 'astro:content';
+import { z } from 'zod';
 import { getEntry, render } from 'astro:content';
-import { transportations as transportationIcon } from '@/consts';
+import {
+  transportations as transportationIcon,
+  type TransportationLabel
+} from '@/consts';
 import { postSchema } from '@/schema';
 import formatDuration from '@/helpers/formatDuration';
 import messages from '@/i18n/messages';
@@ -10,7 +13,7 @@ const transportationSchema = postSchema.pick({ transportation: true });
 
 type Props = z.infer<typeof transportationSchema>;
 
-const { transportation } = Astro.props;
+const { transportation } = Astro.props as Props;
 
 const { duration, unit } = formatDuration(transportation.duration, 'tw');
 
@@ -33,7 +36,7 @@ const headingsLv2 = headings.filter(({ depth }) => depth === 2);
   {
     !!transportation.by && (
       <ul class="by">
-        {transportation.by.map((by) => {
+        {transportation.by.map((by: TransportationLabel) => {
           const Icon = transportationIcon[by].icon;
           return (
             <li>

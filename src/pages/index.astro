@@ -1,5 +1,5 @@
 ---
-import { SITE_DESCRIPTION, categories } from '@/consts';
+import { SITE_DESCRIPTION, SITE_NAME, categories } from '@/consts';
 import Layout from '@layouts/Index.astro';
 import { getCollection } from 'astro:content';
 import PostPreviewList from '@/pages/_PostPreviewList.astro';
@@ -18,7 +18,11 @@ function filterPosts(categorySlug: string) {
 const dateModified = '2025-06-29T23:00:00+08:00';
 ---
 
-<Layout description={SITE_DESCRIPTION} dateModified={dateModified}>
+<Layout
+  title={SITE_NAME}
+  description={SITE_DESCRIPTION}
+  dateModified={dateModified}
+>
   <main>
     <strong class="pageTitle">What are those places?</strong>
     <p class="description">

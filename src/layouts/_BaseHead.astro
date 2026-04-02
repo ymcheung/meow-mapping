@@ -31,7 +31,9 @@ const isHome = !category && !isBlogPost;
 const isRoot = pathname === '/';
 const isCategoryIndex = !!category && !isBlogPost;
 const hasArticleCover = !!blogPost && hasCover;
-const ogType = isBlogPost ? 'article' : 'webiste';
+const ogType = isBlogPost ? 'article' : 'website';
+const pageTitle = title ?? SITE_NAME;
+const pageDescription = description ?? SITE_DESCRIPTION;
 
 const hasAlternate =
   !blogPost ||
@@ -48,15 +50,16 @@ const hasAlternate =
 
 const schema = () => {
   const website = {
-    '@type': 'Website',
+    '@type': 'WebSite',
     name: SITE_NAME,
-    url: import.meta.env.SITE_URL
+    url: siteUrl('/')
   };
 
   const blogPosting = {
     '@type': 'BlogPosting',
     url: siteUrl(pathname),
     headline: title,
+    description: pageDescription,
     ...(hasArticleCover
       ? {
           image: [siteUrl(`/assets/${blogPost}/og.jpg`)]
@@ -110,8 +113,8 @@ const schema = () => {
 
 <head>
   <meta charset="utf-8" />
-  <title>{title ?? SITE_NAME}</title>
-  <meta name="description" content={description} />
+  <title>{pageTitle}</title>
+  <meta name="description" content={pageDescription} />
   <link rel="canonical" href={siteUrl(pathname)} />
   {isCategoryIndex && <meta name="robots" content="noindex" />}
   <meta name="viewport" content="width=device-width" />
@@ -156,8 +159,9 @@ const schema = () => {
   <meta property="og:type" content={ogType} />
   <meta property="og:site_name" content={SITE_NAME} />
   <meta property="og:url" content={siteUrl(pathname)} />
-  <meta property="og:title" content={title} />
-  <meta property="og:description" content={description} />
+  <meta property="og:title" content={pageTitle} />
+  <meta property="og:description" content={pageDescription} />
+  <meta property="twitter:card" content="summary_large_image" />
   {
     hasArticleCover && (
       <>
@@ -183,19 +187,19 @@ const schema = () => {
         <meta property="og:image" content={siteUrl('/assets/og.jpg')} />
         <meta
           property="og:image:alt"
-          content={description || SITE_DESCRIPTION}
+          content={pageDescription}
         />
         <meta property="twitter:image" content={siteUrl('/assets/og.jpg')} />
         <meta
           property="twitter:image:alt"
-          content={description || SITE_DESCRIPTION}
+          content={pageDescription}
         />
       </>
     )
   }
   <meta property="twitter:url" content={siteUrl(pathname)} />
-  <meta property="twitter:title" content={title} />
-  <meta property="twitter:description" content={description} />
+  <meta property="twitter:title" content={pageTitle} />
+  <meta property="twitter:description" content={pageDescription} />
   <meta property="fb:app_id" content="1241704385975640" />
   <script type="application/ld+json" set:html={schema()} is:inline />
   <meta name="format-detection" content="telephone=no" />
