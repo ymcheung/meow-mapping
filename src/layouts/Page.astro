@@ -86,7 +86,12 @@ const difficultyDescription =
                 src={image}
                 width={image.width}
                 height={image.height}
+                widths={[480, 800, 1200]}
+                sizes="(min-width: 768px) 768px, calc(100vw - 1.5rem)"
                 alt={title}
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
               />
             </div>
           )

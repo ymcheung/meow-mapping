@@ -101,14 +101,20 @@ const schema = () => {
     ]
   };
 
-  return JSON.stringify({
-    '@context': 'https://schema.org/',
-    '@graph': [
-      ...(isRoot ? [website] : []),
-      ...(isBlogPost ? [blogPosting, breadcrumb] : [])
-    ]
-  });
+  const graph = [
+    ...(isRoot ? [website] : []),
+    ...(isBlogPost ? [blogPosting, breadcrumb] : [])
+  ];
+
+  return graph.length
+    ? JSON.stringify({
+        '@context': 'https://schema.org/',
+        '@graph': graph
+      })
+    : undefined;
 };
+
+const structuredData = schema();
 ---
 
 <head>
@@ -176,7 +182,6 @@ const schema = () => {
           property="twitter:image"
           content={siteUrl(`/assets/${blogPost}/og.jpg`)}
         />
-        <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:image:alt" content={cover?.alt} />
       </>
     )
@@ -201,7 +206,9 @@ const schema = () => {
   <meta property="twitter:title" content={pageTitle} />
   <meta property="twitter:description" content={pageDescription} />
   <meta property="fb:app_id" content="1241704385975640" />
-  <script type="application/ld+json" set:html={schema()} is:inline />
+  {structuredData && (
+    <script type="application/ld+json" set:html={structuredData} is:inline />
+  )}
   <meta name="format-detection" content="telephone=no" />
   <meta name="generator" content={Astro.generator} />
   {

@@ -6,7 +6,14 @@ const { src, alt } = Astro.props;
 ---
 
 <figure>
-  <Image src={src} alt={alt} />
+  <Image
+    src={src}
+    alt={alt}
+    widths={[480, 800, 1200]}
+    sizes="(min-width: 768px) 768px, 100vw"
+    loading="lazy"
+    decoding="async"
+  />
   {!!alt && <figcaption>{alt}</figcaption>}
 </figure>
 
