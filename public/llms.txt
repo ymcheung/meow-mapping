@@ -1,0 +1,63 @@
+# Meow Mapping
+
+> Cat Spotting Guides for reaching cat-filled destinations, mainly in Japan.
+
+Site: https://meow.carrier.express
+
+This site publishes travel guides focused on how to reach real-world cat spots, not just listing them. The content is organized by locale and category, with long-form destination pages backed by MDX content.
+
+## Locales
+
+- English: https://meow.carrier.express/
+- Traditional Chinese: https://meow.carrier.express/tw
+
+## Content Structure
+
+- Home pages list all guides grouped by category.
+- Category pages list guides for one topic.
+- Destination pages are the main long-form resources.
+
+## Categories
+
+- Islands: remote cat islands that usually require ferries and longer transit.
+- Temples: temples and shrines where cats live around the grounds.
+- Neighborhoods: walkable areas, streets, and towns where cats live among residents.
+
+## English Category Pages
+
+- Islands: https://meow.carrier.express/islands
+- Temples: https://meow.carrier.express/temples
+- Neighborhoods: https://meow.carrier.express/neighborhoods
+
+## Traditional Chinese Category Pages
+
+- Islands: https://meow.carrier.express/tw/islands
+- Temples: https://meow.carrier.express/tw/temples
+- Neighborhoods: https://meow.carrier.express/tw/neighborhoods
+
+## English Destination Guides
+
+- Ainoshima, Fukuoka: https://meow.carrier.express/islands/fukuoka-ainoshima
+- Sanagijima, Kagawa: https://meow.carrier.express/islands/kagawa-sanagijima
+- Tashirojima, Miyagi: https://meow.carrier.express/islands/miyagi-tashirojima
+- Gotanjouji, Fukui: https://meow.carrier.express/temples/fukui-gotanjouji
+- Fushimi Inari Taisha, Kyoto: https://meow.carrier.express/temples/kyoto-fushimiinaritaisha
+- Gokokuji, Tokyo: https://meow.carrier.express/temples/tokyo-gokokuji
+- Enoshima, Kamakura: https://meow.carrier.express/neighborhoods/kamakura-enoshima
+- Beppu, Oita: https://meow.carrier.express/neighborhoods/oita-beppu
+- Neko no Hosomichi, Onomichi: https://meow.carrier.express/neighborhoods/onomichi-nekonohosomichi
+
+## Traditional Chinese Destination Guides
+
+- 香川・佐柳島: https://meow.carrier.express/tw/islands/kagawa-sanagijima
+- 宮城・田代島: https://meow.carrier.express/tw/islands/miyagi-tashirojima
+- 福井・御誕生寺: https://meow.carrier.express/tw/temples/fukui-gotanjouji
+- 東京・護國寺: https://meow.carrier.express/tw/temples/tokyo-gokokuji
+- 大分・別府的巷弄深處: https://meow.carrier.express/tw/neighborhoods/oita-beppu
+- 尾道・猫の細道: https://meow.carrier.express/tw/neighborhoods/onomichi-nekonohosomichi
+
+## Notes for LLMs
+
+- English has broader coverage than the Traditional Chinese section at the moment.
+- Destination pages usually include route context, transport modes, trip duration, difficulty, and visit notes.
+- Category and locale are encoded directly in the URL path.
