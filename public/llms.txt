@@ -2,14 +2,14 @@
 
 > Cat Spotting Guides for reaching cat-filled destinations, mainly in Japan.
 
-Site: https://meow.carrier.express
+Site: https://mapping.meow.ymcheung.tw
 
 This site publishes travel guides focused on how to reach real-world cat spots, not just listing them. The content is organized by locale and category, with long-form destination pages backed by MDX content.
 
 ## Locales
 
-- English: https://meow.carrier.express/
-- Traditional Chinese: https://meow.carrier.express/tw
+- English: https://mapping.meow.ymcheung.tw/
+- Traditional Chinese: https://mapping.meow.ymcheung.tw/tw
 
 ## Content Structure
 
@@ -25,36 +25,36 @@ This site publishes travel guides focused on how to reach real-world cat spots, 
 
 ## English Category Pages
 
-- Islands: https://meow.carrier.express/islands
-- Temples: https://meow.carrier.express/temples
-- Neighborhoods: https://meow.carrier.express/neighborhoods
+- Islands: https://mapping.meow.ymcheung.tw/islands
+- Temples: https://mapping.meow.ymcheung.tw/temples
+- Neighborhoods: https://mapping.meow.ymcheung.tw/neighborhoods
 
 ## Traditional Chinese Category Pages
 
-- Islands: https://meow.carrier.express/tw/islands
-- Temples: https://meow.carrier.express/tw/temples
-- Neighborhoods: https://meow.carrier.express/tw/neighborhoods
+- Islands: https://mapping.meow.ymcheung.tw/tw/islands
+- Temples: https://mapping.meow.ymcheung.tw/tw/temples
+- Neighborhoods: https://mapping.meow.ymcheung.tw/tw/neighborhoods
 
 ## English Destination Guides
 
-- Ainoshima, Fukuoka: https://meow.carrier.express/islands/fukuoka-ainoshima
-- Sanagijima, Kagawa: https://meow.carrier.express/islands/kagawa-sanagijima
-- Tashirojima, Miyagi: https://meow.carrier.express/islands/miyagi-tashirojima
-- Gotanjouji, Fukui: https://meow.carrier.express/temples/fukui-gotanjouji
-- Fushimi Inari Taisha, Kyoto: https://meow.carrier.express/temples/kyoto-fushimiinaritaisha
-- Gokokuji, Tokyo: https://meow.carrier.express/temples/tokyo-gokokuji
-- Enoshima, Kamakura: https://meow.carrier.express/neighborhoods/kamakura-enoshima
-- Beppu, Oita: https://meow.carrier.express/neighborhoods/oita-beppu
-- Neko no Hosomichi, Onomichi: https://meow.carrier.express/neighborhoods/onomichi-nekonohosomichi
+- Ainoshima, Fukuoka: https://mapping.meow.ymcheung.tw/islands/fukuoka-ainoshima
+- Sanagijima, Kagawa: https://mapping.meow.ymcheung.tw/islands/kagawa-sanagijima
+- Tashirojima, Miyagi: https://mapping.meow.ymcheung.tw/islands/miyagi-tashirojima
+- Gotanjouji, Fukui: https://mapping.meow.ymcheung.tw/temples/fukui-gotanjouji
+- Fushimi Inari Taisha, Kyoto: https://mapping.meow.ymcheung.tw/temples/kyoto-fushimiinaritaisha
+- Gokokuji, Tokyo: https://mapping.meow.ymcheung.tw/temples/tokyo-gokokuji
+- Enoshima, Kamakura: https://mapping.meow.ymcheung.tw/neighborhoods/kamakura-enoshima
+- Beppu, Oita: https://mapping.meow.ymcheung.tw/neighborhoods/oita-beppu
+- Neko no Hosomichi, Onomichi: https://mapping.meow.ymcheung.tw/neighborhoods/onomichi-nekonohosomichi
 
 ## Traditional Chinese Destination Guides
 
-- 香川・佐柳島: https://meow.carrier.express/tw/islands/kagawa-sanagijima
-- 宮城・田代島: https://meow.carrier.express/tw/islands/miyagi-tashirojima
-- 福井・御誕生寺: https://meow.carrier.express/tw/temples/fukui-gotanjouji
-- 東京・護國寺: https://meow.carrier.express/tw/temples/tokyo-gokokuji
-- 大分・別府的巷弄深處: https://meow.carrier.express/tw/neighborhoods/oita-beppu
-- 尾道・猫の細道: https://meow.carrier.express/tw/neighborhoods/onomichi-nekonohosomichi
+- 香川・佐柳島: https://mapping.meow.ymcheung.tw/tw/islands/kagawa-sanagijima
+- 宮城・田代島: https://mapping.meow.ymcheung.tw/tw/islands/miyagi-tashirojima
+- 福井・御誕生寺: https://mapping.meow.ymcheung.tw/tw/temples/fukui-gotanjouji
+- 東京・護國寺: https://mapping.meow.ymcheung.tw/tw/temples/tokyo-gokokuji
+- 大分・別府的巷弄深處: https://mapping.meow.ymcheung.tw/tw/neighborhoods/oita-beppu
+- 尾道・猫の細道: https://mapping.meow.ymcheung.tw/tw/neighborhoods/onomichi-nekonohosomichi
 
 ## Notes for LLMs
 

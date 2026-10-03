@@ -4,10 +4,14 @@ import { locales, defaultLocale } from './src/i18n-config';
 import mdx from '@astrojs/mdx';
 import rehypeUnwrapImages from 'rehype-unwrap-images';
 import sitemap from '@astrojs/sitemap';
+import cloudflare from '@astrojs/cloudflare';
+import { unified } from '@astrojs/markdown-remark';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://meow.carrier.express',
+  adapter: cloudflare({ imageService: 'compile' }),
+  compressHTML: true,
+  site: 'https://mapping.meow.ymcheung.tw',
   trailingSlash: 'never',
   fonts: [
     {
@@ -31,17 +35,17 @@ export default defineConfig({
     mdx(),
     sitemap({
       filter: (page) =>
-        page !== 'https://meow.carrier.express/' &&
-        page !== 'https://meow.carrier.express/islands' &&
-        page !== 'https://meow.carrier.express/temples' &&
-        page !== 'https://meow.carrier.express/neighborhoods' &&
-        page !== 'https://meow.carrier.express/tw/islands' &&
-        page !== 'https://meow.carrier.express/tw/temples' &&
-        page !== 'https://meow.carrier.express/tw/neighborhoods'
+        page !== 'https://mapping.meow.ymcheung.tw/' &&
+        page !== 'https://mapping.meow.ymcheung.tw/islands' &&
+        page !== 'https://mapping.meow.ymcheung.tw/temples' &&
+        page !== 'https://mapping.meow.ymcheung.tw/neighborhoods' &&
+        page !== 'https://mapping.meow.ymcheung.tw/tw/islands' &&
+        page !== 'https://mapping.meow.ymcheung.tw/tw/temples' &&
+        page !== 'https://mapping.meow.ymcheung.tw/tw/neighborhoods'
     })
   ],
   markdown: {
-    rehypePlugins: [rehypeUnwrapImages]
+    processor: unified({ rehypePlugins: [rehypeUnwrapImages] })
   },
   redirects: {
     '/temples/gotanjouji': '/temples/fukui-gotanjouji',

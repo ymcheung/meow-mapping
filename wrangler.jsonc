@@ -1,0 +1,11 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "meow-mapping",
+  "compatibility_date": "2026-10-03",
+  "routes": [
+    {
+      "pattern": "mapping.meow.ymcheung.tw",
+      "custom_domain": true
+    }
+  ]
+}

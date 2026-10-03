@@ -8,7 +8,7 @@ import Train from '@assets/train.svg';
 import Walk from '@assets/walk.svg';
 import Taxi from '@assets/taxi.svg';
 
-// export const SITE_URL = 'https://meow.carrier.express';
+// export const SITE_URL = 'https://mapping.meow.ymcheung.tw';
 export const SITE_NAME = 'Cat Spotting Guides - Meow Mapping';
 export const SITE_NAME_TW = '找貓點';
 export const SITE_DESCRIPTION =
